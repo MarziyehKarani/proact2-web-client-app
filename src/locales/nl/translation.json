@@ -1,0 +1,521 @@
+{
+    "AddAnalysisAlertConfirmButton":"Opslaan",
+
+  "AddAnalysisAlertMessage":"Wilt u deze analyse toevoegen?",
+
+  "AddAnalysisAlertTitle":"Opslaan",
+
+  "AddAnalysisButton":"ANALYSE",
+
+  "AddAnalysisButtonText":"Opslaan",
+
+  "AddAnalysisMessageError":"Er is een fout opgetreden tijdens het opslaan. Probeer het opnieuw.",
+
+  "AddAnalysisPageTitle":"Nieuwe analyse",
+
+  "AddAnalysisSuccessAlertMessage":"Uw analyse is opgeslagen.",
+
+  "AddAnalysisValidationError":"Er moet ten minste één item worden geselecteerd.",
+
+  "AllMessages":"Alles",
+
+  "AllowNotifications":"Meldingen toestaan",
+
+  "AnalysisDeleteAlertMessage":"Wilt u deze analyse verwijderen?",
+
+  "AnalysisDeleteAlertTitle":"Verwijdering bevestigen",
+
+  "AnalysisDeleteErrorMessage":"Er is een fout opgetreden tijdens het verwijderen. Probeer het opnieuw.",
+
+  "AnalysisGroupButton":"Categorieën",
+
+  "AnalysisGroupFilterActiveMessage":"Alleen items uit categorie worden weergegeven.",
+
+  "AnalysisGroupPageTitle":"Categorieën",
+
+  "AnalysisGroupRemoveFilter":"Filter verwijderen",
+
+  "AnalysisLabelAlreadyExistAlertMessage":"Dit item is al toegevoegd.",
+
+  "AnalysisListPageTitle":"Analyse",
+
+  "AppVersion":"v. {0}({1})",
+
+  "AttachAnImageToTextMessage":"Een afbeelding toevoegen aan het bericht",
+
+  "AuthenticationError":"Authenticatiefout:",
+
+  "AuthErrorInvalidMedicalTeam":"Ongeldig resultaat voor medisch team.",
+
+  "AuthErrorInvalidProject":"Ongeldig resultaat voor project.",
+
+  "AuthErrorNoMedicalTeamAssociated":"Er zijn geen medische teams aan de patiënt gekoppeld.",
+
+  "AuthErrorNoProjectAssociated":"Er zijn geen projecten aan de patiënt gekoppeld",
+
+  "AuthErrorTitle":"Authenticatiefout",
+
+  "AuthErrorUserInactive":"Uw gebruiker is uitgeschakeld, u kunt niet inloggen op de app.",
+
+  "AuthErrorUserNotAuthorized":"Gebruiker niet gemachtigd om de app te gebruiken",
+
+  "Back":"Terug",
+
+  "BodyMessage":"Bericht",
+
+  "BradcastMessageInfo":"Een Broadcast-bericht is zichtbaar voor alle patiënten en specialisten in uw medisch team.",
+
+  "BradcastMessagePageTitle":"Broadcast-bericht",
+
+  "BroadcastType":"Broadcast",
+
+  "Cancel":"Annuleren",
+
+  "CantAnalyzeMessageAlertMessage":"U moet {0} minuten wachten na het verzenden van het bericht van de patiënt.",
+
+  "CantAnalyzeMessageAlertTitle":"Dit bericht kan niet worden geanalyseerd.",
+
+  "CantReplyToMessageAlertMessage":"U moet {0} minuten wachten na het verzenden van het bericht van de patiënt.",
+
+  "CantReplyToMessageAlertTitle":"Het bericht kan niet worden beantwoord.",
+
+  "ChangeMedicalTeamAndTrialTitle":"Studie- en Medisch team wijzigen",
+
+  "Close":"Sluiten",
+
+  "CommentType":"Opmerking",
+
+  "CompletedSurveysPageTitle":"Ingevulde vragenlijsten",
+
+  "ContactTitle":"Contact",
+
+  "Continue":"Doorgaan",
+
+  "DaysSpan":"d",
+
+  "Delete":"Verwijderen",
+
+  "DeleteMessageDialogMessage":"Wilt u dit bericht verwijderen?",
+
+  "DeleteMessageDialogTitle":"Bericht verwijderen",
+
+  "Edit":"Wijzigen",
+
+  "EditAnalysisPageTitle":"Analyse wijzigen",
+
+  "EditTextMessagePageTitle":"Een bericht wijzigen",
+
+  "EmptyComiledSurveysList":"Geen vragenlijst",
+
+  "EmptyList":"Er zijn geen items om weer te geven.",
+
+  "EmptyMedicalTeamsListMessage":"Er zijn geen medische teams om weer te geven",
+
+  "EmptyNotComiledSurveysList":"Geen vragenlijst",
+
+  "EmptyPatientsListMessage":"Geen patiënten gekoppeld aan dit medisch team",
+
+  "EmptyProjectsListMessage":"Er zijn geen klinische onderzoeken om weer te geven",
+
+  "EmptySearchMessageResult":"Geen berichten gevonden",
+
+  "EmptyWallMessagesMessage":"Er zijn geen berichten om weer te geven",
+
+  "EnterAnswerError":"Voer een antwoord in.",
+
+  "ExitTitle":"Afsluiten",
+
+  "GenericLoadingError":"Er is een fout opgetreden tijdens het laden.",
+
+  "HealthMessage":"Uw gezondheidstoestand",
+
+  "HelpDeskGroupTitle":"HULP NODIG?",
+
+  "HelpDeskPhoneSubtitle":"{0}-{1} van {2} tot {3}",
+
+  "HoursSpan":"u",
+
+  "InfoMessage":"Informatie of afspraken",
+
+  "LandingStartButton":"Beginnen",
+
+  "LicenseButtonText":"Licentie",
+
+  "LicenseTitle":"Licentie",
+
+  "LogoutGroupTitle":"AFSLUITEN",
+
+  "MediaUploadInitializeAlert":"Upload gestart, volg de voortgang in de melding.",
+
+  "MedicalTeamGroupTitle":"STUDIE EN MEDISCH TEAM",
+
+  "MedicalTeamsListPageTitle":"Uw medische teams",
+
+  "MedicalTeamsListRequestError":"Kan geen medisch team vinden dat aan uw gebruiker is gekoppeld",
+
+  "MessageDetailsPageTitle":"Bericht voltooid",
+
+  "MessageRequiredError":"Voer de hoofdtekst van het bericht in",
+
+  "MessageSentSuccessfullyAlert":"Bericht succesvol verzonden.",
+
+  "VideoMessageSentSuccessfullyAlert":"Bericht verzonden. Je krijgt een melding wanneer je video klaar is om te bekijken.",
+
+  "MessageUploading":"Het bericht wordt geladen...",
+
+  "MessageWithVideoAttachmentTitle":"Videobericht",
+
+  "MessageWithVoiceAttachmentTitle":"Spraakbericht",
+
+  "MicrophonePermissionExceptionMessage":"Zorg ervoor dat u toestemming heeft gegeven voor het gebruik van de microfoon. Open de instellingen en geef de app toegang tot de microfoon.",
+
+  "MicrophonePermissionExceptionTitle":"De microfoon is niet toegankelijk.",
+
+  "MinutesSpan":"min",
+
+  "NewBroadcastMessageButton":"Nieuw broadcast-bericht",
+
+  "NewMessageButton":"Nieuw onderwerp",
+
+  "NewMessageErrorMessage":"Probeer het opnieuw",
+
+  "NewMessageErrorTitle":"Kan bericht niet verzenden",
+
+  "NewMessages":"Nieuw",
+
+  "NewTextMessageAttachPhotoPlaceholder":"Wilt u een foto bijvoegen?",
+
+  "NewTextMessageMoodPlaceholder":"Hoe voelt u zich vandaag?",
+
+  "NewTextMessagePageTitle":"Nieuw bericht",
+
+  "NewTextMessagePlaceholder":"Beschrijf hoe u zich voelt",
+
+  "NewTextMessageSubmitButtonText":"Verzenden",
+
+  "NoButton":"NEE",
+
+  "NotDeletableMessageAlertMessage":"Het bericht is naar het medische team gestuurd en kan niet meer worden verwijderd.",
+
+  "NotDeletableMessageAlertTitle":"Het bericht kan niet worden verwijderd.",
+
+  "NotificationMediaUploadTitle":"PROACT 2.0",
+
+  "NotificationMessageMediaUploaded":"Uploaden voltooid.",
+
+  "NotificationMessageMediaUploading":"Het bericht wordt geüpload.",
+
+  "NotificationMessageMediaVerification":"Het bericht controleren.",
+
+  "NotificationSettingsInfo":"U ontvangt alleen pushmeldingen binnen het tijdsinterval dat u heeft geselecteerd.",
+
+  "NotificationSettingsPageTitle":"Meldingsinstellingen",
+
+  "NotificationsGroupTitle":"MELDINGEN",
+
+  "NotificationsOptionsPageTitle":"Meldingen",
+
+  "NotificationsReceivingTime":"Tijdstip voor ontvangst van meldingen",
+
+  "NotificationsTimeFrom":"Van",
+
+  "NotificationsTimeTo":"Tot",
+
+  "Ok":"Ok",
+
+  "OpenSettings":"Instellingen openen",
+
+  "PatientDetailsMediaList":"Media verzonden door de patiënt",
+
+  "PatientDetailsSurveysCompleted":"Ingevulde vragenlijsten",
+
+  "PatientsListRequestError":"Kan geen patiënten vinden die aan uw gebruiker zijn gekoppeld",
+
+  "Pause":"Pauze",
+
+  "PickPhoto":"Foto selecteren",
+
+  "PickPhotoPermissionExceptionMessage":"Open de instellingen en geef de app toegang tot de foto's.",
+
+  "PickPhotoUnsupportedMessage":"Zorg ervoor dat er toestemming is gegeven voor het gebruik van de foto's.",
+
+  "PickPhotoUnsupportedTitle":"Kan geen toegang krijgen tot de foto's.",
+
+  "Play":"Afspelen",
+
+  "PrivacyPolicyButtonText":"Privacybeleid",
+
+  "PrivacyPolicyError":"Lees en accepteer ons privacybeleid.",
+
+  "PrivacyPolicyTitle":"Privacybeleid",
+
+  "ProactInfoGroupTitle":"OVER PROACT 2.0",
+
+  "ProfilePageTitle":"Mijn profiel",
+
+  "ProjectsListPageTitle":"Klinisch onderzoek",
+
+  "ProjectsListRequestError":"Kan geen klinisch onderzoek vinden die aan uw gebruiker is gekoppeld",
+
+  "ProtocolDetailsGroupTitle":"UW PROTOCOL",
+
+  "ProtocolInternalCode":"Interne code: {0}",
+
+  "ProtocolInternationalCode":"Internationale code: {0}",
+
+  "PushNotificationsSettingsValidateError":"Tijdsinterval is ongeldig. De begintijd kan niet later zijn dan de eindtijd.",
+
+  "Recording":"Registeren...",
+
+  "RemoveAttachedImage":"De bijgevoegde afbeelding verwijderen",
+
+  "RemoveProfileImage":"Profielfoto verwijderen",
+
+  "RemovePushNotificationTimeLimit":"Tijdslimiet verwijderen",
+
+  "ReplyTextMessagePageTitle":"Het bericht beantwoorden",
+
+  "ReplyTextMessagePlaceholder":"Een bericht schrijven...",
+
+  "Save":"Opslaan",
+
+  "SearchbarPlaceholder":"Zoeken...",
+
+  "SearchPagePlaceholder":"Typ de tekst waarnaar u wilt zoeken in berichten en opmerkingen",
+
+  "SearchPageTitle":"Berichten zoeken",
+
+  "SecondsSpan":"s",
+
+  "SelectAnswerError":"Selecteer een antwoord.",
+
+  "SelectProfileImage":"Selecteer uw profielfoto",
+
+  "SendVoiceMessageAlertMessage":"U heeft een spraakbericht opgenomen. Wilt u deze verzenden?",
+
+  "SendVoiceMessageAlertTitle":"Bericht verzenden",
+
+  "SendVoiceMessageConfirmButton":"Verzenden",
+
+  "ShowAllReplyButtonText":"Toon alle reacties",
+
+  "SignoutAlertCancelButton":"Annuleren",
+
+  "SignoutAlertMessage":"Wilt u PROACT 2.0 afsluiten?",
+
+  "SignoutAlertOkButton":"Afsluiten",
+
+  "SignoutAlertTitle":"Afsluiten",
+
+  "Stop":"Stop",
+
+  "SubmitSurveyButton":"Verzenden",
+
+  "SurveyCheckPageTitle":"Antwoorden bevestigen",
+
+  "SurveyCompleted":"Verzonden op",
+
+  "SurveyExpires":"Verloopt op",
+
+  "SurveyMultipleAswersPlaceholder":"Selecteer uw antwoorden:",
+
+  "SurveyOpenAswerEditorPlaceholder":"Schrijf hier uw antwoord:",
+
+  "SurveyQuestionOrderLabel":"{0} van {1}",
+
+  "SurveyQuestionsCounterLabel":"{0} vragen",
+
+  "SurveyQuestionsVersionLabel":"Versie {0}",
+
+  "SurveyResultsBadMessage":"Het medisch team wordt op de hoogte gebracht en neemt zo snel mogelijk contact met u op. Als u dringende medische hulp nodig heeft, neem dan contact op met uw ziekenhuis.",
+
+  "SurveyResultsGoodMessage":"Bedankt, uw vragenlijst is succesvol verzonden.",
+
+  "SurveysFilledInTitle":"Ingevuld",
+
+  "SurveysGroupTitle":"VRAGENLIJSTEN",
+
+  "SurveySingleAswerPlaceholder":"Selecteer uw antwoord:",
+
+  "SurveyStartButton":"Beginnen",
+
+  "SurveysToBeFillTitle":"In te vullen",
+
+  "Tagline":"Waarbij u kunt bijdragen aan onderzoek door uw ervaring te delen",
+
+  "TakePhoto":"Foto maken",
+
+  "TakePhotoCameraPermissionExceptionMessage":"Open de instellingen en geef PROACT 2.0 toegang tot de camera.",
+
+  "TakePhotoCameraUnsupportedMessage":"Zorg ervoor dat de camera aanwezig is en werkt.",
+
+  "TakePhotoCameraUnsupportedTitle":"De camera kan niet worden gebruikt.",
+
+  "TapToStartRecording":"Tik om de opname te starten",
+
+  "TapToStartVoiceReproduction":"Tik om het spraakbericht af te spelen",
+
+  "TapToStopRecording":"Tik nogmaals om de opname te stoppen",
+
+  "TermsAndConditionsAgreeMessage":"Lees en accepteer onze algemene voorwaarden, licentie en privacybeleid, om PROACT 2.0 te blijven gebruiken.",
+
+  "TermsAndConditionsAgreeTitle":"Algemene voorwaarden en licentie",
+
+  "TermsAndConditionsAndLicenseTitle":"Algemene voorwaarden en licentie",
+
+  "TermsAndConditionsButtonText":"Algemene voorwaarden",
+
+  "TermsAndConditionsConfirmMessage":"Ik heb deze gelezen en geaccepteerd",
+
+  "TermsAndConditionsError":"Lees en accepteer onze algemene voorwaarden en de licentie.",
+
+  "TermsAndConditionsTitle":"Algemene voorwaarden",
+
+  "TermsConditionsAndLicenseButtonText":"Algemene voorwaarden en licentie",
+
+  "TextTypeMessage":"Tekstueel",
+
+  "Title":"Titel",
+
+  "TitleRequiredError":"Voer de titel van het bericht in",
+
+  "ToBeCompletedSurveysPageTitle":"In te vullen vragenlijsten",
+
+  "TopicType":"Onderwerp",
+
+  "UnlimitedNotificationsTime":"Geen tijdslimiet",
+
+  "UpdateAnalysisAlertConfirmButton":"Wijzigen",
+
+  "UpdateAnalysisAlertMessage":"Wilt u deze analyse wijzigen?",
+
+  "UpdateAnalysisAlertTitle":"Wijzigen",
+
+  "UpdateAnalysisSuccessAlertMessage":"De analyse is gewijzigd.",
+
+  "UploadProfileImageError":"De afbeelding kan niet worden geüpload.",
+
+  "UploadProfileImageSuccess":"Afbeelding succesvol geüpload",
+
+  "UrgentMedicalAdviceCondition":"Ik begrijp dat PROACT 2.0 NIET is bedoeld voor noodgevallen.",
+
+  "UrgentMedicalAdviceError":"Bevestig dat u begrijpt dat PROACT 2.0 niet is bedoeld voor noodgevallen.",
+
+  "UrgentMedicalAdviceMessage": "",
+
+  "UrgentMedicalAdviceMessage2":"Als u dringend met uw artsen moet communiceren, gebruik  hiervoor dan NIET PROACT 2.0, maar neem contact met hen op via de speciale telefoonnummers.",
+
+  "UrgentMedicalAdviceMessage3":"Berichten die via de app worden verzonden, worden op werkdagen alleen tijdens kantooruren gelezen.",
+
+  "UrgentMedicalAdviceTitle":"PROACT 2.0 is niet bedoeld als communicatiemiddel voor noodoproepen",
+
+  "VideoMessageUploadSuccess":"Videobericht succesvol verzonden.",
+
+  "VideoPlayerPageTitle":"Afspeler",
+
+  "VideoTypeMessage":"Video",
+
+  "VoiceMessageUploadSuccess":"Spraakbericht succesvol verzonden.",
+
+  "VoicePlayError":"Het spraakbericht kan niet worden afgespeeld. Probeer het opnieuw.",
+
+  "VoiceRecordingCancelButton":"Doorgaan met opnemen",
+
+  "VoiceRecordingCloseButton":"Stoppen",
+
+  "VoiceRecordingClosePageTitle":"Wilt u de opname stoppen?",
+
+  "VoiceRecordingTitle":"SPRAAKBERICHT",
+
+  "VoiceTypeMessage":"Vocaal",
+
+  "Waiting":"Even wachten...",
+
+  "WelcomeMessage":"Welkom bij PROACT 2.0",
+
+  "YesButton":"JA",
+
+  "YourPatientsTitle":"Uw patiënten",
+
+    "Show":"Tonen",
+    "AssignedPatientsCodes": "Patients study codes",
+    "Period": "Period",
+
+
+
+
+
+
+    "UserCantSignin": "U bent niet geautoriseerd voor toegang tot PROACT 2.0",
+    "UserCantReplyToMessage": "U heeft geen toestemming om een ​​bericht te schrijven of erop te reageren.",
+    "LoginDocumentsUnavaliable": "Algemene voorwaarden of privacybeleid niet beschikbaar, neem contact op met uw instellingsbeheerder.",
+    "Active": "Actief",
+    "Deactivated": "Uitgeschakeld",
+    "Suspended": "Uitgeschakeld",
+    "Update": "PROACT 2.0 updaten",
+    "UpdateDiscaimer": "Een update is beschikbaar. Download deze om PROACT 2.0 te blijven gebruiken.",
+    "Today": "vandaag",
+    "Tomorrow": "morgen",
+    "SurveysStats": "Statistieken",
+    "SurveysPartecipants": "Deelnemers",
+    "CompletedSurvey": "Vragenlijst ingevuld",
+    "IncompletedSurvey": "Vragenlijst niet ingevuld",
+    "CompletedSurveys": "Ingevulde vragenlijsten",
+    "IncompletedSurveys": "Niet ingevulde vragenlijsten",
+    "SurveysListPageTitle": "Vragenlijsten",
+    "SurveysResultsAndStatistics": "Resultaten en statistieken",
+    "SurveysNotCompiledError": "De patiënt heeft de vragenlijst niet ingevuld.",
+    "SurveysResults": "Resultaten",
+    "SurveysStatistics": "Statistieken",
+    "FillinAllFields": "Vul alle velden in",
+    "ShowProtocol": "Protocol bekijken",
+    "OpenAnswer": "Open vraag",
+    "SingleAnswer": "Enkele keuze",
+    "MultipleAnswer": "Meerkeuze",
+    "BoolAnswer": "Waar of niet waar",
+    "RatingAnswer": "Lineaire schaal",
+    "MoodAnswer": "leuk vinden",
+    "NoStatsForThisQuestionType": "Er worden geen statistieken verstrekt voor dit type vraag.",
+    "TRUE": "WAAR",
+    "FALSE": "ONWAAR",
+    "StartTime": "Start",
+    "ExpireTime": "Verloopt",
+    "Actions": "Acties",
+    "StudySurveys": "Bestudeer vragenlijsten",
+    "SurveyStats": "Statistieken",
+    "SurveyResults": "Reacties van patiënten",
+    "SurveyResultsOverTheTime": "Patiëntreacties in de loop van de tijd",
+    "FilterByPatients": "Selecteer de patiënt",
+    "ExportAsCsv": "CSV exporteren",
+    "DownloadSuccess": "Download compleet",
+    "MessageDeleteSuccess": "Het bericht is verwijderd",
+    "RetakeVideo": "Neem een ​​nieuwe video op",
+    "Patient": "Patiënt",
+    "Medic": "Dokter",
+    "Nurse": "Verpleger",
+    "Reply": "Antwoord",
+    "Replies": "Antwoorden",
+    "LoadMore": "Laat meer zien",
+    "ProactTools": "OTHER TOOLS",
+    "OpenAnalystConsole": "Open de analistenconsole",
+    "OpenControlPanel": "Control panel",
+    "UnauthorizedMessage": "U bent niet geautoriseerd voor toegang tot PROACT 2.0",
+    "CompileSurvey": "Invullen",
+    "Daily": "Dagelijks",
+    "Monthly": "Maandelijks",
+    "Weekly": "Wekelijks",
+    "Once": "Enkel",
+    "CompletedDateTime": "Voltooid op",
+    "Change": "Wijziging",
+    "Status": "Status",
+    "Dates": "Datum",
+    "From": "van",
+    "To": "tot",
+    "English": "Engels",
+    "French": "Frans",
+    "German": "Duits",
+    "Italian": "Italiaans",
+    "Dutch": "Nederlands",
+    "Spanish": "Spaans"
+  
+}

@@ -1,0 +1,745 @@
+{
+  "AppName" :"PROACT 2.0",
+      
+  "PickPhotoUnsupportedTitle" :"Impossibile accedere alle foto.",
+   
+ "PickPhotoUnsupportedMessage" :"Assicurati di aver acconsentito all'uso delle foto.",
+   
+ "PickPhotoPermissionExceptionMessage" :"Apri le impostazioni e consenti all'app di accedere alle foto.",
+   
+ "TakePhotoCameraUnsupportedTitle" :"La fotocamera non può essere utilizzata.",
+   
+ "TakePhotoCameraUnsupportedMessage" :"Assicurati che la fotocamera sia presente e funzionante.",
+   
+ "TakePhotoCameraPermissionExceptionMessage" :"Apri le impostazioni e consenti a PROACT 2.0 di accedere alla fotocamera.",
+   
+ "TakePhoto" :"Scatta una foto",
+   
+ "PickPhoto" :"Seleziona una foto",
+   
+
+ "Ok" :"Ok",
+ 
+
+ "Close" :"Chiudi",
+ 
+
+ "Continue" :"Continua",
+ 
+
+ "Save" :"Salva",
+ 
+
+ "Back" :"Indietro",
+ 
+
+ "OpenSettings" :"Apri le impostazioni",
+ 
+
+ "Cancel" :"Annulla",
+ 
+
+ "Edit" :"Modifica",
+ 
+
+ "Delete" :"Elimina",
+ 
+
+ "Waiting" :"Attendi qualche istante...",
+ 
+
+ "Title" :"Titolo",
+ 
+
+ "BodyMessage" :"Messaggio",
+ 
+
+ "YesButton" :"SI",
+ 
+
+ "NoButton" :"NO",
+ 
+
+ "SecondsSpan" :"s",
+ 
+
+ "MinutesSpan" :"min",
+ 
+
+ "HoursSpan" :"o",
+ 
+
+ "DaysSpan" :"g",
+ 
+
+ "SearchbarPlaceholder" :"Cerca...",
+ 
+
+
+
+ "GenericLoadingError" :"Si è verificato un errore durante il caricamento.",
+ 
+
+
+
+ "WelcomeMessage" :"Benvenuto su PROACT 2.0",
+ 
+
+ "Tagline" :"Dove puoi contribuire alla ricerca condividendo la tua esperienza",
+ 
+
+ "LandingStartButton" :"Inizia",
+ 
+
+ "AuthenticationError" :"Errore di autenticazione: ",
+ 
+
+
+
+ "TermsAndConditionsAgreeTitle" :"Termini, Condizioni e Licenza",
+ 
+
+ "TermsAndConditionsAgreeMessage" :"Per continuare a utilizzare PROACT 2.0, leggi e accetta i nostri Termini e condizioni, Licenza e Informativa sulla privacy.",
+ 
+
+ "TermsAndConditionsConfirmMessage" :"Ho letto e accettato",
+ 
+
+ "TermsAndConditionsButtonText" :"Termini e Condizioni",
+ 
+
+ "LicenseButtonText" :"Licenza",
+ 
+
+ "TermsAndConditionsError" :"Si prega di rivedere e accettare i nostri Termini e condizioni e la licenza.",
+ 
+
+ "TermsConditionsAndLicenseButtonText" :"Termini, Condizioni e licenza",
+ 
+
+ "PrivacyPolicyButtonText" :"Informativa sulla privacy",
+ 
+
+ "PrivacyPolicyError" :"Si prega di rivedere e accettare la nostra informativa sulla privacy.",
+ 
+
+
+
+ "UrgentMedicalAdviceTitle" :"PROACT 2.0 non è inteso come mezzo per comunicare richieste di soccorso",
+ 
+
+ "UrgentMedicalAdviceMessage" :"",
+ 
+
+ "UrgentMedicalAdviceMessage2" :"Se hai bisogno di comunicare con urgenza con i tuoi medici NON usare PROACT 2.0 ma contattali utilizzando i numeri di telefono dedicati (02 23905000 o 02 23901). In caso di emergenze mediche chiama il numero 118.",
+ 
+
+ "UrgentMedicalAdviceMessage3" :"I messaggi inviati tramite l’App verranno letti solo in orario lavorativo (8:30-16:30) nei giorni feriali.",
+ 
+
+ "UrgentMedicalAdviceCondition" :"Capisco che PROACT 2.0 NON è per consigli di emergenza.",
+ 
+
+ "UrgentMedicalAdviceError" :"Conferma di aver compreso che PROACT 2.0 non è per consigli di emergenza.",
+ 
+
+
+
+ "AuthErrorTitle" :"Errore di autenticazione",
+ 
+
+ "AuthErrorNoMedicalTeamAssociated" :"Non ci sono Team Medici associati al paziente.",
+ 
+
+ "AuthErrorInvalidMedicalTeam" :"Medical team result non valido.",
+ 
+
+ "AuthErrorNoProjectAssociated" :"Non ci sono progetti associati al paziente",
+ 
+
+ "AuthErrorInvalidProject" :"Invalid Project result.",
+ 
+
+ "AuthErrorUserNotAuthorized" :"Utente non autorizzato all'uso dell'app",
+ 
+
+ "AuthErrorUserInactive" :"Il tuo utente è disabilitato, non puoi accedere all'app.",
+ 
+
+
+
+
+ "ShowAllReplyButtonText" :"Mostra tutti i commenti",
+ 
+
+ "MessageWithVideoAttachmentTitle" :"Messaggio video",
+ 
+
+ "MessageWithVoiceAttachmentTitle" :"Messaggio vocale",
+ 
+
+ "NewMessageButton" :"Nuovo argomento",
+ 
+
+ "NewBroadcastMessageButton" :"Nuovo messaggio broadcast",
+ 
+
+ "AllMessages" :"Tutti",
+ 
+
+ "NewMessages" :"Nuovi",
+ 
+
+ "EmptyWallMessagesMessage" :"Non ci sono messaggi da mostrare",
+ 
+
+
+
+ "InfoMessage" :"Informazioni o appuntamenti",
+ 
+
+ "HealthMessage" :"Il tuo stato di salute",
+ 
+
+
+
+ "TextTypeMessage" :"Messaggio testuale",
+ 
+
+ "VoiceTypeMessage" :"Messaggio vocale",
+ 
+
+ "VideoTypeMessage" :"Messaggio video",
+ 
+
+
+
+  "NewTextMessagePageTitle" :"Nuovo messaggio",
+ 
+
+ "NewTextMessagePlaceholder" :"Descrivi come ti senti",
+ 
+
+ "TitleRequiredError" :"Inserisci il titolo del messaggio",
+ 
+
+ "MessageRequiredError" :"Inserisci il corpo del messaggio",
+ 
+
+ "NewTextMessageMoodPlaceholder" :"Come ti senti oggi?",
+ 
+
+ "NewTextMessageAttachPhotoPlaceholder" :"Vuoi allegare una foto?",
+ 
+
+ "AttachAnImageToTextMessage" :"Allega un'immagine al messaggio",
+ 
+
+ "RemoveAttachedImage" :"Rimuovi l'immagine allegata",
+ 
+
+ "NewTextMessageSubmitButtonText" :"Invia",
+ 
+
+ "MessageSentSuccessfullyAlert" :"Messaggio inviato correttamente.",
+ 
+
+ "VideoMessageSentSuccessfullyAlert" :"Messaggio inviato. Riceverai una notifica quando il tuo video è pronto per essere visualizzato.",
+ 
+
+ "MediaUploadInitializeAlert" :"Caricamento avviato, segui l'avanzamento nella notifica.",
+ 
+
+ "NewMessageErrorTitle" :"Impossibile inviare il messaggio",
+ 
+
+ "NewMessageErrorMessage" :"Per favore riprova",
+ 
+
+ "VideoMessageUploadSuccess" :"Videomessaggio inviato con successo.",
+ 
+
+ "VoiceMessageUploadSuccess" :"Messaggio vocale inviato con successo.",
+ 
+
+ "BradcastMessagePageTitle" :"Messaggio Broadcast",
+ 
+
+ "BradcastMessageInfo" :"Un messaggio Broadcast è visibile a tutti i pazienti e agli specialisti del tuo team medico.",
+ 
+
+ "MessageUploading" :"Caricamento del messaggio in corso...",
+ 
+
+
+
+ "ReplyTextMessagePageTitle" :"Rispondi al messaggio",
+ 
+
+ "ReplyTextMessagePlaceholder" :"Scrivi un messaggio...",
+ 
+
+
+
+ "EditTextMessagePageTitle" :"Modifica un messaggio",
+ 
+
+
+
+ "MessageDetailsPageTitle" :"Messaggio completo",
+ 
+
+ "DeleteMessageDialogTitle" :"Elimina messaggio",
+ 
+
+ "DeleteMessageDialogMessage" :"Vuoi eliminare questo messaggio?",
+ 
+
+
+
+ "ProfilePageTitle" :"Il mio profilo",
+ 
+
+ "SurveysGroupTitle" :"QUESTIONARI",
+ 
+
+ "SurveysToBeFillTitle" :"Da completare",
+ 
+
+ "SurveysFilledInTitle" :"Completati",
+ 
+
+ "ProtocolDetailsGroupTitle" :"IL TUO PROTOCOLLO",
+ 
+
+ "ProtocolInternationalCode" :"Codice internazionale: {0}",
+ 
+
+ "ProtocolInternalCode" :"Codice interno: {0}",
+ 
+
+ "NotificationsGroupTitle" :"NOTIFICHE",
+ 
+
+ "ProactInfoGroupTitle" :"INFORMAZIONI SU PROACT 2.0",
+ 
+
+ "TermsAndConditionsTitle" :"Termini e condizioni",
+ 
+
+ "LicenseTitle" :"Licenza",
+ 
+
+ "PrivacyPolicyTitle" :"Informativa Privacy",
+ 
+
+ "TermsAndConditionsAndLicenseTitle" :"Termini e condizioni e licenza",
+ 
+
+ "ContactTitle" :"Contatti",
+ 
+
+ "LogoutGroupTitle" :"ESCI",
+ 
+
+ "ExitTitle" :"Esci",
+ 
+
+ "AppVersion" :"v. {0}({1})",
+ 
+
+ "SignoutAlertTitle" :"Esci",
+ 
+
+ "SignoutAlertMessage" :"Vuoi uscire da PROACT 2.0?",
+ 
+
+ "SignoutAlertOkButton" :"Esci",
+ 
+
+ "SignoutAlertCancelButton" :"Annulla",
+ 
+
+ "SelectProfileImage" :"Seleziona l'immagine del tuo profilo",
+ 
+
+ "RemoveProfileImage" :"Rimuovi l'immagine del profilo",
+ 
+
+ "UploadProfileImageError" :"Impossibile caricare l'immagine.",
+ 
+
+ "UploadProfileImageSuccess" :"Immagine caricata con successo",
+ 
+
+ "MedicalTeamGroupTitle" :"STUDIO E TEAM MEDICO",
+ 
+
+ "YourPatientsTitle" :"I tuoi pazienti",
+ 
+
+ "ChangeMedicalTeamAndTrialTitle" :"Cambia Studio",
+ 
+
+ "HelpDeskGroupTitle" :"HAI BISOGNO DI SUPPORTO?",
+ 
+
+ "HelpDeskPhoneSubtitle" :"{0}-{1} dalle {2} alle {3}",
+ 
+
+
+ "VoiceRecordingTitle" :"MESSAGGIO VOCALE",
+ 
+
+ "TapToStartVoiceReproduction" :"Tocca per riprodurre il messaggio vocale",
+ 
+
+ "TapToStartRecording" :"Tocca per avviare la registrazione",
+ 
+
+ "TapToStopRecording" :"Tocca di nuovo per interrompere la registrazione",
+ 
+
+ "Recording" :"Registrazione in corso...",
+ 
+
+ "SendVoiceMessageAlertTitle" :"Invia il messaggio",
+ 
+
+ "SendVoiceMessageAlertMessage" :"Hai registrato un messaggio vocale. Vuoi inviarlo?",
+ 
+
+ "SendVoiceMessageConfirmButton" :"Invia",
+ 
+
+ "VoiceRecordingClosePageTitle" :"Vuoi interrompere la registrazione?",
+ 
+
+ "VoiceRecordingCloseButton" :"Interrompi",
+ 
+
+ "VoiceRecordingCancelButton" :"Continua a registrare",
+ 
+
+
+
+ "VideoPlayerPageTitle" :"Player",
+ 
+
+ "Play" :"Play",
+ 
+
+ "Pause" :"Pause",
+ 
+
+ "Stop" :"Stop",
+ 
+
+
+
+ "VoicePlayError" :"Non è possibile riprodurre il messaggio vocale. Per favore riprova.",
+ 
+
+ "MicrophonePermissionExceptionTitle" :"Non è possibile accedere al microfono.",
+ 
+
+ "MicrophonePermissionExceptionMessage" :"Assicurati di aver acconsentito all'uso del microfono. Apri le impostazioni e consenti all'app di accedere al microfono.",
+ 
+
+
+
+ "ProjectsListPageTitle" :"Studi",
+ 
+
+ "ProjectsListRequestError" :"Impossibile trovare un trial clinico associato al tuo utente",
+ 
+
+ "MedicalTeamsListRequestError" :"Impossibile trovare un team medico associato al tuo utente",
+ 
+
+ "EmptyProjectsListMessage" :"Non ci sono Trial clinici da mostrare",
+ 
+
+
+
+ "CompletedSurveysPageTitle" :"Questionari completati",
+ 
+
+ "ToBeCompletedSurveysPageTitle" :"Questionari da completare",
+ 
+
+ "SurveyQuestionsCounterLabel" :"{0} domande",
+ 
+
+ "SurveyQuestionsVersionLabel" :"Versione {0}",
+ 
+
+ "SurveyStartButton" :"Inizia",
+ 
+
+ "SurveyQuestionOrderLabel" :"{0} di {1}",
+ 
+
+ "SurveyOpenAswerEditorPlaceholder" :"Scrivi qui la tua risposta:",
+ 
+
+ "SurveySingleAswerPlaceholder" :"Seleziona la tua risposta:",
+ 
+
+ "SurveyMultipleAswersPlaceholder" :"Seleziona le tue risposte:",
+ 
+
+ "EnterAnswerError" :"Inserisci una risposta.",
+ 
+
+ "SelectAnswerError" :"Seleziona una risposta.",
+ 
+
+ "SubmitSurveyButton" :"Invia",
+ 
+
+ "SurveyResultsGoodMessage" :"Grazie, il tuo questionario è stato inviato correttamente.",
+ 
+
+ "SurveyResultsBadMessage" :"Il Team Medico sarà avvertito e ti contatterà il più presto possibile.Se hai bisogno di assistenza medica urgente perfavore contatta il tuo ospedale.",
+ 
+
+   "SurveyCheckPageTitle" :"Conferma le risposte",
+ 
+
+ "SurveyExpires" :"Scade:",
+ 
+
+ "SurveyCompleted" :"Inviato il",
+ 
+
+ "EmptyNotComiledSurveysList" :"Nessun questionario",
+ 
+
+ "EmptyComiledSurveysList" :"Nessun questionario",
+ 
+
+
+ "PatientsListRequestError" :"Impossibile trovare dei pazienti associati al tuo utente",
+ 
+
+"EmptyPatientsListMessage" :"Nessun paziente associato a questo Team medico",
+ 
+
+
+ "NotificationMediaUploadTitle" :"PROACT 2.0",
+ 
+
+ "NotificationMessageMediaUploading" :"Caricamento del messaggio in corso.",
+ 
+
+ "NotificationMessageMediaVerification" :"Verifica del messaggio.",
+ 
+
+ "NotificationMessageMediaUploaded" :"Caricamento completato.",
+ 
+
+
+ "PatientDetailsSurveysCompleted" :"Questionari completati",
+ 
+
+ "PatientDetailsMediaList" :"Media inviati dal paziente",
+ 
+
+
+ "SearchPageTitle" :"Ricerca messaggi",
+ 
+
+  "SearchPagePlaceholder" :"Digita il testo da ricercare nei messaggi e nei commenti",
+ 
+
+ "EmptySearchMessageResult" :"Nessun messaggio trovato",
+ 
+
+ "TopicType" :"Argomento",
+ 
+
+ "CommentType" :"Commento",
+ 
+
+ "BroadcastType" :"Broadcast",
+ 
+
+
+ "NotificationsOptionsPageTitle" :"Notifiche",
+ 
+
+ "AllowNotifications" :"Consenti notifiche",
+ 
+
+ "NotificationsReceivingTime" :"Orario di ricezione delle notifiche",
+ 
+
+ "NotificationsTimeFrom" :"Dalle",
+ 
+
+ "NotificationsTimeTo" :"Alle",
+ 
+
+ "UnlimitedNotificationsTime" :"Nessun limite di orario",
+ 
+
+ "NotificationSettingsPageTitle" :"Impostazioni notifiche",
+ 
+
+ "NotificationSettingsInfo" :"Riceverai le notifiche push solo nell'intervallo di orario che hai selezionato.",
+ 
+
+   "PushNotificationsSettingsValidateError" :"Intervallo dell'orario non è valido. L'ora di inizio non può essere successiva a quella di fine.",
+ 
+
+ "RemovePushNotificationTimeLimit" :"Rimuovi il limite di orario",
+ 
+ "MedicalTeamsListPageTitle" :"Team Medici",
+ 
+ "EmptyMedicalTeamsListMessage" :"Non ci sono Team medici da mostrare",
+ 
+ "NotDeletableMessageAlertTitle" :"Non puoi eliminare il messaggio.",
+ 
+ "NotDeletableMessageAlertMessage" :"Il messaggio è stato inviato al team medico e non può essere più eliminato.",
+ 
+ "CantReplyToMessageAlertTitle" :"Non puoi  rispondere al messaggio.",
+ 
+ "CantReplyToMessageAlertMessage" :"Devi attendere {0} minuti dall'invio del messaggio del paziente.",
+ 
+ "AddAnalysisButton" :"ANALISI",
+ 
+ "AnalysisListPageTitle" :"Analisi",
+ 
+ "CantAnalyzeMessageAlertTitle" :"Non puoi analizzare questo messaggio.",
+ 
+ "CantAnalyzeMessageAlertMessage" :"Devi attendere {0} minuti dall'invio del messaggio del paziente.",
+ 
+ "AddAnalysisPageTitle" :"Nuova analisi",
+ 
+ "AddAnalysisButtonText" :"Salva",
+ 
+ "AddAnalysisAlertMessage" :"Vuoi aggiungere questa analisi?",
+ 
+ "AddAnalysisAlertConfirmButton" :"Salva",
+ 
+ "AddAnalysisAlertTitle" :"Salva",
+ 
+ "AnalysisLabelAlreadyExistAlertMessage" :"Questo elemento è già stato aggiunto.",
+ 
+ "AddAnalysisMessageError" :"Si è verificato un errore durante il salvataggio. Perfavore riprova.",
+ 
+ "AddAnalysisSuccessAlertMessage" :"La tua analisi è stata salvata.",
+ 
+ "AnalysisGroupPageTitle" :"Categorie",
+
+ "AnalysisGroupFilterActiveMessage" :"Stai visualizzatto solo gli elementi della categoria.",
+ 
+ "AnalysisGroupRemoveFilter" :"Rimuovi filtro",
+ 
+ "AnalysisGroupButton" :"Categorie",
+ 
+ "AnalysisDeleteAlertTitle" :"Conferma eliminazione",
+ 
+ "AnalysisDeleteAlertMessage" :"Vuoi eliminare questa analisi?",
+ 
+ "AnalysisDeleteErrorMessage" :"Si è verificato un errore durante l'eliminazione. Perfavore riprova.",
+ 
+ "EmptyList" :"Non ci sono elementi da mostrare.",
+ 
+ "EditAnalysisPageTitle" :"Modifica analisi",
+ 
+ "UpdateAnalysisAlertTitle" :"Modifica",
+ 
+ "UpdateAnalysisAlertMessage" :"Vuoi modificare questa analisi?",
+ 
+ "UpdateAnalysisAlertConfirmButton" :"Modifica",
+ 
+ "UpdateAnalysisSuccessAlertMessage" :"L'analisi è stata modificata.",
+ 
+ "AddAnalysisValidationError" :"Devi selezionare almeno un elemento.",
+ 
+ "Show" :"Visualizza",
+ "AssignedPatientsCodes": "Patients study codes",
+ "Period": "Periodo",
+ 
+
+"UserCantSignin" :"Non sei abilitato ad accedere a PROACT 2.0",
+ "UserCantReplyToMessage" :"Non hai i  permessi per scrivere o commentare un messaggio.",
+ "LoginDocumentsUnavaliable" :"Termini e condizioni o privacy policy non disponibili, contatta l'amministratore di istituto.",
+ "Active" :"Attivo",
+ "Deactivated" :"Disabilitato",
+ "Suspended" :"Disabilitato",
+ "Update" :"Aggiorna PROACT 2.0",
+ "UpdateDiscaimer" :"E' disponibile un aggiornamento. Scaricalo per continuare ad utilizzare PROACT 2.0",
+ "Today" :"oggi",
+ "Tomorrow" :"domani",
+ "SurveysStats" :"Statistiche",
+ "SurveysPartecipants" :"Partecipanti",
+ "CompletedSurvey" :"Questionario completato",
+ "IncompletedSurvey" :"Questionario non completato",
+ "CompletedSurveys" :"Questionari completati",
+ "IncompletedSurveys" :"Questionari non completati",
+ "SurveysListPageTitle" :"Questionari",
+ "SurveysResultsAndStatistics" :"Risultati e statistiche",
+ "SurveysNotCompiledError" :"Il paziente non ha compilato il questionario.",
+ "SurveysResults" :"Risultati",
+ "SurveysStatistics" :"Statistiche",
+ "FillinAllFields" : "Compila tutti i campi",
+ "ShowProtocol" :"Visualizza protocollo",
+ "OpenAnswer" :"Risposta aperta",
+ "SingleAnswer" :"Scelta singola",
+ "MultipleAnswer" :"Scelta multipla",
+ "BoolAnswer" :"Vero o falso",
+ "RatingAnswer" :"Scala lineare",
+ "MoodAnswer" :"Gradimento",
+ "NoStatsForThisQuestionType":"Non sono previste statistiche per questo tipo di domanda.",
+ "True":"Vero",
+ "False": "Falso",
+ "StartTime": "Inizia",
+ "ExpireTime": "Scade",
+ "Actions": "Azioni",
+ "StudySurveys": "Quesionari dello studio",
+ "SurveyStats": "Statistiche",
+ "SurveyResults":"Risposte del paziente",
+ "SurveyResultsOverTheTime":"Risposte del paziente nel tempo",
+ "FilterByPatients": "Seleziona il paziente",
+ "ExportAsCsv" :"Esporta csv",
+ "DownloadSuccess" :"Download completato",
+ "MessageDeleteSuccess" :"Il messaggio è stato eliminato",
+ "RetakeVideo" : "Registra un nuovo video",
+ "Patient" : "Paziente",
+ "Medic" : "Medico",
+ "Nurse" : "Infermiere",
+ "Reply" : "Risposta",
+ "Replies": "Risposte",
+ "LoadMore": "Mostra altri",
+ "ProactTools": "ALTRI STRUMENTI",
+ "OpenAnalystConsole": "Analyst console",
+ "OpenControlPanel": "Control panel",
+ "UnauthorizedMessage": "Non sei autorizzato ad accedere a PROACT 2.0",
+ "CompileSurvey": "Compila",
+ "Daily": "Giornaliero",
+ "Monthly": "Mensile",
+ "Weekly": "Settimanale",
+ "Once": "Singolo",
+ "CompletedDateTime": "Completato il",
+ "Change": "Cambia",
+ "Status": "Stato",
+ "Dates": "Date",
+ "From": "dal",
+ "To": "al",
+ "English":"Inglese",
+ "French":"Francese",
+ "German":"Tedesco",
+ "Italian":"Italiano",
+ "Dutch":"Olandese",
+ "Spanish":"Spagnolo"
+
+}
+
+
+
+
+    
+
