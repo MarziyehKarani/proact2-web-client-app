@@ -1,58 +1,97 @@
-import React from 'react';
-import SurveyQuestionHead from './SurveyQuestionHead';
-import surveyQuestionType from '../../../constants/surveyQuestionType';
-import { Card, CardBody } from 'reactstrap';
+import React from "react"
+import SurveyQuestionHead from "./SurveyQuestionHead"
+import surveyQuestionType from "../../../constants/surveyQuestionType"
+import { Card, CardBody, CardTitle } from "reactstrap"
 import {
-    NotCompiledOpenAnswer,
-    NotCompiledSingleAnswer,
-    NotCompiledMultipleAnswer,
-    NotCompiledBooleanAnswer,
-    NotCompiledRatingAnswer,
-    NotCompiledMoodAnswer
-} from './NotCompiledAnswers';
+  NotCompiledOpenAnswer,
+  NotCompiledSingleAnswer,
+  NotCompiledMultipleAnswer,
+  NotCompiledBooleanAnswer,
+  NotCompiledRatingAnswer,
+  NotCompiledMoodAnswer,
+} from "./NotCompiledAnswers"
 
-const SurveyQuestionCard = ({ props, question, addCompiledQuestion }) => {
-    return (
-        <Card>
-            <CardBody>
-                <SurveyQuestionHead questionDetail={question} />
-                {
-                    <>
-                        {question.type == surveyQuestionType.OPEN_ANSWER &&
-                            <NotCompiledOpenAnswer
-                                question={question}
-                                addCompiledQuestion={addCompiledQuestion} />}
+const SurveyQuestionCard = ({
+  props,
+  question,
+  addCompiledQuestion,
+  enableNextQuestion,
+  questionVisible,
+}) => {
+  return (
+    <Card
+      style={
+        questionVisible
+          ? {
+              opacity: "1",
+              height: "auto",
+              visibility: " visible",
+              transition: "1s",
+            }
+          : {
+              opacity: "0",
+              visibility: "hidden",
+              transition: "0s",
+              marginBottom: "0px",
+              height: "0px",
+            }
+      }
+    >
+      <CardBody>
+        <SurveyQuestionHead questionDetail={question} />
+        {
+          <>
+            {question.type == surveyQuestionType.OPEN_ANSWER &&
+              questionVisible && (
+                <NotCompiledOpenAnswer
+                  question={question}
+                  addCompiledQuestion={addCompiledQuestion}
+                />
+              )}
 
-                        {question.type == surveyQuestionType.SINGLE_ANSWER &&
-                            <NotCompiledSingleAnswer
-                                question={question}
-                                addCompiledQuestion={addCompiledQuestion} />}
+            {question.type == surveyQuestionType.SINGLE_ANSWER &&
+              questionVisible && (
+                <NotCompiledSingleAnswer
+                  enableNextQuestion={enableNextQuestion}
+                  question={question}
+                  addCompiledQuestion={addCompiledQuestion}
+                />
+              )}
 
-                        {question.type == surveyQuestionType.MULTIPLE_ANSWERS &&
-                            <NotCompiledMultipleAnswer
-                                question={question}
-                                addCompiledQuestion={addCompiledQuestion} />}
+            {question.type == surveyQuestionType.MULTIPLE_ANSWERS &&
+              questionVisible && (
+                <NotCompiledMultipleAnswer
+                  question={question}
+                  addCompiledQuestion={addCompiledQuestion}
+                />
+              )}
 
-                        {question.type == surveyQuestionType.BOOLEAN &&
-                            <NotCompiledBooleanAnswer
-                                props={props}
-                                question={question}
-                                addCompiledQuestion={addCompiledQuestion} />}
+            {question.type == surveyQuestionType.BOOLEAN && questionVisible && (
+              <NotCompiledBooleanAnswer
+                props={props}
+                question={question}
+                addCompiledQuestion={addCompiledQuestion}
+              />
+            )}
 
-                        {question.type == surveyQuestionType.RATING &&
-                            <NotCompiledRatingAnswer
-                                question={question}
-                                addCompiledQuestion={addCompiledQuestion} />}
+            {question.type == surveyQuestionType.RATING && questionVisible && (
+              <NotCompiledRatingAnswer
+                question={question}
+                addCompiledQuestion={addCompiledQuestion}
+              />
+            )}
 
-                        {question.type == surveyQuestionType.MOOD &&
-                            <NotCompiledMoodAnswer
-                                question={question}
-                                addCompiledQuestion={addCompiledQuestion} />}
-                    </>
-                }
-            </CardBody>
-        </Card>
-    );
+            {question.type == surveyQuestionType.MOOD && questionVisible && (
+              <NotCompiledMoodAnswer
+                question={question}
+                addCompiledQuestion={addCompiledQuestion}
+              />
+            )}
+          </>
+        }
+      </CardBody>
+    </Card>
+  )
 }
 
-export default SurveyQuestionCard;
+export default SurveyQuestionCard

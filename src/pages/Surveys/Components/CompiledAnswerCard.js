@@ -1,45 +1,81 @@
-import React from 'react';
-import SurveyQuestionHead from './SurveyQuestionHead';
-import surveyQuestionType from '../../../constants/surveyQuestionType';
-import { Card, CardBody } from 'reactstrap';
+import React, { useEffect, useState } from "react"
+import SurveyQuestionHead from "./SurveyQuestionHead"
+import surveyQuestionType from "../../../constants/surveyQuestionType"
+import { Card, CardBody } from "reactstrap"
 import {
-    CompiledOpenAnswer,
-    CompiledSingleAnswer,
-    CompiledMultipleAnswer,
-    CompiledBooleanAnswer,
-    CompiledRatingAnswer,
-    CompiledMoodAnswer
-} from './CompiledAnswers';
+  CompiledOpenAnswer,
+  CompiledSingleAnswer,
+  CompiledMultipleAnswer,
+  CompiledBooleanAnswer,
+  CompiledRatingAnswer,
+  CompiledMoodAnswer,
+} from "./CompiledAnswers"
+
+const checkNotCompiledAnswer = (compiledAnswers) => {
+    //se la risposta non è definita
+    //aggiungo una proprietà che si chiama notAnswer
+    //quindi quando questa proprietà esiste, mostro la label
+    //se invece non esiste, quindi è === undefined vuoldire che la risposta c'è e metto il normale input
+    //quindi if notAnswer !== undefined mostro la label
+    return compiledAnswers ?? [
+      {
+        answerId: null,
+        value: "This question was not answered",
+        notAnsware: true,
+      },
+    ];
+  };
+  
+  const getStyleNotCompiledAnswer = (compiledAnswers) => {
+    return compiledAnswers ? { background: "#ffffff" } : { background: "#f5f5f5" };
+  };
+  
 
 const SurveyCompiledAnswerCard = ({ props, question }) => {
-    return (
-        <Card>
-            <CardBody>
-                <SurveyQuestionHead questionDetail={question} />
-                {
-                    <>
-                        {question.type == surveyQuestionType.OPEN_ANSWER &&
-                            <CompiledOpenAnswer compiledAnswers={question.compiledAnswers} />}
+    const answers = checkNotCompiledAnswer(question.compiledAnswers);
+    const style = getStyleNotCompiledAnswer(question.compiledAnswers);
+    
+    // useEffect(() => {
+    //   setAnswers(checkNotCompiledAnswer(question.compiledAnswers));
+    // }, []);
 
-                        {question.type == surveyQuestionType.SINGLE_ANSWER &&
-                            <CompiledSingleAnswer compiledAnswers={question.compiledAnswers} />}
+  return (
+    <Card style={style}>
+      <CardBody>
+        <SurveyQuestionHead questionDetail={question} />
+        {
+          <>
+            {question.type == surveyQuestionType.OPEN_ANSWER && (
+              <CompiledOpenAnswer compiledAnswers={answers} />
+            )}
 
-                        {question.type == surveyQuestionType.MULTIPLE_ANSWERS &&
-                                <CompiledMultipleAnswer compiledAnswers={question.compiledAnswers} />}
+            {question.type == surveyQuestionType.SINGLE_ANSWER && (
+              <CompiledSingleAnswer compiledAnswers={answers} />
+            )}
 
-                        {question.type == surveyQuestionType.BOOLEAN &&
-                            <CompiledBooleanAnswer compiledAnswers={question.compiledAnswers} props={props} />}
+            {question.type == surveyQuestionType.MULTIPLE_ANSWERS && (
+              <CompiledMultipleAnswer compiledAnswers={answers} />
+            )}
 
-                        {question.type == surveyQuestionType.RATING &&
-                            <CompiledRatingAnswer compiledAnswers={question.compiledAnswers} properties={question.properties} />}
+            {question.type == surveyQuestionType.BOOLEAN && (
+              <CompiledBooleanAnswer compiledAnswers={answers} props={props} />
+            )}
 
-                        {question.type == surveyQuestionType.MOOD &&
-                            <CompiledMoodAnswer compiledAnswers={question.compiledAnswers} />}
-                    </>
-                }
-            </CardBody>
-        </Card>
-    );
+            {question.type == surveyQuestionType.RATING && (
+              <CompiledRatingAnswer
+                compiledAnswers={answers}
+                properties={question.properties}
+              />
+            )}
+
+            {question.type == surveyQuestionType.MOOD && (
+              <CompiledMoodAnswer compiledAnswers={answers} />
+            )}
+          </>
+        }
+      </CardBody>
+    </Card>
+  )
 }
 
-export default SurveyCompiledAnswerCard;
+export default SurveyCompiledAnswerCard

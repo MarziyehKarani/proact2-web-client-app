@@ -1,19 +1,19 @@
 import { LogLevel } from "@azure/msal-browser";
 
 const devEnvironment = {
-    clientId: "",
-    signinUserFlow: "",
-    domain: "",
-    loginEndpoint: "",
-    scopes: [""]
+    clientId: "71123e8a-6249-4c52-85c1-4eab1a0dc5bd",
+    signinUserFlow: "B2C_1_sign_in",
+    domain: "devproactb2c.b2clogin.com",
+    loginEndpoint: "https://devproactb2c.b2clogin.com/devproactb2c.onmicrosoft.com/B2C_1_sign_in",
+    scopes: ["https://devproactb2c.onmicrosoft.com/api/access_as_user"]
 }
 
 const prodEnvironment = {
-    clientId: "",
-    signinUserFlow: "",
-    domain: "",
-    loginEndpoint: "",
-    scopes: [""]
+    clientId: "40776ba4-353d-4a81-8900-0ef562a40039",
+    signinUserFlow: "B2C_1_signin",
+    domain: "proact2.b2clogin.com",
+    loginEndpoint: "https://proact2.b2clogin.com/proact2.onmicrosoft.com/B2C_1_signin",
+    scopes: ["https://proact2.onmicrosoft.com/api/access_as_user"]
 }
 
 export const b2cPolicies = {

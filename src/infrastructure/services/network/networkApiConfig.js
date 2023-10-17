@@ -1,7 +1,11 @@
 import axios from "axios";
 
-function getDevEvironment() {
-    return "https://devproactservices.azurewebsites.net/api";
+// function getDevEvironment() {
+    // return "https://devproactservices.azurewebsites.net/api";
+// }
+
+ function getDevEvironment() {
+	return "https://localhost:44378/api";
 }
 
 function getProdEnvironment() {
@@ -9,7 +13,7 @@ function getProdEnvironment() {
 }
 
 export function setupApiConfiguration(languageTag) {
-    var environmentBaseUrl = getProdEnvironment();
+    var environmentBaseUrl = getDevEvironment();
     axios.defaults.baseURL = `${environmentBaseUrl}/${languageTag}/`;
 }
 
