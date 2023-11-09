@@ -69,9 +69,6 @@ const NotCompiledSingleAnswer = ({
     enabledChildQuestion(question.id, answerId)
     var compiledQuestion = createCompiledQuestionByIds(question.id, answersId)
     addCompiledQuestion(compiledQuestion)
-    
-    
-    
   }
 
   function enabledChildQuestion(questionId, answerId) {

@@ -35,7 +35,7 @@ const CompileNewSurveyPage = props => {
 
   function onRequestSuccess(data) {
     setSurvey(setQuestionCardsVisibility(data))
-    console.clear()
+    console.log(data)
   }
 
   function handleSendButtonClick() {

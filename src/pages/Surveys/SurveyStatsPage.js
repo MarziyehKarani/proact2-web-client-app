@@ -42,6 +42,10 @@ const SurveyStatsPage = (props) => {
     }
 
     function RenderChart(question) {
+
+        console.log("-------------question")
+        console.log(question)
+        console.log(question.answers)
         if (question.type != surveyQuestionType.OPEN_ANSWER) {
             return <SurveuDounutStats answers={question.answers} />
         }
