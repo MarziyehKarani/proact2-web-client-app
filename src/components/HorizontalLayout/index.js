@@ -121,7 +121,7 @@ const Layout = (props) => {
         </header>
 
         <div className="main-content">
-          <Row className="mx-5">
+          <Row className="mx-12">
           <div className="col-2"></div>
             <div className="col-sm-8 m-0">
               <React.Fragment>
