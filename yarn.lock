@@ -11863,6 +11863,11 @@
   "resolved" "https://registry.npmjs.org/react-onclickoutside/-/react-onclickoutside-6.12.1.tgz"
   "version" "6.12.1"
 
+"react-onesignal@^3.0.1":
+  "integrity" "sha512-AfAtGdXRcuMhVf+9OXehGcQeiJIYl1ihAByvfVNa3RCA1Vnn19tBha4XQB+o3ukUh2IQn0yiflRO4vXgI9nOng=="
+  "resolved" "https://registry.npmjs.org/react-onesignal/-/react-onesignal-3.0.1.tgz"
+  "version" "3.0.1"
+
 "react-owl-carousel@^2.3.3":
   "integrity" "sha512-B4TI2EDDtp7IDM8CWzl5Rh/17p1NfMW/QBIbkC18CkiMGCbO9ztY+vAPTN60tp+63V9v/oLqArLjkiQtDGqj/A=="
   "resolved" "https://registry.npmjs.org/react-owl-carousel/-/react-owl-carousel-2.3.3.tgz"

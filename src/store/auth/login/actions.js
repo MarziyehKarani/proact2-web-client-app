@@ -15,6 +15,8 @@ export const loginUser = (user, history) => {
 }
 
 export const loginSuccess = user => {
+  OneSignal.setExternalUserId(user.email);
+  console.log('tag done...');
   return {
     type: LOGIN_SUCCESS,
     payload: user,
@@ -29,6 +31,7 @@ export const logoutUser = history => {
 }
 
 export const logoutUserSuccess = () => {
+  OneSignal.removeExternalUserId();
   return {
     type: LOGOUT_USER_SUCCESS,
     payload: {},
