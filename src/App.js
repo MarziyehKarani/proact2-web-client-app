@@ -30,19 +30,18 @@ import "./assets/scss/theme.scss";
 
 // OneSignal
 import OneSignal from 'react-onesignal';
+import { useEffect } from 'react';
 
 setupApiConfiguration(languages.en.tag);
 ReactSession.setStoreType("localStorage");
 
+
 const App = ({ instance }) => {
 
-  //OneSignal.init({ appId: 'ebb1244f-a56b-4c7e-a7b0-8e947b008075' }).then(() => {
-    OneSignal.init({ appId: '7e2f4f83-bc0d-4d67-b637-8c71040c2914' }).then(() => {
-    console.log('Init done...');
-    OneSignal.Slidedown.promptPush();
-    console.log('Prompt done...');
-    
-    })
+   useEffect(() => {
+    OneSignal.init({ appId: 'ebb1244f-a56b-4c7e-a7b0-8e947b008075'}).then(() => {
+       OneSignal.Slidedown.promptPush();
+       }), []});
 
   function getLayout() {
     let layoutCls = HorizontalLayout;

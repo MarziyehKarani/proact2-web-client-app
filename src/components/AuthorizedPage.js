@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import UserRoles from "../infrastructure/session/UserRoles";
 import useUserSession from "../infrastructure/session/useUserSession";
+import OneSignal from "react-onesignal";
 
+//import OneSignal from 'react-onesignal';
 
 const AuthorizedPage = () => {
 
@@ -14,6 +16,7 @@ const AuthorizedPage = () => {
         if (userSession) {
             var isAuth = userCanAccessToAnalystConsole();
             setIsAuthorized(isAuth);
+            OneSignal.login(userSession.userId);
         }
     }, [userSession]);
 
