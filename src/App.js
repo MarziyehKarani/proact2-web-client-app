@@ -38,10 +38,10 @@ ReactSession.setStoreType("localStorage");
 
 const App = ({ instance }) => {
 
-   useEffect(() => {
-    OneSignal.init({ appId: 'ebb1244f-a56b-4c7e-a7b0-8e947b008075'}).then(() => {
-       OneSignal.Slidedown.promptPush();
-       }), []});
+  //  useEffect(() => {
+  //   OneSignal.init({ appId: 'ebb1244f-a56b-4c7e-a7b0-8e947b008075'}).then(() => {
+  //      OneSignal.Slidedown.promptPush();
+  //      }), []});
 
   function getLayout() {
     let layoutCls = HorizontalLayout;

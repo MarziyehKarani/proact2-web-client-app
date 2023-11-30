@@ -9,14 +9,25 @@ import OneSignal from "react-onesignal";
 
 const AuthorizedPage = () => {
 
-    const [isAuthorized, setIsAuthorized] = useState(true);
+    const [isAuthorized, setIsAuthorized]   = useState(true);
+    const [isInitialized, setIsInitialized] = useState(false);
     const userSession = useUserSession();
 
     useEffect(() => {
         if (userSession) {
             var isAuth = userCanAccessToAnalystConsole();
             setIsAuthorized(isAuth);
-            OneSignal.login(userSession.userId);
+            if(!isInitialized){
+                OneSignal.init({ appId: 'ebb1244f-a56b-4c7e-a7b0-8e947b008075'}).then(() => {
+                    alert(userSession.userId);
+                      OneSignal.login(userSession.userId);
+                      //console.log(userSession);
+                      setIsInitialized(true);
+                });
+                    
+
+            }
+            
         }
     }, [userSession]);
 
