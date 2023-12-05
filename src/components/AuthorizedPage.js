@@ -18,16 +18,24 @@ const AuthorizedPage = () => {
             var isAuth = userCanAccessToAnalystConsole();
             setIsAuthorized(isAuth);
             if(!isInitialized){
-                OneSignal.init({ appId: 'ebb1244f-a56b-4c7e-a7b0-8e947b008075'}).then(() => {
-                    alert(userSession.userId);
+                OneSignal.init({ appId: 'ebb1244f-a56b-4c7e-a7b0-8e947b008075',  notificationClickHandlerMatch: "URL",
+                allowLocalhostAsSecureOrigin: true}).then(() => {
                       OneSignal.login(userSession.userId);
-                      //console.log(userSession);
                       setIsInitialized(true);
                 });
-                    
+            }
+
+            function eventListener(event) {
+            //   console.log(JSON.parse(JSON.stringify(event)));
+               var url=event.result.url;
+               
+               const timeout = setTimeout(() => {
+                // 👇️ redirects to an external URL
+                window.location.replace(url);
+              }, 1500);
 
             }
-            
+            OneSignal.Notifications.addEventListener("click", eventListener);
         }
     }, [userSession]);
 
