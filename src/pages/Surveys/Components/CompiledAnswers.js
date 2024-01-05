@@ -106,6 +106,17 @@ const CompiledMoodAnswer = ({ compiledAnswers }) => {
   return <img src={moodImage} height="80px" width="80px" />
 }
 
+const CompiledNumericAnswer = ({ compiledAnswers }) => {
+  if (isNotAnswer(compiledAnswers)) return <h6>{compiledAnswers[0].value}</h6>
+  var value = initializeValue(compiledAnswers, "")
+
+  return (
+    <h5>
+      <small className="text-muted">{value}</small>
+    </h5>
+  )
+}
+
 export {
   CompiledOpenAnswer,
   CompiledMultipleAnswer,
@@ -113,4 +124,5 @@ export {
   CompiledBooleanAnswer,
   CompiledRatingAnswer,
   CompiledMoodAnswer,
+  CompiledNumericAnswer
 }

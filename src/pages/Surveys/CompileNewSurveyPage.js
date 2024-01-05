@@ -100,6 +100,7 @@ const CompileNewSurveyPage = props => {
   function handleAddCompiledQuestion(compiledQuestion) {
     var items = removeCompiledQuestion(compiledQuestion.questionId)
     items.push(compiledQuestion)
+    console.log(items)
     setCompiledQuestions(items)
   }
   

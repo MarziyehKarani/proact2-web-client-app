@@ -9,6 +9,7 @@ import {
   NotCompiledBooleanAnswer,
   NotCompiledRatingAnswer,
   NotCompiledMoodAnswer,
+  NotCompiledNumericAnswer
 } from "./NotCompiledAnswers"
 
 const SurveyQuestionCard = ({
@@ -87,6 +88,14 @@ const SurveyQuestionCard = ({
                 addCompiledQuestion={addCompiledQuestion}
               />
             )}
+
+            {question.type == surveyQuestionType.NUMERIC &&
+              questionVisible && (
+                <NotCompiledNumericAnswer
+                  question={question}
+                  addCompiledQuestion={addCompiledQuestion}
+                />
+              )}
           </>
         }
       </CardBody>

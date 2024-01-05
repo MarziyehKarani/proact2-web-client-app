@@ -1,12 +1,12 @@
 import { LogLevel } from "@azure/msal-browser";
 
-// const devEnvironment = {
-//     clientId: "71123e8a-6249-4c52-85c1-4eab1a0dc5bd",
-//     signinUserFlow: "B2C_1_sign_in",
-//     domain: "devproactb2c.b2clogin.com",
-//     loginEndpoint: "https://devproactb2c.b2clogin.com/devproactb2c.onmicrosoft.com/B2C_1_sign_in",
-//     scopes: ["https://devproactb2c.onmicrosoft.com/api/access_as_user"]
-// }
+/* const devEnvironment = {
+    clientId: "71123e8a-6249-4c52-85c1-4eab1a0dc5bd",
+    signinUserFlow: "B2C_1_sign_in",
+    domain: "devproactb2c.b2clogin.com",
+    loginEndpoint: "https://devproactb2c.b2clogin.com/devproactb2c.onmicrosoft.com/B2C_1_sign_in",
+    scopes: ["https://devproactb2c.onmicrosoft.com/api/access_as_user"]
+} */
 //AZURE ENGITEL
 const devEnvironment = {
     clientId: "48cab400-3b9c-4b41-8db9-af142afeece2",

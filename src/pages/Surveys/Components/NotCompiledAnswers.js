@@ -223,6 +223,40 @@ const NotCompiledMoodAnswer = ({ question, addCompiledQuestion }) => {
   return <MoodSelector onMoodChange={handleValueChange} />
 }
 
+const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
+
+  const min=question.properties.min;
+  const max=question.properties.max;
+  const decimalPlaces=question.properties.decimalCount;
+  const [value, setValue] = useState('');
+
+  function handleValueChange(value) {
+
+    const enteredValue =value;
+    const pattern = new RegExp(`^-?\\d*\\.?\\d{0,${decimalPlaces}}$`);
+
+    if (pattern.test(enteredValue)) {
+      const number = parseFloat(enteredValue);
+      if (!isNaN(number) && number >= min && number <= max) {
+        setValue(enteredValue);
+
+        var compiledQuestion = createCompiledQuestionByValue(question.id, value)
+        addCompiledQuestion(compiledQuestion)
+      }
+    }
+
+
+  }
+  return (
+    <Input
+    type="text"
+    value={value}
+    onChange={e => handleValueChange(e.target.value)}
+    placeholder={`Enter a number between ${min} and ${max}`}
+  />
+  )
+}
+
 export {
   NotCompiledOpenAnswer,
   NotCompiledMultipleAnswer,
@@ -230,4 +264,5 @@ export {
   NotCompiledBooleanAnswer,
   NotCompiledRatingAnswer,
   NotCompiledMoodAnswer,
+  NotCompiledNumericAnswer
 }
