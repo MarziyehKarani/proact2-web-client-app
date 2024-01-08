@@ -225,16 +225,13 @@ const NotCompiledMoodAnswer = ({ question, addCompiledQuestion }) => {
 
 const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
 
+  const [errorMessage, setErrorMessage] = useState('');
+
   const min=question.properties.min;
   const max=question.properties.max;
 
-  const minAsString = min.toString();
-  const minLength = minAsString.length;
-
   const maxAsString = max.toString();
   const maxLength = maxAsString.length;
-
-  console.log(maxLength)
 
   const decimalPlaces=question.properties.decimalCount;
   const [value, setValue] = useState('');
@@ -242,7 +239,12 @@ const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
   function handleValueChange(value) {
 
     const enteredValue =value;
-    const pattern = new RegExp(`^-?\\d{0,${maxLength}}\\.?\\d{0,${decimalPlaces}}$`);
+    const pattern =new RegExp(`^-?\\d{0,${maxLength}}\\.?\\d{0,${decimalPlaces}}$`);;
+
+    /* if(decimalPlaces>0)
+      pattern = new RegExp(`^-?\\d{0,${maxLength}}\\.?\\d{0,${decimalPlaces}}$`);
+    else
+      pattern = new RegExp(`^-?\\d{0,${maxLength}}$`); */
 
     if (pattern.test(enteredValue)) {
       const number = parseFloat(enteredValue);
@@ -251,8 +253,14 @@ const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
           setValue(enteredValue);
           var compiledQuestion = createCompiledQuestionByValue(question.id, value)
           addCompiledQuestion(compiledQuestion)
-        } else if (enteredValue >= min.toString().slice(0, enteredValue.length)) {
+          setErrorMessage('');
+        } else if (enteredValue >= min.toString().slice(0, enteredValue.length) && number <= max) {
           setValue(enteredValue); // Allow input if it matches the beginning of min
+          setErrorMessage('');
+        }
+        else
+        {
+          setErrorMessage('Input number is not in the range.');
         }
       }
     }
@@ -260,12 +268,16 @@ const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
 
   }
   return (
+    <div>
     <Input
     type="text"
     value={value}
     onChange={e => handleValueChange(e.target.value)}
     placeholder={`Enter a number between ${min} and ${max}`}
   />
+       {/* Display error message if it exists */}
+       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+       </div>
   )
 }
 
