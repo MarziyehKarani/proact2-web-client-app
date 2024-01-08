@@ -242,10 +242,7 @@ const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
     const pattern =new RegExp(`^-?\\d{0,${maxLength}}\\.?\\d{0,${decimalPlaces}}$`);;
 
     if (pattern.test(enteredValue)) {
-      if(enteredValue="" )
-        setValue(enteredValue);  //empty the textbox
-      else
-      {
+
         const number = parseFloat(enteredValue);
         if (!isNaN(number)) {
           if (number >= min && number <= max) {
@@ -262,8 +259,6 @@ const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
             setErrorMessage('Input number is not in the range of valid values.');
           }
         }
-      }
-
     }
 
 
