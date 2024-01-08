@@ -240,7 +240,7 @@ const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
   function handleValueChange(value) {
 
     const enteredValue =value;
-    const pattern = new RegExp(`^-?\\d{${minLength},${maxLength}}\\.?\\d{0,${decimalPlaces}}$`);
+    const pattern = new RegExp(`^-?\\d{1,${maxLength}}\\.?\\d{0,${decimalPlaces}}$`);
 
     if (pattern.test(enteredValue)) {
       const number = parseFloat(enteredValue);
