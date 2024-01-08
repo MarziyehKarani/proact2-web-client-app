@@ -237,18 +237,17 @@ const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
 
     if (pattern.test(enteredValue)) {
       const number = parseFloat(enteredValue);
-      if (!isNaN(number) ) {
-        setValue(enteredValue);
-
-/*         var compiledQuestion = createCompiledQuestionByValue(question.id, value)
-        addCompiledQuestion(compiledQuestion) */
+      if (!isNaN(number)) {
+        if (number >= min && number <= max) {
+          setValue(enteredValue);
+          var compiledQuestion = createCompiledQuestionByValue(question.id, value)
+          addCompiledQuestion(compiledQuestion)
+        } else if (enteredValue >= min.toString().slice(0, enteredValue.length)) {
+          setValue(enteredValue); // Allow input if it matches the beginning of min
+        }
       }
     }
 
-    if (number >= min && number <= max ) { 
-      var compiledQuestion = createCompiledQuestionByValue(question.id, value)
-      addCompiledQuestion(compiledQuestion)
-    }
 
   }
   return (
