@@ -239,7 +239,13 @@ const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
   function handleValueChange(value) {
 
     const enteredValue =value;
-    const pattern =new RegExp(`^-?\\d{0,${maxLength}}\\.?\\d{0,${decimalPlaces}}$`);;
+    const pattern =new RegExp(`^-?\\d{0,${maxLength}}\\.?\\d{0,${decimalPlaces}}$`);
+
+    if (enteredValue === '') {
+      setValue(enteredValue);
+      setErrorMessage(''); // Reset error message for empty input or '-' or '.'
+      return;
+    }
 
     if (pattern.test(enteredValue)) {
 
