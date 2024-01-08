@@ -241,28 +241,29 @@ const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
     const enteredValue =value;
     const pattern =new RegExp(`^-?\\d{0,${maxLength}}\\.?\\d{0,${decimalPlaces}}$`);;
 
-    /* if(decimalPlaces>0)
-      pattern = new RegExp(`^-?\\d{0,${maxLength}}\\.?\\d{0,${decimalPlaces}}$`);
-    else
-      pattern = new RegExp(`^-?\\d{0,${maxLength}}$`); */
-
     if (pattern.test(enteredValue)) {
-      const number = parseFloat(enteredValue);
-      if (!isNaN(number)) {
-        if (number >= min && number <= max) {
-          setValue(enteredValue);
-          var compiledQuestion = createCompiledQuestionByValue(question.id, value)
-          addCompiledQuestion(compiledQuestion)
-          setErrorMessage('');
-        } else if (enteredValue >= min.toString().slice(0, enteredValue.length) && number <= max) {
-          setValue(enteredValue); // Allow input if it matches the beginning of min
-          setErrorMessage('');
-        }
-        else
-        {
-          setErrorMessage('Input number is not in the range.');
+      if(enteredValue="" )
+        setValue(enteredValue);  //empty the textbox
+      else
+      {
+        const number = parseFloat(enteredValue);
+        if (!isNaN(number)) {
+          if (number >= min && number <= max) {
+            setValue(enteredValue);
+            var compiledQuestion = createCompiledQuestionByValue(question.id, value)
+            addCompiledQuestion(compiledQuestion)
+            setErrorMessage('');
+          } else if (enteredValue >= min.toString().slice(0, enteredValue.length) && number <= max) {
+            setValue(enteredValue); // Allow input if it matches the beginning of min
+            setErrorMessage('');
+          }
+          else
+          {
+            setErrorMessage('Input number is not in the range of valid values.');
+          }
         }
       }
+
     }
 
 
