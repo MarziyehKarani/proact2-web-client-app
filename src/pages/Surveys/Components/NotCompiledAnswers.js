@@ -234,13 +234,15 @@ const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
   const maxAsString = max.toString();
   const maxLength = maxAsString.length;
 
+  console.log(maxLength)
+
   const decimalPlaces=question.properties.decimalCount;
   const [value, setValue] = useState('');
 
   function handleValueChange(value) {
 
     const enteredValue =value;
-    const pattern = new RegExp(`^-?\\d{1,${maxLength}}\\.?\\d{0,${decimalPlaces}}$`);
+    const pattern = new RegExp(`^-?\\d{0,${maxLength}}\\.?\\d{0,${decimalPlaces}}$`);
 
     if (pattern.test(enteredValue)) {
       const number = parseFloat(enteredValue);
