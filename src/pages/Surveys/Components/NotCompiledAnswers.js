@@ -237,14 +237,18 @@ const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
 
     if (pattern.test(enteredValue)) {
       const number = parseFloat(enteredValue);
-      if (!isNaN(number) && number >= min && number <= max) {
+      if (!isNaN(number) ) {
         setValue(enteredValue);
 
-        var compiledQuestion = createCompiledQuestionByValue(question.id, value)
-        addCompiledQuestion(compiledQuestion)
+/*         var compiledQuestion = createCompiledQuestionByValue(question.id, value)
+        addCompiledQuestion(compiledQuestion) */
       }
     }
 
+    if (number >= min && number <= max ) { 
+      var compiledQuestion = createCompiledQuestionByValue(question.id, value)
+      addCompiledQuestion(compiledQuestion)
+    }
 
   }
   return (
