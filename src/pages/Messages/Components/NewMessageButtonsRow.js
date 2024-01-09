@@ -10,6 +10,7 @@ import { useState } from 'react';
 
 const NewMessageButtonsRow = ({
     props,
+    isVideoEnabled,
     onInfoMessageButtonClick,
     onTextMessageButtonClick,
     onAudioMessageButtonClick,
@@ -46,12 +47,12 @@ const NewMessageButtonsRow = ({
                         onClick={onAudioMessageButtonClick}>
                         <i className="fas fa-microphone me-2"></i>{props.t("VoiceTypeMessage")}
                     </DropdownItem>
-                    {props.projectProperties.isVideoRecordingEnabled &&
+                    {isVideoEnabled &&
                     <DropdownItem
                         onClick={onVideoMessageButtonClick}>
                         <i className="fas fa-video me-2"></i>{props.t("VideoTypeMessage")}
                     </DropdownItem>
-    }
+                    }
                 </DropdownMenu>
             </ButtonDropdown>
         </div>

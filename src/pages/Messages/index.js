@@ -33,7 +33,7 @@ const Messages = (props) => {
   const [pagingCount, setPagingCount] = useState(0);
   const [isbusy, setIsbusy] = useState(false);
   const [projectProperties, setProjectProperties] = useState();
-
+  const [isVideoEnabled, setIsVideoEnabled] = useState();
   const [nextPageButtonVisible, setNextPageButtonVisible] = useState(true);
   const [selectedMessageIdAttachment, setSelectedMessageIdAttachment] = useState();
   const [isAttachmentModalVisible, setIsAttachmentModalVisible] = useState(false);
@@ -234,6 +234,7 @@ const Messages = (props) => {
 
   function handleProjectPropertiesSuccess(data) {
     setProjectProperties(data.properties);
+    setIsVideoEnabled(data.properties.isVideoRecordingActive);
   }
 
   function openAnalysisInAnalystConsole(message) {
@@ -333,6 +334,7 @@ const Messages = (props) => {
             userSession && userSession.isPatient &&
             <NewMessageButtonsRow
               props={props}
+              isVideoEnabled={isVideoEnabled}
               onInfoMessageButtonClick={() => setIsNewInfoMessageModalVisible(true)}
               onTextMessageButtonClick={() => setIsNewTextMessageModalVisible(true)}
               onAudioMessageButtonClick={() => setIsNewVoiceMessageModalVisible(true)}
