@@ -24,6 +24,26 @@ const SurveyDateWithReccurenceCell = ({ props, date, reccurence }) => {
                 reccurence == surveyReccurence.Once &&
                 <Badge color='secondary' className='ms-2' >{props.t("Once")}</Badge>
             }
+            {
+                reccurence == surveyReccurence.TwiceDaily &&
+                <Badge color='success' className='ms-2' >{props.t("TwiceDaily")}</Badge>
+            }
+            {
+                reccurence == surveyReccurence.ThreeTimesDaily &&
+                <Badge color='info' className='ms-2' >{props.t("ThreeTimesDaily")}</Badge>
+            }
+            {
+                reccurence == surveyReccurence.OnceEvery15Days &&
+                <Badge color='secondary' className='ms-2' >{props.t("OnceEvery15Days")}</Badge>
+            }
+            {
+                reccurence == surveyReccurence.OnceEvery21Days &&
+                <Badge color='light' className='ms-2' >{props.t("OnceEvery21Days")}</Badge>
+            }
+            {
+                reccurence == surveyReccurence.OnceEvery28Days &&
+                <Badge color='dark' className='ms-2' >{props.t("OnceEvery28Days")}</Badge>
+            }
         </span>
     );
 }
@@ -47,6 +67,26 @@ const SurveyTextWithReccurenceCell = ({ props, text, reccurence }) => {
             {
                 reccurence == surveyReccurence.Once &&
                 <Badge color='secondary' className='ms-2' >{props.t("Once")}</Badge>
+            }
+            {
+                reccurence == surveyReccurence.TwiceDaily &&
+                <Badge color='success' className='ms-2' >{props.t("TwiceDaily")}</Badge>
+            }
+            {
+                reccurence == surveyReccurence.ThreeTimesDaily &&
+                <Badge color='info' className='ms-2' >{props.t("ThreeTimesDaily")}</Badge>
+            }
+            {
+                reccurence == surveyReccurence.OnceEvery15Days &&
+                <Badge color='secondary' className='ms-2' >{props.t("OnceEvery15Days")}</Badge>
+            }
+            {
+                reccurence == surveyReccurence.OnceEvery21Days &&
+                <Badge color='light' className='ms-2' >{props.t("OnceEvery21Days")}</Badge>
+            }
+            {
+                reccurence == surveyReccurence.OnceEvery28Days &&
+                <Badge color='dark' className='ms-2' >{props.t("OnceEvery28Days")}</Badge>
             }
         </span>
     );

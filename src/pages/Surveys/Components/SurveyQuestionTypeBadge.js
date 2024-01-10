@@ -17,6 +17,8 @@ const SurveyQuestionTypeBadge = ({ props, questionType }) => {
                 return props.t("RatingAnswer")
             case surveyQuestionType.MOOD:
                 return props.t("MoodAnswer")
+            case surveyQuestionType.NUMERIC:
+                return props.t("NumericAnswer")
             default:
               return ""
         }
