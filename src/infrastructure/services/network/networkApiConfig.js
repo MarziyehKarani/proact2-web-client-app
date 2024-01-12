@@ -7,7 +7,7 @@ function getDevEvironment() {
 
 /*   function getDevEvironment() {
  	return "https://localhost:44378/api";
- } */
+ }  */
 
 function getProdEnvironment() {
     return "https://prodproactservices.azurewebsites.net/api";

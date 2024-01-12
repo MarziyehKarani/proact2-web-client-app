@@ -114,6 +114,16 @@ async function createReplyWithVideoAttachment(request, attachment, onApiOkResult
     }), onApiKoResultCallback);
 }
 
+async function createMessagebyMedic(request, onApiOkResultCallback, onApiKoResultCallback) {
+    await axios.post(`Messages/${request.projectId}/${request.medicalTeamId}/${request.patientId}/createbyMedic`, request)
+        .then(response => {
+            onApiOkResultCallback(response.data);
+        })
+        .catch(error => {
+            onApiKoResultCallback(error);
+        });
+}
+
 async function deleteMessage(request, onApiOkResultCallback, onApiKoResultCallback) {
     await axios.delete(`Messages/${request.projectId}/${request.medicalTeamId}/${request.messageId}`)
         .then(response => {
@@ -150,5 +160,6 @@ export {
     createReplyWithImageAttachment,
     createReplyWithVoiceAttachment,
     createReplyWithVideoAttachment,
-    deleteMessage
+    deleteMessage,
+    createMessagebyMedic
 };

@@ -166,6 +166,8 @@
 
  "MessageWithVoiceAttachmentTitle":"Voice message",
 
+ "MessageToPatientPageTitle":"Send message to a patient",
+
  "MicrophonePermissionExceptionMessage":"Make sure that your have consented to microphone use. Open the settings and allow the app to access the microphone.",
 
  "MicrophonePermissionExceptionTitle":"It is not possible to access the microphone.",
@@ -173,6 +175,8 @@
  "MinutesSpan":"min",
 
  "NewBroadcastMessageButton":"New message broadcast",
+
+ "NewMessageToPatientButton":"New message to patient",
 
  "NewMessageButton":"New subject",
 

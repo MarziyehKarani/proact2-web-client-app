@@ -25,6 +25,7 @@ import { generateAnalysisPageUrl } from '../../helpers/externalUrlHelper';
 import SweetAlert from "react-bootstrap-sweetalert";
 import AuthorizedPage from '../../components/AuthorizedPage';
 import { Redirect } from 'react-router-dom';
+import { NewMessageToPatientModal } from './Modals/NewMessageToPatientModal';
 
 const Messages = (props) => {
 
@@ -42,6 +43,7 @@ const Messages = (props) => {
   const [isNewTextMessageModalVisible, setIsNewTextMessageModalVisible] = useState();
   const [isNewVoiceMessageModalVisible, setIsNewVoiceMessageModalVisible] = useState();
   const [isNewVideoMessageModalVisible, setIsNewVideoMessageModalVisible] = useState();
+  const [isNewMesageToPatientModalVisible, setIsNewMesageToPatientModalVisible] = useState(false);
 
   const [selectedMessageId, setSelectedMessageId] = useState();
   const [isNewTextReplyModalVisible, setIsNewTextReplyModalVisible] = useState(false);
@@ -320,7 +322,7 @@ const Messages = (props) => {
      { checkIfMessagingIsEnabled()}
 
       <Row >
-        <Col className='d-flex justify-content-between'>
+        <Col className='d-flex justify-content-start'>
           {
             userSession && userSession.isMedicalProfessional &&
             < Button
@@ -328,6 +330,17 @@ const Messages = (props) => {
               onClick={() => setIsNewBroadcastMesageModalVisible(true)} >
               {props.t("NewBroadcastMessageButton")}
             </Button>
+            
+          }
+
+          {
+            userSession && userSession.isMedicalProfessional &&
+            < Button
+              color='primary'
+              onClick={() => setIsNewMesageToPatientModalVisible(true)} >
+              {props.t("NewMessageToPatientButton")}
+            </Button>
+            
           }
 
           {
@@ -414,6 +427,12 @@ const Messages = (props) => {
         props={props}
         isOpen={isNewBroadcastMesageModalVisible}
         closeCallback={(() => setIsNewBroadcastMesageModalVisible(false))}
+        successCallback={handleNewMessage} />
+
+      <NewMessageToPatientModal
+        props={props}
+        isOpen={isNewMesageToPatientModalVisible}
+        closeCallback={(() => setIsNewMesageToPatientModalVisible(false))}
         successCallback={handleNewMessage} />
 
       <NewInfoMessageModal
