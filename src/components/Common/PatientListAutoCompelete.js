@@ -4,35 +4,57 @@ import Autocomplete from '@mui/material/Autocomplete';
 import getPatients from '../../infrastructure/services/network/apiCalls/patientsApiService';
 import useEnvironment from '../../infrastructure/session/useEnvironment';
 import { apiErrorToast, showLoadingToast, showSuccessToast } from '../../helpers/toastHelper';
+import CircularProgress from '@mui/material/CircularProgress';
 
-const PatientFilter = ({onChange}) => {
+const PatientFilter = ({patients,onChange}) => {
 
-    const [patients, setPatients] = useState({});
-    const [value, setValue] = useState();
-    const [inputValue, setInputValue] = React.useState('');
+    //const defaultPatient = { name: "select a Patient", id: 0 };
+    // const [patients, setPatients] = useState([]);
+    const [value, setValue] = useState(patients[0]);
+    const [inputValue, setInputValue] = useState('');
     const environment = useEnvironment();
+  
 
-    useEffect(() => {
-        if (environment) {
-            loadPatients();
-        }
-    }, [environment]);
+    // useEffect(() => {
+    //   if (environment)  {
+    //         loadPatients();
+    //     }
+    //     return () => {
+    //       // Cleanup tasks before unmounting
+    //     };
+    // }, [environment]);
 
-    function loadPatients() {
-        console.log(environment.medicalTeamId);
-        getPatients(
-            environment.medicalTeamId,
-            handleLoadPatientsSuccess,
-            apiErrorToast);
-    }
+    // function loadPatients() {
+    //     getPatients(
+    //         environment.medicalTeamId,
+    //         handleLoadPatientsSuccess,
+    //         apiErrorToast);
+    // }
 
-    function handleLoadPatientsSuccess(data) {
-        setPatients(data);
-        if(patients!=null)
-          setValue(patients[0]);
-    }
+    // function handleLoadPatientsSuccess(data) {
+    //  // var options = getPatientSelectOptionsFromItems(data);
+    //     setPatients(data);
+
+    //     if (data.length > 0) {
+    //       setValue(data[0]);
+    //     }
+    // }
+
+  //   function getPatientSelectOptionsFromItems(items) {
+  //     var options = [];
+  //     items.forEach(item => {
+  //         var optionItem = {};
+  //         optionItem.label = item.name;
+  //         optionItem.value = item.userId;
+  //         options.push(optionItem);
+  //     });
+
+  //     return options;
+  // }
+
 
     const handleOnChange = (event, value) => {
+      console.log(value);
       setValue(value)
       onChange(value);
     }
@@ -49,9 +71,10 @@ const PatientFilter = ({onChange}) => {
         disablePortal
         id="combo-box-demo"
         options={patients}
+        //{patients}
         getOptionLabel={(option) => option.name}
         sx={{ width: 500 }}
-        renderInput={(params) => <TextField {...params} label="Patient" />}
+        renderInput={(params) => <TextField {...params} label="select a Patient" />}
        
       />
     );

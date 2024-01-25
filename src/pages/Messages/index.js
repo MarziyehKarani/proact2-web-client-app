@@ -325,22 +325,23 @@ const Messages = (props) => {
         <Col className='d-flex justify-content-start'>
           {
             userSession && userSession.isMedicalProfessional &&
+
+            <div className="d-flex align-items-center">
+            <div className="me-2">
             < Button
               color='success'
               onClick={() => setIsNewBroadcastMesageModalVisible(true)} >
               {props.t("NewBroadcastMessageButton")}
             </Button>
-            
-          }
-
-          {
-            userSession && userSession.isMedicalProfessional &&
+            </div>
+            <div className="me-2">
             < Button
-              color='primary'
+              color='info'
               onClick={() => setIsNewMesageToPatientModalVisible(true)} >
               {props.t("NewMessageToPatientButton")}
             </Button>
-            
+            </div>
+            </div>
           }
 
           {
@@ -382,6 +383,7 @@ const Messages = (props) => {
                   onNewVoiceReplyClick={() => openVoiceReplyModal(message.originalMessage)}
                   onMessageDeleteButtonClick={() => handleDeleteButtonClick(message.originalMessage)}
                   onOpenAnalysis={() => openAnalysisInAnalystConsole(message)}
+                  showVideoReplyButton={userSession && isVideoEnabled}
                 />
                 :
                 <BroadcastMessageRow

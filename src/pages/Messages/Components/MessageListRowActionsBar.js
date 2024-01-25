@@ -8,7 +8,8 @@ const MessageListRowActionBar = ({
     showReplyButtons,
     onTextMessageButtonClick,
     onAudioMessageButtonClick,
-    onVideoMessageButtonClick }) => {
+    onVideoMessageButtonClick,
+    showVideoReplyButton }) => {
     return (
         <div className="d-flex align-items-center mt-4">
             <h5 className="text-muted mt-2">
@@ -41,6 +42,7 @@ const MessageListRowActionBar = ({
                                         <i className="fas fa-microphone"></i>
                                     </Button>
                                 </div>
+                                {showVideoReplyButton &&
                                 <div >
                                     <Button
                                         className='rounded-circle'
@@ -49,6 +51,7 @@ const MessageListRowActionBar = ({
                                         <i className="fas fa-video"></i>
                                     </Button>
                                 </div>
+                                 }
                             </>
                             :
                             <></>

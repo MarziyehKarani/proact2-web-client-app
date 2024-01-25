@@ -5,9 +5,9 @@ function getDevEvironment() {
      return "https://devetproactservices.azurewebsites.net/api";
 }
 
-/*   function getDevEvironment() {
- 	return "https://localhost:44378/api";
- }  */
+//   function getDevEvironment() {
+//  	return "https://localhost:44378/api";
+//  } 
 
 function getProdEnvironment() {
     return "https://prodproactservices.azurewebsites.net/api";

@@ -5,6 +5,7 @@ import attachmentType from "../../../../constants/attachmentType";
 async function getMessages(projectId, medicalTeamId, pagingCount, onApiOkResultCallback, onApiKoResultCallback) {
     await axios.get(`Messages/${projectId}/${medicalTeamId}/${pagingCount}`)
         .then(response => {
+            console.log(response.data);
             onApiOkResultCallback(response.data);
         })
         .catch(error => {
@@ -69,6 +70,7 @@ async function createBroadcast(request, onApiOkResultCallback, onApiKoResultCall
 }
 
 async function createReply(request, onApiOkResultCallback, onApiKoResultCallback) {
+    console.log(request);
     await axios.post(`Messages/${request.projectId}/${request.medicalTeamId}/replyTo/${request.originalMessageId}`, request)
         .then(response => {
             onApiOkResultCallback(response.data);

@@ -65,8 +65,8 @@ const NotCompiledSurveysMine = (props) => {
                 description: item.surveyDescription,
                 version: item.surveyVersion,
                 reccurence: item.reccurence,
-                startTime: item.scheduler.startTime,
-                expireTime: item.scheduler.expireTime,
+                startTime: item.startTime,
+                expireTime: item.expireTime,
                 lastSubmission: item.scheduler.lastSubmission,
                 completed: item.completed,
                 expired: item.expired
@@ -101,7 +101,7 @@ const NotCompiledSurveysMine = (props) => {
                     const survey = cellProps.row.original;
                     return <SurveyDateWithReccurenceCell
                         props={props}
-                        date={survey.lastSubmission}
+                        date={survey.startTime}
                         reccurence={survey.reccurence}
                     />;
                 }

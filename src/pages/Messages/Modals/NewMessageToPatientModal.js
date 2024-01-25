@@ -1,11 +1,12 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Modal, Row, Col, Input, FormText } from "reactstrap";
 import { showLoadingToast, apiErrorToast } from "../../../helpers/toastHelper";
 import TextareaWithMaxlength from "../../../components/Common/TextareaWithMaxlength";
 import useEnvironment from "../../../infrastructure/session/useEnvironment";
 import { createMessagebyMedic } from "../../../infrastructure/services/network/apiCalls/messagesApiService";
 import PatientFilter from "../../../components/Common/PatientListAutoCompelete";
+import getPatients from '../../../infrastructure/services/network/apiCalls/patientsApiService';
 
 export const NewMessageToPatientModal = ({ props, isOpen, closeCallback, successCallback }) => {
 
@@ -14,8 +15,27 @@ export const NewMessageToPatientModal = ({ props, isOpen, closeCallback, success
     const [title, setTitle] = useState();
     const [body, setBody] = useState();
     const [selectedPatient, setSelectedPatient] = useState(null);
+    const [patients, setPatients] = useState([]);
 
     const environment = useEnvironment();
+
+    useEffect(() => {
+        if (environment)  {
+              loadPatients();
+          }
+      }, [environment]);
+  
+      function loadPatients() {
+          getPatients(
+              environment.medicalTeamId,
+              handleLoadPatientsSuccess,
+              apiErrorToast);
+      }
+
+      function handleLoadPatientsSuccess(data) {
+           setPatients(data);
+       }
+  
 
     const bodyMaxLength = 1000;
     
@@ -105,7 +125,7 @@ export const NewMessageToPatientModal = ({ props, isOpen, closeCallback, success
                                     className="col-md-4 col-form-label" >
                                     {props.t("Patient")}
                                 </label>
-                                <PatientFilter onChange={handlePatientChange}></PatientFilter>
+                                <PatientFilter patients={patients} onChange={handlePatientChange}></PatientFilter>
                             </Row>
                             <Row className="mb-3">
                                 <label
