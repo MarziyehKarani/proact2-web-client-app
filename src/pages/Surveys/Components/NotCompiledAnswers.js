@@ -275,7 +275,7 @@ const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
     type="text"
     value={value}
     onChange={e => handleValueChange(e.target.value)}
-    placeholder={`Enter a number between ${min} and ${max} with ${decimalPlaces} decimal point.`}
+    placeholder={`Enter a number between ${min} and ${max} with ${decimalPlaces} decimal point(s).`}
   />
        {/* Display error message if it exists */}
        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
