@@ -135,7 +135,7 @@ export const NewTextReplyMessageModal = ({ props, isOpen, originalMessageId, clo
                                         attachment ?
                                             <img
                                                 data-dz-thumbnail=""
-                                                className="avatar-lg rounded bg-light mt-2"
+                                                className="avatar-xl rounded bg-light mt-2"
                                                 alt={attachment.name}
                                                 src={attachment.preview}
                                             />

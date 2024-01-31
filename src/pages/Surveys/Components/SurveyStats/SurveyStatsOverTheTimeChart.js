@@ -6,6 +6,7 @@ import MultipleChoiceAnswersOverTheTimeChart from './MultipleChoiceAnswersOverTh
 import OpenAnswerStatsOverTheTimeChart from './OpenAnswerStatsOverTheTimeChart';
 import RatingAnswerStatsOverTheTimeChart from './RatingAnswersOverTheTimeChart';
 import SingleChoiceAnswersOverTheTimeChart from './SingleChoiceAnswersOverTheTimeChart';
+import NumericAnswerStatsOverTheTimeChart from './NumericAnswerStatsOverTheTimeChart';
 
 
 const SurveyStatsOverTheTime = ({ props, questionStats }) => {
@@ -25,6 +26,8 @@ const SurveyStatsOverTheTime = ({ props, questionStats }) => {
                 return <MoodAnswerStatsOverTheTimeChart props={props} questionStats={questionStats} />
             case surveyQuestionType.RATING:
                 return <RatingAnswerStatsOverTheTimeChart props={props} questionStats={questionStats} />
+            case surveyQuestionType.NUMERIC:
+                    return <NumericAnswerStatsOverTheTimeChart props={props} questionStats={questionStats} />
             default:
                 return ""
         }

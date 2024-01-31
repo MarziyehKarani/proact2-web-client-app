@@ -211,7 +211,7 @@ const Messages = (props) => {
     var diffMs = today - messageDateTime;
     var diffMins = Math.floor((diffMs / 1000) / 60);
 
-    return diffMins > projectProperties.messageCanBeRepliedAfterMinutes;
+    return (projectProperties.messageCanBeRepliedAfterMinutes==0 || diffMins > projectProperties.messageCanBeRepliedAfterMinutes) ;
   }
 
   function handleNewReply(message) {
@@ -221,7 +221,7 @@ const Messages = (props) => {
 
     if (found && indexOfItemToUpdate !== -1) {
       var updatedMessages = messages.slice();
-      updatedMessages[indexOfItemToUpdate].replyMessages.unshift(message);
+      updatedMessages[indexOfItemToUpdate].replyMessages.push(message); // add reply at the end of the replies 
       setMessages(updatedMessages);
     }
     showSuccessToast(props.t("NewMessageAddedd"));

@@ -1,15 +1,15 @@
 
-const devAnalystConsoleBaseUrl = "https://delightful-desert-01c344803.2.azurestaticapps.net";
+const devAnalystConsoleBaseUrl = "https://lemon-meadow-02b88a503.4.azurestaticapps.net";
 const prodAnalystConsoleBaseUrl = "https://proact2-analystconsole.eu/";
-const devCPanelUrl = "https://devproactcpanel.azurewebsites.net/";
+const devCPanelUrl = "https://devetproactcpanel.azurewebsites.net/";
 const prodCPanelUrl = "https://proact2-controlpanel.eu/";
 
 const getControlPanelBaseUrl = () => {
-    return `${prodCPanelUrl}`;
+    return `${devCPanelUrl}`;
 }
 
 const getAnalystConsoleBaseUrl = () => {
-    return `${prodAnalystConsoleBaseUrl}`;
+    return `${devAnalystConsoleBaseUrl}`;
 }
 
 const generateAnalysisPageUrl = (projectId, userId, messageId) => {

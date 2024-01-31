@@ -34,6 +34,8 @@ export const NewMessageToPatientModal = ({ props, isOpen, closeCallback, success
 
       function handleLoadPatientsSuccess(data) {
            setPatients(data);
+           if(data != null)
+                setSelectedPatient(data[0]);
        }
   
 

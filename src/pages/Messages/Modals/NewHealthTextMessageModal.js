@@ -150,7 +150,7 @@ export const NewHealthTextMessageModal = ({ props, isOpen, closeCallback, succes
                                         attachment ?
                                             <img
                                                 data-dz-thumbnail=""
-                                                className="avatar-lg rounded bg-light mt-2"
+                                                className="avatar-xl rounded bg-light mt-2"
                                                 alt={attachment.name}
                                                 src={attachment.preview}
                                             />
