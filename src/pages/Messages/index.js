@@ -167,8 +167,16 @@ const Messages = (props) => {
     setMessages(updatedMessages);
   }
 
-  function handleVideoMessage() {
+
+  const delay = async (ms) => {
+    return new Promise((resolve) => 
+        setTimeout(resolve, ms));
+  };
+
+  const handleVideoMessage = async (message) => {
+    await delay(40000);
     showSuccessToast(props.t("VideoMessageSentSuccessfullyAlert"));
+
   }
 
   function openTextReplyModal(originalMessage) {

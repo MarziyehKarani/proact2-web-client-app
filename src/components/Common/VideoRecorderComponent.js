@@ -81,6 +81,7 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
                             : "none"
                             }`
                     }}
+                    muted
                     autoPlay
                 />
                 <video
@@ -91,7 +92,7 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
                         display: `${recordWebcam.status === "PREVIEW" ? "block" : "none"}`
                     }}
                     autoPlay
-                    loop
+                    
                 />
             </div>
             <div className='text-center'>
