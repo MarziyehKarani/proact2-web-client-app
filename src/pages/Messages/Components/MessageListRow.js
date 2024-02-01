@@ -64,7 +64,7 @@ const MessageListRow = ({
                     <div >
                         <MessageScopeIcon scope={message.originalMessage.messageScope} iconSizeClass="fa-2x" />
                     </div>
-                    {patientMenuIsVisible &&
+                    {patientMenuIsVisible && message.originalMessage.messageType!=messageType.MEDIC &&
                         <PatientMessageDropdownMenu
                             props={props}
                             onMessageDeleteButtonClick={onMessageDeleteButtonClick} />}
