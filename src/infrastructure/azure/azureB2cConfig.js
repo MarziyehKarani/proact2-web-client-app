@@ -42,7 +42,7 @@ export const msalConfig = {
         clientId: devEnvironment.clientId,
         authority: b2cPolicies.authorities.signUpSignIn.authority,
         knownAuthorities: [b2cPolicies.authorityDomain], // Mark your B2C tenant's domain as trusted.
-        redirectUri: "/", // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
+        redirectUri: "https://thankful-pond-033c5eb03.4.azurestaticapps.net/messages/", // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
         postLogoutRedirectUri: "/", // Indicates the page to navigate after logout.
         navigateToLoginRequestUrl: false, // If "true", will navigate back to the original request location before processing the auth code response.
     },
