@@ -16,38 +16,31 @@ const devEnvironment = {
     scopes: ["https://devetproactb2c.onmicrosoft.com/5640d05e-b6cb-4aac-a235-611db24fd6f3/Api.Scope"]
 }
 
-/* const prodEnvironment = {
+
+const prodEnvironment = {
     clientId: "40776ba4-353d-4a81-8900-0ef562a40039",
     signinUserFlow: "B2C_1_signin",
     domain: "proact2.b2clogin.com",
     loginEndpoint: "https://proact2.b2clogin.com/proact2.onmicrosoft.com/B2C_1_signin",
     scopes: ["https://proact2.onmicrosoft.com/api/access_as_user"]
-} */
-
-const prodEnvironment = {
-    clientId: "48cab400-3b9c-4b41-8db9-af142afeece2",
-    signinUserFlow: "B2C_1_EngitelDevProact",
-    domain: "devetproactb2c.b2clogin.com",
-    loginEndpoint: "https://devetproactb2c.b2clogin.com/devetproactb2c.onmicrosoft.com/B2C_1_EngitelDevProact",
-    scopes: ["https://devetproactb2c.onmicrosoft.com/5640d05e-b6cb-4aac-a235-611db24fd6f3/Api.Scope"]
 }
 
 export const b2cPolicies = {
     names: {
-        signUpSignIn: prodEnvironment.signinUserFlow
+        signUpSignIn: devEnvironment.signinUserFlow
     },
     authorities: {
         signUpSignIn: {
-            authority: prodEnvironment.loginEndpoint
+            authority: devEnvironment.loginEndpoint
         }
     },
-    authorityDomain: prodEnvironment.domain
+    authorityDomain: devEnvironment.domain
 }
 
 
 export const msalConfig = {
     auth: {
-        clientId: prodEnvironment.clientId,
+        clientId: devEnvironment.clientId,
         authority: b2cPolicies.authorities.signUpSignIn.authority,
         knownAuthorities: [b2cPolicies.authorityDomain], // Mark your B2C tenant's domain as trusted.
         redirectUri: "/", // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
@@ -85,7 +78,7 @@ export const msalConfig = {
 
 export const protectedResources = {
     api: {
-        scopes: prodEnvironment.scopes
+        scopes: devEnvironment.scopes
     },
 }
 
