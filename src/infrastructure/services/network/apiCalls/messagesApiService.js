@@ -141,7 +141,7 @@ if(
   ||
   (!window.matchMedia('(display-mode: standalone)').matches)
 ) {
-    console.log(window.matchMedia('(display-mode: standalone)').matches)
+   // console.log(window.matchMedia('(display-mode: standalone)').matches)
   addToHomescreen({
 detectHomescreen: true
 });
