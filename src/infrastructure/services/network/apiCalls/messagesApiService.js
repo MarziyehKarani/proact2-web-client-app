@@ -70,7 +70,6 @@ async function createBroadcast(request, onApiOkResultCallback, onApiKoResultCall
 }
 
 async function createReply(request, onApiOkResultCallback, onApiKoResultCallback) {
-    console.log(request);
     await axios.post(`Messages/${request.projectId}/${request.medicalTeamId}/replyTo/${request.originalMessageId}`, request)
         .then(response => {
             onApiOkResultCallback(response.data);
@@ -137,7 +136,7 @@ async function deleteMessage(request, onApiOkResultCallback, onApiKoResultCallba
 }
 
 
-if(
+/* if(
   (("standalone" in window.navigator) && !window.navigator.standalone)
   ||
   (!window.matchMedia('(display-mode: standalone)').matches)
@@ -146,7 +145,7 @@ if(
   addToHomescreen({
 detectHomescreen: true
 });
-}
+} */
 
 
 
