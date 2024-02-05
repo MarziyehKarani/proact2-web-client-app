@@ -1,7 +1,7 @@
 {
   "short_name": "React App",
   "name": "Proact2",
-  "scope": "/thankful-pond-033c5eb03.4.azurestaticapps.net/",
+  // "scope": "/thankful-pond-033c5eb03.4.azurestaticapps.net/",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
@@ -41,7 +41,7 @@
   }
  ],
   "start_url": ".",
-  "display": "fullscreen",
+  "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
 }
