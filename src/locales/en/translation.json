@@ -490,6 +490,7 @@
  "SurveyResultsOverTheTime": "Patient responses over time",
  "FilterByPatients": "Select the patient",
  "ExportAsCsv": "Export csv",
+ "ExportAsExcel": "Export Excel",
  "DownloadSuccess": "Download completed",
  "MessageDeleteSuccess": "The message has been deleted",
  "RetakeVideo": "Record a new video",

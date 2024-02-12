@@ -20,8 +20,20 @@ async function getAnalysisOfAPatient(userId, onApiOkResultCallback, onApiKoResul
         });
 }
 
+async function getSurveyResultAsExcel(surveyId, onApiOkResultCallback, onApiKoResultCallback) {
+    await axios.get(`DataExporters/survey/${surveyId}/Excel`)
+        .then(response => {
+            console.log(response.data);
+            onApiOkResultCallback(response.data);
+        })
+        .catch(error => {
+            onApiKoResultCallback(error);
+        });
+}
+
 
 export {
     getSurveyStatsOverTheTime,
-    getAnalysisOfAPatient
+    getAnalysisOfAPatient,
+    getSurveyResultAsExcel
 };

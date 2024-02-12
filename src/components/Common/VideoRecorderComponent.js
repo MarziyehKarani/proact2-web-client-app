@@ -1,7 +1,7 @@
 import React from "react";
 import { RecordWebcam, useRecordWebcam } from "react-record-webcam";
 import { Button, Spinner } from "reactstrap";
-import { useEffect } from "react";
+import { useEffect,useRef } from "react";
 import Countdown from "./Countdown";
 
 const OPTIONS = {
@@ -67,6 +67,10 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
         return recordWebcam.status === "PREVIEW";
     }
 
+    function replyVideo() {
+        recordWebcam.previewRef.current.play();
+    }
+
     return (
         <div>
             <div>
@@ -92,7 +96,7 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
                         display: `${recordWebcam.status === "PREVIEW" ? "block" : "none"}`
                     }}
                     autoPlay
-                    
+                   /*  onMouseOver={() => replyVideo()} */
                 />
             </div>
             <div className='text-center'>
@@ -139,9 +143,15 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
                             onClick={retakeVideo}
                             className="btn-rounded px-5 me-4" >{props.t("RetakeVideo")}</Button>
                         <Button
+                            color="primary"
+                            onClick={replyVideo}
+                            className="btn-rounded px-5 me-4" >replay</Button>
+                        <Button
                             color="success"
                             onClick={saveFile}
                             className="btn-rounded px-5" >{props.t("Save")}</Button>
+
+
                     </div>
                 }
 

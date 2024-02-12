@@ -487,6 +487,7 @@
   "SurveyResultsOverTheTime": "Respuestas de los pacientes con el tiempo",
   "FilterByPatients": "Seleccione el paciente",
   "ExportAsCsv": "Exportar CSV",
+  "ExportAsExcel": "Exportar Excel",
   "DownloadSuccess": "Descarga completa",
   "MessageDeleteSuccess": "El mensaje ha sido eliminado.",
   "RetakeVideo": "Grabar un nuevo video",

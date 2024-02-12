@@ -15,8 +15,10 @@ import Select from "react-select"
 import SurveyQuestionHead from './Components/SurveyQuestionHead'
 import SurveyQuestionTypeBadge from './Components/SurveyQuestionTypeBadge';
 import SurveyStatsOverTheTimeChart from './Components/SurveyStats/SurveyStatsOverTheTimeChart';
-import { getSurveyStatsOverTheTime } from '../../infrastructure/services/network/apiCalls/dataExportersApiServece';
+import { getSurveyStatsOverTheTime , getSurveyResultAsExcel } from '../../infrastructure/services/network/apiCalls/dataExportersApiServece';
 import generateAndDownloadTextFile from '../../helpers/generateAndDownloadTextFile';
+import generateAndDownloadExcelFile from '../../helpers/generateAndDownloadExcelFile';
+
 
 const SurveyResultsOverTheTimePage = (props) => {
     const surveyId = props.match.params.id;
@@ -78,6 +80,7 @@ const SurveyResultsOverTheTimePage = (props) => {
     }
 
     function handleLoadStatisticsSuccess(data) {
+        console.log(data);
         setStatistics(data);
     }
 
@@ -109,6 +112,19 @@ const SurveyResultsOverTheTimePage = (props) => {
         generateAndDownloadTextFile(content, filename);
     }
 
+    function downloadResultsAsExcel() {
+        showLoadingToast();
+        getSurveyResultAsExcel(
+            surveyId,
+            handleDownloadResultsSuccess,
+            apiErrorToast);
+    }
+
+    function handleDownloadResultsSuccess(data) {
+        showSuccessToast("DownloadSuccess");
+        generateAndDownloadExcelFile(data);
+    }
+
     return (
         <Container>
             <Breadcrumbs
@@ -132,13 +148,23 @@ const SurveyResultsOverTheTimePage = (props) => {
                         </div>
                     </div>
                 </Col>
-                <Col sm="4" className='d-flex flex-row-reverse'>
+                <Col sm="2" className='d-flex flex-row-reverse'>
                     <Button
                         color='info'
                         className='px-4'
                         onClick={downloadResultsAsCsv}
                         disabled={statisticsAreEmpty}>
                         <i className="fas fa-file-download me-2"></i>{props.t("ExportAsCsv")}
+                    </Button>
+                    
+                </Col>
+                <Col sm="2" className='d-flex flex-row'>
+                <Button
+                        color='success'
+                        className='px-4'
+                        onClick={downloadResultsAsExcel}
+                        disabled={statisticsAreEmpty}>
+                        <i className="fas fa-file-download me-2"></i>{props.t("ExportAsExcel")}
                     </Button>
                 </Col>
             </Row>
