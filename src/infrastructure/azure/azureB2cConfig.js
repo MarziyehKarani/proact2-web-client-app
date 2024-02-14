@@ -27,23 +27,23 @@ const prodEnvironment = {
 
 export const b2cPolicies = {
     names: {
-        signUpSignIn: devEnvironment.signinUserFlow
+        signUpSignIn: process.env.signinUserFlow
     },
     authorities: {
         signUpSignIn: {
-            authority: devEnvironment.loginEndpoint
+            authority: process.env.loginEndpoint
         }
     },
-    authorityDomain: devEnvironment.domain
+    authorityDomain: process.env.domain
 }
 
 
 export const msalConfig = {
     auth: {
-        clientId: devEnvironment.clientId,
+        clientId: process.env.clientId,
         authority: b2cPolicies.authorities.signUpSignIn.authority,
         knownAuthorities: [b2cPolicies.authorityDomain], // Mark your B2C tenant's domain as trusted.
-        redirectUri: "https://thankful-pond-033c5eb03.4.azurestaticapps.net", // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
+        redirectUri: "/", // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
         postLogoutRedirectUri: "/", // Indicates the page to navigate after logout.
         navigateToLoginRequestUrl: false, // If "true", will navigate back to the original request location before processing the auth code response.
     },
@@ -78,7 +78,7 @@ export const msalConfig = {
 
 export const protectedResources = {
     api: {
-        scopes: devEnvironment.scopes
+        scopes: process.env.scopes
     },
 }
 
