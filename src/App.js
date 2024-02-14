@@ -43,6 +43,8 @@ const App = ({ instance }) => {
   //      OneSignal.Slidedown.promptPush();
   //      }), []});
 
+  console.log(process.env.REACT_APP_SCOPES);
+
   function getLayout() {
     let layoutCls = HorizontalLayout;
     return layoutCls;

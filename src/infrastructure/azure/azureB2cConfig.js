@@ -27,20 +27,20 @@ const prodEnvironment = {
 
 export const b2cPolicies = {
     names: {
-        signUpSignIn: process.env.signinUserFlow
+        signUpSignIn: process.env.REACT_APP_SIGNINUSERFLOW
     },
     authorities: {
         signUpSignIn: {
-            authority: process.env.loginEndpoint
+            authority: process.env.REACT_APP_LOGINENDPOINT
         }
     },
-    authorityDomain: process.env.domain
+    authorityDomain: process.env.REACT_APP_DOMAIN
 }
 
 
 export const msalConfig = {
     auth: {
-        clientId: process.env.clientId,
+        clientId: process.env.REACT_APP_CLIENTID,
         authority: b2cPolicies.authorities.signUpSignIn.authority,
         knownAuthorities: [b2cPolicies.authorityDomain], // Mark your B2C tenant's domain as trusted.
         redirectUri: "/", // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
@@ -78,7 +78,7 @@ export const msalConfig = {
 
 export const protectedResources = {
     api: {
-        scopes: process.env.scopes
+        scopes: process.env.REACT_APP_SCOPES.split(", ")
     },
 }
 
