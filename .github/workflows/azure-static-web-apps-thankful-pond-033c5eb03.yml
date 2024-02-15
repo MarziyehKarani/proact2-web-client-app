@@ -10,6 +10,14 @@ on:
     branches:
       - master
       - dev
+      
+env: 
+      REACT_APP_CLIENTID : undefined 
+      REACT_APP_SIGNINUSERFLOW : undefined 
+      REACT_APP_DOMAIN : undefined 
+      REACT_APP_LOGINENDPOINT : undefined 
+      REACT_APP_SCOPES : undefined 
+      REACT_APP_APIENDPOINT : undefined 
 
 jobs:
   build_and_deploy_job:
@@ -21,6 +29,27 @@ jobs:
         with:
           submodules: true
           lfs: false
+
+      - name: Set env vars (dev)
+        if: endsWith(github.ref, '/dev')
+        run: |
+          echo "REACT_APP_CLIENTID=REACT_APP_CLIENTID_DEV" >> $GITHUB_ENV
+          echo "REACT_APP_SIGNINUSERFLOW=REACT_APP_SIGNINUSERFLOW_DEV" >> $GITHUB_ENV
+          echo "REACT_APP_DOMAIN=REACT_APP_DOMAIN_DEV" >> $GITHUB_ENV
+          echo "REACT_APP_LOGINENDPOINT=REACT_APP_LOGINENDPOINT_DEV" >> $GITHUB_ENV
+          echo "REACT_APP_SCOPES=REACT_APP_SCOPES_DEV" >> $GITHUB_ENV
+          echo "REACT_APP_APIENDPOINT=REACT_APP_APIENDPOINT_DEV" >> $GITHUB_ENV
+
+      - name: Set env vars (prod)
+        if: endsWith(github.ref, '/master')
+        run: |
+          echo "REACT_APP_CLIENTID=REACT_APP_CLIENTID_DEV" >> $GITHUB_ENV
+          echo "REACT_APP_SIGNINUSERFLOW=REACT_APP_SIGNINUSERFLOW_DEV" >> $GITHUB_ENV
+          echo "REACT_APP_DOMAIN=REACT_APP_DOMAIN_DEV" >> $GITHUB_ENV
+          echo "REACT_APP_LOGINENDPOINT=REACT_APP_LOGINENDPOINT_DEV" >> $GITHUB_ENV
+          echo "REACT_APP_SCOPES=REACT_APP_SCOPES_DEV" >> $GITHUB_ENV
+          echo "REACT_APP_APIENDPOINT=REACT_APP_APIENDPOINT_DEV" >> $GITHUB_ENV
+          
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -35,13 +64,6 @@ jobs:
           api_location: "" # Api source code path - optional
           output_location: "build" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
-        env: 
-          REACT_APP_CLIENTID : ${{ secrets.REACT_APP_CLIENTID }}
-          REACT_APP_SIGNINUSERFLOW : ${{ secrets.REACT_APP_SIGNINUSERFLOW }}
-          REACT_APP_DOMAIN : ${{ secrets.REACT_APP_DOMAIN }}
-          REACT_APP_LOGINENDPOINT : ${{ secrets.REACT_APP_LOGINENDPOINT }}
-          REACT_APP_SCOPES : ${{ secrets.REACT_APP_SCOPES }}
-          REACT_APP_APIENDPOINT_DEV : ${{ secrets.REACT_APP_APIENDPOINT_DEV }}
           
 
   close_pull_request_job:
