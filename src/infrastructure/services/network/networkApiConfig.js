@@ -5,16 +5,17 @@ function getDevEvironment() {
      return "https://devetproactservices.azurewebsites.net/api";
 }
 
-//   function getDevEvironment() {
-//  	return "https://localhost:44378/api";
-//  } 
+/*   function getDevEvironment() {
+  	return "https://localhost:44378/api";
+  }  */
 
 function getProdEnvironment() {
     return "https://prodproactservices.azurewebsites.net/api";
 }
 
 export function setupApiConfiguration(languageTag) {
-    var environmentBaseUrl = getDevEvironment();
+    //var environmentBaseUrl = getDevEvironment();
+    var environmentBaseUrl = process.env.REACT_APP_APIEndPOINT;
     axios.defaults.baseURL = `${environmentBaseUrl}/${languageTag}/`;
 }
 
