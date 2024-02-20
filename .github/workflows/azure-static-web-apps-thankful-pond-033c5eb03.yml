@@ -12,12 +12,12 @@ on:
       - dev
       
 env: 
-      REACT_APP_CLIENTID : 48cab400-3b9c-4b41-8db9-af142afeece2 
-      REACT_APP_SIGNINUSERFLOW : B2C_1_EngitelDevProact 
-      REACT_APP_DOMAIN : devetproactb2c.b2clogin.com 
-      REACT_APP_LOGINENDPOINT : https://devetproactb2c.b2clogin.com/devetproactb2c.onmicrosoft.com/B2C_1_EngitelDevProact 
-      REACT_APP_SCOPES : "https://devetproactb2c.onmicrosoft.com/5640d05e-b6cb-4aac-a235-611db24fd6f3/Api.Scope" 
-      REACT_APP_APIENDPOINT : "https://devetproactservices.azurewebsites.net/api" 
+      REACT_APP_CLIENTID : ${{ vars.REACT_APP_CLIENTID }}
+      REACT_APP_SIGNINUSERFLOW : ${{ vars.REACT_APP_SIGNINUSERFLOW }}
+      REACT_APP_DOMAIN : ${{ vars.REACT_APP_DOMAIN }}
+      REACT_APP_LOGINENDPOINT : ${{ vars.REACT_APP_LOGINENDPOINT }}
+      REACT_APP_SCOPES : ${{ vars.REACT_APP_SCOPES }}
+      REACT_APP_APIENDPOINT : ${{ vars.REACT_APP_APIENDPOINT }}
 
 jobs:
   build_and_deploy_job:
