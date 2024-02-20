@@ -15,7 +15,7 @@ const AuthorizedPage = () => {
 
     useEffect(() => {
         if (userSession) {
-            var isAuth = userCanAccessToAnalystConsole();
+            var isAuth = userCanAccessToWebApp();
             setIsAuthorized(isAuth);
             if(!isInitialized){
                 OneSignal.init({ appId: 'ebb1244f-a56b-4c7e-a7b0-8e947b008075',  notificationClickHandlerMatch: "URL",
@@ -39,12 +39,13 @@ const AuthorizedPage = () => {
         }
     }, [userSession]);
 
-    var userCanAccessToAnalystConsole = function () {
+    var userCanAccessToWebApp= function () {
         const roles = userSession.roles;
         return roles.includes(UserRoles.MedicalProfessional)
             || roles.includes(UserRoles.MedicalTeamAdmin)
             || roles.includes(UserRoles.Researcher)
-            || roles.includes(UserRoles.Patient);
+            || roles.includes(UserRoles.Patient)
+            || roles.includes(UserRoles.Nurse);
     }
 
     return (

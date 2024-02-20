@@ -38,8 +38,13 @@ const ProfileMenu = props => {
 
   function currentUserIsMedicalProfesional() {
     return (userSession &&
-      (userSession.roles.includes(UserRoles.MedicalProfessional)
-        || userSession.roles.includes(UserRoles.Nurse))
+      (userSession.roles.includes(UserRoles.MedicalProfessional))
+    );
+  }
+
+  function currentUserIsNurse() {
+    return (userSession &&
+      (userSession.roles.includes(UserRoles.Nurse))
     );
   }
 
@@ -124,6 +129,33 @@ const ProfileMenu = props => {
               <DropdownItem onClick={openAnalystConsole}>
                 <i className="fas fa-file-medical-alt font-size-18 align-middle me-2 text-muted"></i>
                 <span>{props.t("OpenAnalystConsole")}</span>
+              </DropdownItem>
+            </>
+
+          }
+
+          {currentUserIsNurse() &&
+            <>
+              <DropdownItem header>{props.t("MedicalTeamGroupTitle")}</DropdownItem>
+              <DropdownItem
+                onClick={() => setIsChangeStudyModalOpen(true)}>
+                <i className="fas fa-exchange-alt font-size-18 align-middle me-2 text-muted"></i>
+                <span>{props.t("ChangeMedicalTeamAndTrialTitle")}</span>
+              </DropdownItem>
+              <Link to="/patients" className="dropdown-item">
+                <i className="fas fa-hospital-user font-size-18 align-middle me-2 text-muted"></i>
+                <span>{props.t("YourPatientsTitle")}</span>
+              </Link>
+
+              <DropdownItem header>{props.t("SurveysGroupTitle")}</DropdownItem>
+              <Link to="/surveys/study" className="dropdown-item">
+                <i className="fas fa-chart-bar font-size-18 align-middle me-2 text-muted"></i>
+                <span>{props.t("SurveysResultsAndStatistics")}</span>
+              </Link>
+              <DropdownItem header>{props.t("ProactTools")}</DropdownItem>
+              <DropdownItem onClick={openControlPanel}>
+                <i className="fas fa-cogs font-size-18 align-middle me-2 text-muted"></i>
+                <span>{props.t("OpenControlPanel")}</span>
               </DropdownItem>
             </>
 
