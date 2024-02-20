@@ -9,7 +9,7 @@ function getProdEnvironment() {
 }
 
 export function setupApiConfiguration(languageTag) {
-    var environmentBaseUrl = process.env.REACT_APP_APIEndPOINT;
+    var environmentBaseUrl = process.env.REACT_APP_APIENDPOINT;
     axios.defaults.baseURL = `${environmentBaseUrl}/${languageTag}/`;
 }
 

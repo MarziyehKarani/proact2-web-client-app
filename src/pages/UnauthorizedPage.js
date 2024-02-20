@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardBody, Container } from 'reactstrap';
 import { withTranslation } from "react-i18next"
 
-const ContactPage = (props) => {
+const UnauthorizedPage = (props) => {
     return (
         <Container>
             <div className="alert alert-danger" role="alert">
@@ -12,4 +12,4 @@ const ContactPage = (props) => {
     );
 }
 
-export default withTranslation()(ContactPage)
+export default withTranslation()(UnauthorizedPage)
