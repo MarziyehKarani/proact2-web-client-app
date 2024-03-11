@@ -175,6 +175,8 @@
 
   "NewBroadcastMessageButton":"Nuevo mensaje de difusión",
 
+  "NewMessageToPatientButton":"Nuevo mensaje al paciente",
+
   "NewMessageButton":"Nuevo tema",
 
   "NewMessageErrorMessage":"Por favor, inténtalo de nuevo",
@@ -490,6 +492,7 @@
   "ExportAsExcel": "Exportar Excel",
   "DownloadSuccess": "Descarga completa",
   "MessageDeleteSuccess": "El mensaje ha sido eliminado.",
+  "MessageEditSuccess": "El mensaje ha sido editado.",
   "RetakeVideo": "Grabar un nuevo video",
   "Patient": "Paciente",
   "Medic": "Médico",

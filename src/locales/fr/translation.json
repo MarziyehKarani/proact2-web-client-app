@@ -173,6 +173,8 @@
  "MinutesSpan":"min",
 
  "NewBroadcastMessageButton":"Nouveau message broadcast",
+ 
+ "NewMessageToPatientButton":"Nouveau message au patient",
 
  "NewMessageButton":"Nouveau sujet",
 
@@ -486,6 +488,7 @@
  "ExportAsExcel": "Exporter au format Excel",
  "DownloadSuccess": "Téléchargement terminé",
  "MessageDeleteSuccess": "Le message a été supprimé",
+ "MessageEditSuccess": "Le message a été modifié",
  "RetakeVideo": "Enregistrer une nouvelle vidéo",
  "Patient": "Patient",
  "Medic": "Docteur",

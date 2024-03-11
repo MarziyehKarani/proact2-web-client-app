@@ -102,7 +102,7 @@
 
  "EditAnalysisPageTitle":"Edit analysis",
 
- "EditTextMessagePageTitle":"Edit a message",
+ "EditTextMessagePageTitle":"Edit message",
 
  "EmptyComiledSurveysList":"No questionnaire",
 
@@ -493,6 +493,7 @@
  "ExportAsExcel": "Export Excel",
  "DownloadSuccess": "Download completed",
  "MessageDeleteSuccess": "The message has been deleted",
+ "MessageEditSuccess": "The message has been edited",
  "RetakeVideo": "Record a new video",
  "Patient": "Patient",
  "Medic": "Doctor",

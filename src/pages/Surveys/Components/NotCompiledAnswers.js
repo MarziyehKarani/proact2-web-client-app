@@ -239,33 +239,47 @@ const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
   function handleValueChange(value) {
 
     const enteredValue =value;
-    const pattern =new RegExp(`^-?\\d{0,${maxLength}}\\.?\\d{0,${decimalPlaces}}$`);
+    setValue(enteredValue);
 
     if (enteredValue === '') {
       setValue(enteredValue);
       setErrorMessage(''); // Reset error message for empty input or '-' or '.'
       return;
     }
+  }
 
-    if (pattern.test(enteredValue)) {
+    function handleValidation(value) {
 
-        const number = parseFloat(enteredValue);
-        if (!isNaN(number)) {
-          if (number >= min && number <= max) {
-            setValue(enteredValue);
-            var compiledQuestion = createCompiledQuestionByValue(question.id, value)
-            addCompiledQuestion(compiledQuestion)
-            setErrorMessage('');
-          } else if (enteredValue >= min.toString().slice(0, enteredValue.length) && number <= max) {
-            setValue(enteredValue); // Allow input if it matches the beginning of min
-            setErrorMessage('');
+      const enteredValue =value;
+      const pattern =new RegExp(`^-?\\d{0,${maxLength}}\\.?\\d{0,${decimalPlaces}}$`);
+  
+      if (enteredValue === '') {
+        setValue(enteredValue);
+        setErrorMessage(''); // Reset error message for empty input or '-' or '.'
+        return;
+      }
+  
+      if (pattern.test(enteredValue)) {
+  
+          const number = parseFloat(enteredValue);
+          console.log(number);
+          if (!isNaN(number)) {
+            if (number >= min && number <= max) {
+              setValue(enteredValue);
+              var compiledQuestion = createCompiledQuestionByValue(question.id, value)
+              addCompiledQuestion(compiledQuestion)
+              setErrorMessage('');
+            } 
+            else
+            {
+              setErrorMessage('Input number is not in the range of valid values.');
+            }
           }
-          else
-          {
-            setErrorMessage('Input number is not in the range of valid values.');
-          }
-        }
-    }
+      }
+      else
+      {
+        setErrorMessage('Input number is not in the range of valid values.');
+      }
 
 
   }
@@ -275,6 +289,7 @@ const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
     type="text"
     value={value}
     onChange={e => handleValueChange(e.target.value)}
+    onBlur={e=> handleValidation(e.target.value)}
     placeholder={`Enter a number between ${min} and ${max} with ${decimalPlaces} decimal point(s).`}
   />
        {/* Display error message if it exists */}

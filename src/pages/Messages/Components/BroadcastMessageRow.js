@@ -1,8 +1,9 @@
 import React from 'react';
 import { Card, CardHeader, CardBody, CardText } from 'reactstrap';
 import { toLocalDatetime } from '../../../common/formattedDatetime';
+import BroadcastMessageDropdownMenu from './BroadcastMessageDropdownMenu';
 
-const BroadcastMessageRow = ({ props, message }) => {
+const BroadcastMessageRow = ({ props, message,menuIsVisible,onMessageEditButtonClick,onMessageDeleteButtonClick}) => {
     return (
         <Card
             className='mb-3'
@@ -25,7 +26,14 @@ const BroadcastMessageRow = ({ props, message }) => {
                                 {toLocalDatetime(message.originalMessage.createdDateTime)}
                             </p>
                         </div>
+                        {menuIsVisible &&
+                        <BroadcastMessageDropdownMenu
+                            props={props}
+                            onMessageEditButtonClick={onMessageEditButtonClick}
+                            onMessageDeleteButtonClick={onMessageDeleteButtonClick} />
+                        }
                     </div>
+                   
                 </p>
                 <CardText tag="h5" className='text-muted'>{message.originalMessage.title}</CardText>
                 <CardText tag="h6" className='text-muted'>{message.originalMessage.body}</CardText>

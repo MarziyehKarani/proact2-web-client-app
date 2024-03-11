@@ -1,12 +1,8 @@
 import React from 'react';
 import { toLocalDate } from '../../../../helpers/formattedDatetime';
 import ReactApexChart from "react-apexcharts"
-import moodVeryBadBtnImg from "../../../../assets/images/messages/btn_moodVeryBad.png";
-import moodBadBtnImg from "../../../../assets/images/messages/btn_moodBad.png";
-import moodGoodBtnImg from "../../../../assets/images/messages/btn_moodGood.png";
-import moodVeryGoodBtnImg from "../../../../assets/images/messages/btn_moodVeryGood.png";
 
-const NumericAnswerStatsOverTheTimeChart = ({ props, questionStats }) => {
+const NumericAnswerStatsOverTheTimeChart = ({ props, questionStats}) => {
 
     function getValues(questionStats) {
         var values = [];
@@ -26,6 +22,16 @@ const NumericAnswerStatsOverTheTimeChart = ({ props, questionStats }) => {
 
         return values;
     }
+
+    function getMin(questionStats){
+      var value=  questionStats?.properties?.min ?? 0;
+      return value;
+    }
+
+    function getMax(questionStats){
+        var value=  questionStats?.properties?.max ?? 300;
+        return value;
+      }
 
     const series = [
         { name: props.t("NumericAnswer"), data: getValues(questionStats) }
@@ -55,8 +61,8 @@ const NumericAnswerStatsOverTheTimeChart = ({ props, questionStats }) => {
                     return val.toFixed(0);
                 }
             },
-            min: 0,
-            max: 300
+            min: getMin(questionStats),
+            max: getMax(questionStats)
         }
     }
 

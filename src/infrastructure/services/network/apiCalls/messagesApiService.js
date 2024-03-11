@@ -69,6 +69,16 @@ async function createBroadcast(request, onApiOkResultCallback, onApiKoResultCall
         });
 }
 
+async function editBroadcast(request, onApiOkResultCallback, onApiKoResultCallback) {
+    await axios.post(`Messages/${request.projectId}/${request.medicalTeamId}/${request.messageId}/editbroadcast`, request)
+        .then(response => {
+            onApiOkResultCallback(response.data);
+        })
+        .catch(error => {
+            onApiKoResultCallback(error);
+        });
+}
+
 async function createReply(request, onApiOkResultCallback, onApiKoResultCallback) {
     await axios.post(`Messages/${request.projectId}/${request.medicalTeamId}/replyTo/${request.originalMessageId}`, request)
         .then(response => {
@@ -162,5 +172,6 @@ export {
     createReplyWithVoiceAttachment,
     createReplyWithVideoAttachment,
     deleteMessage,
-    createMessagebyMedic
+    createMessagebyMedic,
+    editBroadcast
 };

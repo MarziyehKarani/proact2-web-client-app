@@ -26,6 +26,7 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import AuthorizedPage from '../../components/AuthorizedPage';
 import { Redirect } from 'react-router-dom';
 import { NewMessageToPatientModal } from './Modals/NewMessageToPatientModal';
+import { EditBroadcastMessageModal } from './Modals/EditBroadcastMessageModal';
 
 const Messages = (props) => {
 
@@ -51,6 +52,8 @@ const Messages = (props) => {
   const [isVoiceReplyModalVisible, setIsVoiceReplyModalVisible] = useState(false);
   const [isDeleteAlertVisible, setDeleteAlertVisible] = useState(false);
   const [deletingMessageId, setDeletingMessageId] = useState();
+  const [isEditBroadcastMessageModalVisible,setIsEditBroadcastMessageModalVisible]= useState(false);
+  const [editingMessage, setEditingMessage] = useState();
 
   const userSession = useUserSession();
   const environment = useEnvironment();
@@ -174,7 +177,7 @@ const Messages = (props) => {
   };
 
   const handleVideoMessage = async (message) => {
-    await delay(40000);
+    await delay(30000);
     showSuccessToast(props.t("VideoMessageSentSuccessfullyAlert"));
 
   }
@@ -269,6 +272,20 @@ const Messages = (props) => {
     }
   }
 
+  function handleEditBroadcastButtonClick(message) {
+    setIsEditBroadcastMessageModalVisible(true)
+    setEditingMessage(message);
+  }
+
+  function handleDeleteBroadcastButtonClick(message) {
+    if (validateMessageDeleting(message)) {
+      openDeleteModal(message.messageId);
+    }
+    else {
+      showErrorToast(props.t("NotDeletableMessageAlertMessage"))
+    }
+  }
+
   function openDeleteModal(messageId) {
     setDeletingMessageId(messageId);
     setDeleteAlertVisible(true);
@@ -307,6 +324,25 @@ const Messages = (props) => {
       updatedMessages.splice(indexOfItem, 1);
       setMessages(updatedMessages);
       showSuccessToast(props.t("MessageDeleteSuccess"));
+    }
+  }
+
+  function handleEditMessage(updatedMessage) {
+  
+    var found = messages
+      .find(e => e.originalMessage.messageId == editingMessage.messageId);
+    var indexOfItem = messages.indexOf(found);
+
+    if (found && indexOfItem !== -1) {
+      const updatedMessages = messages.map((message, index) => {
+        if (index === indexOfItem) {
+          // Replace the message at the specific index with the updated message
+          message.originalMessage=updatedMessage
+        }
+        return message; 
+      });
+      setMessages(updatedMessages);
+      showSuccessToast(props.t("MessageEditSuccess"));
     }
   }
 
@@ -383,7 +419,7 @@ const Messages = (props) => {
                   props={props}
                   message={message}
                   showAnalysisCount={projectProperties && projectProperties.isAnalystConsoleActive}
-                  patientMenuIsVisible={userSession && userSession.isPatient}
+                  patientMenuIsVisible={userSession && userSession.userId==message.originalMessage.authorId}
                   showReplyButtons={userSession && !userSession.isResearcher}
                   onVideoAttachmentClick={handleVideoMessagePlay}
                   onNewTextReplyClick={() => openTextReplyModal(message.originalMessage)}
@@ -397,7 +433,10 @@ const Messages = (props) => {
                 <BroadcastMessageRow
                   key={idx}
                   props={props}
-                  message={message} />
+                  message={message}
+                  menuIsVisible={userSession && userSession.userId==message.originalMessage.authorId}
+                  onMessageEditButtonClick={() => handleEditBroadcastButtonClick(message.originalMessage)}
+                  onMessageDeleteButtonClick={() => handleDeleteButtonClick(message.originalMessage)} />
             ))
             :
             <Card>
@@ -510,6 +549,16 @@ const Messages = (props) => {
         >
         </SweetAlert>
       }
+
+
+    {isEditBroadcastMessageModalVisible &&
+    <EditBroadcastMessageModal
+        props={props}
+        isOpen={isEditBroadcastMessageModalVisible}
+        message={editingMessage}
+        closeCallback={(() => setIsEditBroadcastMessageModalVisible(false))}
+        successCallback={handleEditMessage} />
+    }
 
     </Container >
   )
