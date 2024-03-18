@@ -52,7 +52,7 @@ const PatientsPage = (props) => {
     }
 
     function handleDownloadRequestSuccess(data) {
-        showSuccessToast("DownloadSuccess");
+        showSuccessToast(props.t("DownloadSuccess"));
         var filename = selectedPatient.userId + "." + data.type;
         var content = data.value;
         generateAndDownloadTextFile(content, filename);

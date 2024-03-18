@@ -76,8 +76,7 @@ export const EditBroadcastMessageModal = ({ props, isOpen,message, closeCallback
             isOpen={isOpen} >
             <div className="modal-header">
                 <h5 className="modal-title mt-0" id="myModalLabel">
-                    {/* {props.t("BradcastMessagePageTitle")} */}
-                    Edit Broadcast Message
+                    {props.t("EditBradcastMessagePageTitle")}
                 </h5>
                 <button
                     type="button"

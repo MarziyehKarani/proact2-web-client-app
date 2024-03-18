@@ -65,6 +65,7 @@
  "BradcastMessageInfo":"Eine Broadcast-Nachricht wird allen Patienten und den Fachärzten Ihres Ärzteteams angezeigt.",
 
  "BradcastMessagePageTitle":"Broadcast-Nachricht",
+ "EditBradcastMessagePageTitle":"Broadcast-Nachricht bearbeiten",
 
  "BroadcastType":"Broadcast",
 
@@ -473,7 +474,11 @@
  "BoolAnswer": "Richtig oder falsch",
  "RatingAnswer": "Lineare Skalierung",
  "MoodAnswer": "Gefallen",
+ "NumericAnswer": "Numerische Antwort",
+ "InvalidNumber":"Die eingegebene Zahl liegt nicht im Bereich gültiger Werte.",
+ "NumericInputPlaceHolder":"Geben Sie eine Zahl zwischen {min} und {max} mit {decimalPlaces} Dezimalstellen ein.",
  "NoStatsForThisQuestionType": "Für diese Art von Fragen werden keine Statistiken bereitgestellt.",
+ "NotAnsweredQuestion": "Diese Frage wurde nicht beantwortet",
  "TRUE": "RICHTIG",
  "FALSE": "FALSCH",
  "StartTime": "Anfang",
@@ -505,6 +510,11 @@
  "Monthly": "Monatlich",
  "Weekly": "Wöchentlich",
  "Once": "Einzeln",
+ "TwiceDaily":"Zweimal täglich",
+ "ThreeTimesDaily":"Dreimal täglich",
+ "OnceEvery15Days":"Einmal alle 15 Tage",
+ "OnceEvery21Days":"Einmal alle 21 Tage",
+ "OnceEvery28Days":"Einmal alle 28 Tage",
  "CompletedDateTime": "Abgeschlossen",
  "Change": "Veränderung",
  "Status": "Bundesland",

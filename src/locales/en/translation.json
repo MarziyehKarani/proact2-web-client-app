@@ -65,6 +65,7 @@
  "BradcastMessageInfo":"A Broadcast message can be seen by all patients and specialists on your medical team.",
 
  "BradcastMessagePageTitle":"Broadcast message",
+ "EditBradcastMessagePageTitle":"Edit Broadcast message",
 
  "BroadcastType":"Broadcast",
 
@@ -478,6 +479,9 @@
  "BoolAnswer": "True or false",
  "RatingAnswer": "Linear scale",
  "MoodAnswer": "Liking",
+ "NumericAnswer": "Numeric answer",
+ "InvalidNumber":"Input number is not in the range of valid values.",
+ "NumericInputPlaceHolder":"Enter a number between {min} and {max} with {decimalPlaces} decimal point(s).",
  "NoStatsForThisQuestionType": "No statistics are provided for this type of question.",
  "TRUE": "TRUE",
  "FALSE": "FALSE",
@@ -510,6 +514,11 @@
  "Monthly": "Monthly",
  "Weekly": "Weekly",
  "Once": "Single",
+ "TwiceDaily":"Twice Daily",
+ "ThreeTimesDaily":"Three Times Daily",
+ "OnceEvery15Days":"Once Every 15 Days",
+ "OnceEvery21Days":"Once Every 21 Days",
+ "OnceEvery28Days":"Once Every 28 Days",
  "CompletedDateTime": "Completed on",
  "Change": "Change",
  "Status": "Status",
@@ -521,5 +530,6 @@
  "German": "German",
  "Italian": "Italian",
  "Dutch": "Dutch",
- "Spanish": "Spanish"
+ "Spanish": "Spanish",
+ "NotAnsweredQuestion": "This question was not answered"
 } 

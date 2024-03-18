@@ -92,6 +92,7 @@ const SurveyQuestionCard = ({
             {question.type == surveyQuestionType.NUMERIC &&
               questionVisible && (
                 <NotCompiledNumericAnswer
+                  props={props}
                   question={question}
                   addCompiledQuestion={addCompiledQuestion}
                 />

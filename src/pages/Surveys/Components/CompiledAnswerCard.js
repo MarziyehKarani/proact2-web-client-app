@@ -21,7 +21,7 @@ const checkNotCompiledAnswer = (compiledAnswers) => {
     return compiledAnswers ?? [
       {
         answerId: null,
-        value: "This question was not answered",
+        value: props.t("NotAnsweredQuestion"),
         notAnsware: true,
       },
     ];

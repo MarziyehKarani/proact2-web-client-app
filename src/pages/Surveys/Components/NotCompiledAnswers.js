@@ -223,9 +223,9 @@ const NotCompiledMoodAnswer = ({ question, addCompiledQuestion }) => {
   return <MoodSelector onMoodChange={handleValueChange} />
 }
 
-const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
+const NotCompiledNumericAnswer = ({ props, question, addCompiledQuestion }) => {
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [error, setError] = useState(false);
 
   const min=question.properties.min;
   const max=question.properties.max;
@@ -243,7 +243,7 @@ const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
 
     if (enteredValue === '') {
       setValue(enteredValue);
-      setErrorMessage(''); // Reset error message for empty input or '-' or '.'
+      setError(false); // Reset error message for empty input or '-' or '.'
       return;
     }
   }
@@ -255,7 +255,7 @@ const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
   
       if (enteredValue === '') {
         setValue(enteredValue);
-        setErrorMessage(''); // Reset error message for empty input or '-' or '.'
+        setError(false); // Reset error message for empty input or '-' or '.'
         return;
       }
   
@@ -268,21 +268,27 @@ const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
               setValue(enteredValue);
               var compiledQuestion = createCompiledQuestionByValue(question.id, value)
               addCompiledQuestion(compiledQuestion)
-              setErrorMessage('');
+              setError(false);
             } 
             else
             {
-              setErrorMessage('Input number is not in the range of valid values.');
+              setError(true);
             }
           }
       }
       else
       {
-        setErrorMessage('Input number is not in the range of valid values.');
+        setError(true);
       }
 
 
   }
+
+  var hint = props.t("NumericInputPlaceHolder");
+  hint = hint.replace("{min}", min);
+  hint = hint.replace("{max}", max);
+  hint = hint.replace("{decimalPlaces}", decimalPlaces);
+
   return (
     <div>
     <Input
@@ -290,10 +296,10 @@ const NotCompiledNumericAnswer = ({ question, addCompiledQuestion }) => {
     value={value}
     onChange={e => handleValueChange(e.target.value)}
     onBlur={e=> handleValidation(e.target.value)}
-    placeholder={`Enter a number between ${min} and ${max} with ${decimalPlaces} decimal point(s).`}
+    placeholder={hint}
   />
        {/* Display error message if it exists */}
-       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+       {error && <p style={{ color: 'red' }}>{props.t("InvalidNumber")}</p>}
        </div>
   )
 }

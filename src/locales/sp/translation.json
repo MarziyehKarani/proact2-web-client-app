@@ -66,6 +66,7 @@
   "BradcastMessageInfo":"Hay un mensaje de difusión visible para todos los pacientes y especialistas de tu equipo médico.",
 
   "BradcastMessagePageTitle":"Mensaje de difusión",
+  "EditBradcastMessagePageTitle":"Editar mensaje de difusión",
 
   "BroadcastType":"Difusión",
 
@@ -477,7 +478,11 @@
   "BoolAnswer": "Verdadero o falso",
   "RatingAnswer": "Escala lineal",
   "MoodAnswer": "Gusto",
+  "NumericAnswer": "Respuesta numérica",
+  "InvalidNumber":"El número de entrada no está en el rango de valores válidos.",
+  "NumericInputPlaceHolder":"Introduzca un número entre {min} y {max} con {decimalPlaces} punto(s) decimal(es).",
   "NoStatsForThisQuestionType": "No hay estadísticas para este tipo de pregunta.",
+  "NotAnsweredQuestion": "Esta pregunta no fue respondida",
   "TRUE": "VERDADERO",
   "FALSE": "FALSO",
   "StartTime": "Comienza",
@@ -509,6 +514,11 @@
   "Monthly": "Mensualmente",
   "Weekly": "Semanalmente",
   "Once": "Único",
+  "TwiceDaily":"Dos veces al día",
+  "ThreeTimesDaily":"tres veces al día",
+  "OnceEvery15Days":"Una vez cada 15 días",
+  "OnceEvery21Days":"Una vez cada 21 días",
+  "OnceEvery28Days":"Una vez cada 28 días",
   "CompletedDateTime": "Completado en",
   "Change": "Cambio",
   "Status": "Estado",
