@@ -4,8 +4,10 @@ import { Attachment } from './MessageAttachment';
 import { ReplyAttachment } from './ReplyAttachment';
 import { Row, Badge } from 'reactstrap';
 import MessageTypeBadge from '../../../components/Messages/MessageTypeBadge';
+import messageType from '../../../constants/messageType';
+import MessageReadIcon from '../../../components/Messages/MessageReadIcon';
 
-const ReplyListRow = ({ props, reply, onVideoAttachmentClick }) => {
+const ReplyListRow = ({ props, reply, onVideoAttachmentClick,showReadIcon }) => {
     return (
         <div>
             <div className="d-flex align-items-start">
@@ -23,6 +25,9 @@ const ReplyListRow = ({ props, reply, onVideoAttachmentClick }) => {
                 <p className="text-muted mb-0 align-self-center">
                     {toLocalDatetime(reply.createdDateTime)}
                 </p>
+                { reply.isRead && reply.messageType == messageType.PATIENT && showReadIcon &&
+                    <MessageReadIcon />
+    }
             </div>
             <p className='text-muted my-3'>
                 {reply.body}

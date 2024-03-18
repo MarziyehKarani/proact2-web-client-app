@@ -4,6 +4,8 @@ import ReactApexChart from "react-apexcharts"
 
 const NumericAnswerStatsOverTheTimeChart = ({ props, questionStats}) => {
 
+   
+
     function getValues(questionStats) {
         var values = [];
         questionStats.answers.forEach(element => {
@@ -33,6 +35,11 @@ const NumericAnswerStatsOverTheTimeChart = ({ props, questionStats}) => {
         return value;
       }
 
+      function getDecimalPlace(questionStats){
+        var value=  questionStats?.properties?.decimalCount ?? 0;
+        return value;
+      }
+
     const series = [
         { name: props.t("NumericAnswer"), data: getValues(questionStats) }
     ]
@@ -58,7 +65,7 @@ const NumericAnswerStatsOverTheTimeChart = ({ props, questionStats}) => {
         {
             labels: {
                 formatter: function (val) {
-                    return val.toFixed(0);
+                    return val.toFixed(getDecimalPlace(questionStats));
                 }
             },
             min: getMin(questionStats),

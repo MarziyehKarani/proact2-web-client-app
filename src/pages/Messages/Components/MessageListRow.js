@@ -11,6 +11,7 @@ import MessageTypeBadge from '../../../components/Messages/MessageTypeBadge';
 import AnalysisCountBadge from './AnalysisCountBadge';
 import PatientMessageDropdownMenu from './PatientMessageDropdownMenu';
 import messageType from '../../../constants/messageType';
+import MessageReadIcon from '../../../components/Messages/MessageReadIcon';
 
 
 const MessageListRow = ({
@@ -25,7 +26,8 @@ const MessageListRow = ({
     onOpenAnalysis,
     onMessageDeleteButtonClick,
     patientMenuIsVisible,
-    showVideoReplyButton }) => {
+    showVideoReplyButton,
+    showReadIcon }) => {
 
     return (
 
@@ -61,9 +63,13 @@ const MessageListRow = ({
                     <div className="me-3">
                         <MessageMoodIcon mood={message.originalMessage.emotion} height="32" />
                     </div>
-                    <div >
+                    <div className="me-3">
                         <MessageScopeIcon scope={message.originalMessage.messageScope} iconSizeClass="fa-2x" />
                     </div>
+                    { message.originalMessage.isRead && showReadIcon &&  
+                    message.originalMessage.messageType==messageType.PATIENT  &&               
+                   <MessageReadIcon iconSizeClass="fa-2x" />                  
+                    }
                     {patientMenuIsVisible  &&
                         <PatientMessageDropdownMenu
                             props={props}
@@ -101,7 +107,8 @@ const MessageListRow = ({
                                     key={idx}
                                     props={props}
                                     reply={reply}
-                                    onVideoAttachmentClick={onVideoAttachmentClick} />
+                                    onVideoAttachmentClick={onVideoAttachmentClick}
+                                    showReadIcon={showReadIcon} />
                             ))
                         }
                     </CardFooter>

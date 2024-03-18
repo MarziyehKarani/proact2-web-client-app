@@ -246,6 +246,7 @@ const Messages = (props) => {
   }
 
   function handleProjectPropertiesSuccess(data) {
+    console.log(data);
     setProjectProperties(data.properties);
     setIsVideoEnabled(data.properties.isVideoRecordingActive);
   }
@@ -278,7 +279,7 @@ const Messages = (props) => {
   }
 
   function handleDeleteBroadcastButtonClick(message) {
-    if (validateMessageDeleting(message)) {
+    if (validateBroadcastMessageDeleting(message)) {
       openDeleteModal(message.messageId);
     }
     else {
@@ -298,6 +299,15 @@ const Messages = (props) => {
     var diffMins = Math.floor((diffMs / 1000) / 60);
 
     return diffMins <= projectProperties.messageCanNotBeDeletedAfterMinutes;
+  }
+
+  function validateBroadcastMessageDeleting(message) {
+    var today = new Date();
+    var messageDateTime = new Date(message.createdDateTime);
+    var diffMs = today - messageDateTime;
+    var diffMins = Math.floor((diffMs / 1000) / 60);
+
+    return diffMins <= projectProperties.broadcastMessageCanNotBeDeletedAfterMinutes;
   }
 
   function performDeleteMessage() {
@@ -428,6 +438,7 @@ const Messages = (props) => {
                   onMessageDeleteButtonClick={() => handleDeleteButtonClick(message.originalMessage)}
                   onOpenAnalysis={() => openAnalysisInAnalystConsole(message)}
                   showVideoReplyButton={userSession && isVideoEnabled}
+                  showReadIcon={userSession && userSession.isMedicalProfessional}
                 />
                 :
                 <BroadcastMessageRow
@@ -436,7 +447,7 @@ const Messages = (props) => {
                   message={message}
                   menuIsVisible={userSession && userSession.userId==message.originalMessage.authorId}
                   onMessageEditButtonClick={() => handleEditBroadcastButtonClick(message.originalMessage)}
-                  onMessageDeleteButtonClick={() => handleDeleteButtonClick(message.originalMessage)} />
+                  onMessageDeleteButtonClick={() => handleDeleteBroadcastButtonClick(message.originalMessage)} />
             ))
             :
             <Card>
