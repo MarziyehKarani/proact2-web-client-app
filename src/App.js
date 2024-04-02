@@ -30,7 +30,7 @@ import "./assets/scss/theme.scss";
 
 // OneSignal
 import OneSignal from 'react-onesignal';
-import { useEffect } from 'react';
+import { useEffect ,useState } from 'react';
 
 setupApiConfiguration(languages.en.tag);
 ReactSession.setStoreType("localStorage");
