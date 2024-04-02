@@ -38,9 +38,9 @@ ReactSession.setStoreType("localStorage");
 
 const App = ({ instance }) => {
 
-  const [isInitialized, setIsInitialized] = useState(false);
+ // const [isInitialized, setIsInitialized] = useState(false);
 
-    useEffect(() => {
+/*      useEffect(() => {
       if(!isInitialized){
       OneSignal.init({ appId: 'ebb1244f-a56b-4c7e-a7b0-8e947b008075',  notificationClickHandlerMatch: "URL",
                 allowLocalhostAsSecureOrigin: true}).then(() => {
@@ -48,7 +48,7 @@ const App = ({ instance }) => {
         setIsInitialized(true);
         })
       }
-    }, []);
+    }, []);  */
 
   console.log(process.env.REACT_APP_SCOPES);
 

@@ -17,13 +17,13 @@ const AuthorizedPage = () => {
         if (userSession) {
             var isAuth = userCanAccessToWebApp();
             setIsAuthorized(isAuth);
-/*             if(!isInitialized){
+            if(!isInitialized){
                 OneSignal.init({ appId: 'ebb1244f-a56b-4c7e-a7b0-8e947b008075',  notificationClickHandlerMatch: "URL",
                 allowLocalhostAsSecureOrigin: true}).then(() => {
                       OneSignal.login(userSession.userId);
                       setIsInitialized(true);
                 });
-            } */
+            }
 
             function eventListener(event) {
             //   console.log(JSON.parse(JSON.stringify(event)));
