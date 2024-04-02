@@ -106,7 +106,7 @@ const SurveyResultsOverTheTimePage = (props) => {
     }
 
     function handleDownloadRequestSuccess(data) {
-        showSuccessToast("DownloadSuccess");
+        showSuccessToast(props.t("DownloadSuccess"));
         var filename = selectedPatient.value + "." + data.type;
         var content = data.value;
         generateAndDownloadTextFile(content, filename);
@@ -121,7 +121,7 @@ const SurveyResultsOverTheTimePage = (props) => {
     }
 
     function handleDownloadResultsSuccess(data) {
-        showSuccessToast("DownloadSuccess");
+        showSuccessToast(props.t("DownloadSuccess"));
         generateAndDownloadExcelFile(data);
     }
 
