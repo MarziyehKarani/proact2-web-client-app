@@ -1,14 +1,15 @@
 
 
-const CACHE_NAME='my-cache';
+const CACHE_NAME='proact2-dev-cache';
+const PRE_CACHED_RESOURCES = ["/","index.html"];
+
 self.addEventListener('install', e => {
     console.log('installing service worker!!');
     e.waitUntil(
         caches.open(CACHE_NAME).then(cache => {
-            return cache.addAll([
-                '/',
-                'index.html'
-            ])
+            return cache.addAll(
+                PRE_CACHED_RESOURCES
+              )
             .then(() => self.skipWaiting());
         })
     )

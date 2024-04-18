@@ -1,6 +1,6 @@
 {
-  "short_name": "Proact 2.0",
-  "name": "Proact2",
+  "short_name": "Proact 2.0 -dev",
+  "name": "Proact2-dev",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
