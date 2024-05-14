@@ -145,7 +145,7 @@ const TableContainer = ({
           </Col>
         )}
 
-        <Col md={1}>
+        <Col sm="2">
           <select
             className="form-select"
             value={pageSize}
