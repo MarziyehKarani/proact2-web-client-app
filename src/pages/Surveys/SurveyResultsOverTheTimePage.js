@@ -18,11 +18,14 @@ import SurveyStatsOverTheTimeChart from './Components/SurveyStats/SurveyStatsOve
 import { getSurveyStatsOverTheTime , getSurveyResultAsExcel } from '../../infrastructure/services/network/apiCalls/dataExportersApiServece';
 import generateAndDownloadTextFile from '../../helpers/generateAndDownloadTextFile';
 import generateAndDownloadExcelFile from '../../helpers/generateAndDownloadExcelFile';
+import { getPatientsAssignedToASurvey } from '../../infrastructure/services/network/apiCalls/surveysApiService';
 
 
 const SurveyResultsOverTheTimePage = (props) => {
     const surveyId = props.match.params.id;
 
+    const [assignations, setAssignations] = useState();
+    const [selectedAssignation, setSelectedAssignation] = useState();
     const [patients, setPatients] = useState();
     const [selectedPatient, setSelectedPatient] = useState();
     const [statistics, setStatistics] = useState();
@@ -34,17 +37,24 @@ const SurveyResultsOverTheTimePage = (props) => {
 
     useEffect(() => {
         if (environment) {
-            loadPatients();
+           // loadPatients();
+           loadAssignations();
         }
     }, [environment]);
 
-    useEffect(() => {
+/*     useEffect(() => {
         if (selectedPatient) {
             resetStatistics();
             loadStatistics();
         }
-    }, [selectedPatient]);
+    }, [selectedPatient]); */
 
+    useEffect(() => {
+        if (selectedAssignation) {
+            resetStatistics();
+            loadStatistics();
+        }
+      }, [selectedAssignation]);
 
     useEffect(() => {
         setStatisticsAreEmpty(!statistics || statistics.questions.length == 0)
@@ -66,6 +76,23 @@ const SurveyResultsOverTheTimePage = (props) => {
         }
     }
 
+    function loadAssignations() {
+        getPatientsAssignedToASurvey(
+          surveyId,
+          handleLoadAssignationsSuccess,
+          apiErrorToast);
+      }
+
+      function handleLoadAssignationsSuccess(data) {
+        var options = getPatientSelectOptionsFromItems(data);
+        console.log(data);
+        setAssignations(options);
+    
+        if (options.length > 0) {
+          setSelectedAssignation(options[0]);
+        }
+      }
+
 
     function resetStatistics() {
         setStatistics();
@@ -74,23 +101,27 @@ const SurveyResultsOverTheTimePage = (props) => {
     function loadStatistics() {
         getPatientStats(
             surveyId,
-            selectedPatient.value,
+            selectedAssignation.value,
             handleLoadStatisticsSuccess,
             apiErrorToast);
     }
 
     function handleLoadStatisticsSuccess(data) {
-        console.log(data);
         setStatistics(data);
     }
 
     function getPatientSelectOptionsFromItems(items) {
         var options = [];
         items.forEach(item => {
-            var optionItem = {};
-            optionItem.label = item.name;
-            optionItem.value = item.userId;
-            options.push(optionItem);
+            var exists = options.some(option => option.value === item.user.userId);
+            if(!exists)
+                {
+                    var optionItem = {};
+                    optionItem.label = item.user.name;
+                    optionItem.value = item.user.userId;
+                    options.push(optionItem);
+                }
+
         });
 
         return options;
@@ -140,9 +171,12 @@ const SurveyResultsOverTheTimePage = (props) => {
                         <div style={{ width: "300px" }}>
                             <Select
 
-                                value={selectedPatient}
-                                onChange={setSelectedPatient}
-                                options={patients}
+                                // value={selectedPatient}
+                                // onChange={setSelectedPatient}
+                                // options={patients}
+                                value={selectedAssignation}
+                                onChange={setSelectedAssignation}
+                                options={assignations}
                                 classNamePrefix="select2-selection"
                             />
                         </div>
