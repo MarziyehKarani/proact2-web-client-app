@@ -22,7 +22,40 @@ self.addEventListener('active', event => {
     );
 })
 
-self.addEventListener('fetch',function(event){
+self.addEventListener('fetch', function(event) {
+    console.log(`fetching ${event.request.url}`);
+    // Exclude POST requests from caching
+    if (event.request.method === 'POST') {
+        event.respondWith(fetch(event.request));
+        return;
+    }
+    
+    event.respondWith(
+        caches.match(event.request).then(function(response) {
+            // Cache hit - return response
+            if (response) {
+                return response;
+            }
+            // Clone the request to make a fetch
+            var fetchRequest = event.request.clone();
+
+            return fetch(fetchRequest).then(function(response) {
+                // Check if we received a valid response
+                if (!response || response.status !== 200 || response.type !== 'basic') {
+                    return response;
+                }
+                // Clone the response to put it in cache
+                var responseToCache = response.clone();
+                caches.open(CACHE_NAME).then(function(cache) {
+                    cache.put(event.request, responseToCache);
+                });
+                return response;
+            });
+        })
+    );
+});
+
+/* self.addEventListener('fetch',function(event){
     console.log('fetching ${event.request.url}');
     if(navigator.onLine){
         var fetchRequest=event.request.clone();
@@ -54,4 +87,4 @@ self.addEventListener('fetch',function(event){
             })
         );
     }
-});
+}); */

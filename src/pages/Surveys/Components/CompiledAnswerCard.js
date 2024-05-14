@@ -12,12 +12,13 @@ import {
   CompiledNumericAnswer
 } from "./CompiledAnswers"
 
-const checkNotCompiledAnswer = (compiledAnswers) => {
+const checkNotCompiledAnswer = ({ props,compiledAnswers}) => {
     //se la risposta non è definita
     //aggiungo una proprietà che si chiama notAnswer
     //quindi quando questa proprietà esiste, mostro la label
     //se invece non esiste, quindi è === undefined vuoldire che la risposta c'è e metto il normale input
     //quindi if notAnswer !== undefined mostro la label
+
     return compiledAnswers ?? [
       {
         answerId: null,
@@ -33,7 +34,8 @@ const checkNotCompiledAnswer = (compiledAnswers) => {
   
 
 const SurveyCompiledAnswerCard = ({ props, question }) => {
-    const answers = checkNotCompiledAnswer(question.compiledAnswers);
+
+    const answers = checkNotCompiledAnswer({ props, compiledAnswers: question.compiledAnswers });
     const style = getStyleNotCompiledAnswer(question.compiledAnswers);
     
     // useEffect(() => {
