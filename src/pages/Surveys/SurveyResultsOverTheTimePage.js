@@ -131,14 +131,14 @@ const SurveyResultsOverTheTimePage = (props) => {
         showLoadingToast();
         getSurveyStatsOverTheTime(
             surveyId,
-            selectedPatient.value,
+            selectedAssignation.value,
             handleDownloadRequestSuccess,
             apiErrorToast);
     }
 
     function handleDownloadRequestSuccess(data) {
         showSuccessToast(props.t("DownloadSuccess"));
-        var filename = selectedPatient.value + "." + data.type;
+        var filename = selectedAssignation.value + "." + data.type;
         var content = data.value;
         generateAndDownloadTextFile(content, filename);
     }

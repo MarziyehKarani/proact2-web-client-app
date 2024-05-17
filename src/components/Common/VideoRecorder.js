@@ -54,6 +54,7 @@ const VideoRecoreder = ({ props, isOpen, onFileGenerated }) => {
                 width="100%"
                 ref={recordWebcam.webcamRef}
                 autoPlay
+                playsinline 
                 style={{
                     display: `${recordWebcam.status === "OPEN" ||
                             recordWebcam.status === "RECORDING"
@@ -69,6 +70,7 @@ const VideoRecoreder = ({ props, isOpen, onFileGenerated }) => {
                     display: `${recordWebcam.status === "PREVIEW" ? "block" : "none"}`
                 }}
                 autoPlay
+                playsinline 
                 muted
                 loop
             />
