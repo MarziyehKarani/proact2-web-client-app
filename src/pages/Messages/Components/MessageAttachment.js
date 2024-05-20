@@ -41,6 +41,11 @@ const MessageImageAttachment = ({ props, attachment }) => {
                 <Lightbox
                     mainSrc={attachment.url}
                     enableZoom={false}
+                    reactModalStyle={{
+                        overlay: {
+                            zIndex: 1005
+                        }
+                    }}
                     onCloseRequest={() => {
                         setLightboxVisible(!islightboxVisible)
                     }}
