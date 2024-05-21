@@ -495,6 +495,7 @@
  "MessageDeleteSuccess": "Le message a été supprimé",
  "MessageEditSuccess": "Le message a été modifié",
  "RetakeVideo": "Enregistrer une nouvelle vidéo",
+ "ReplayVideo": "Rejouer la vidéo",
  "Patient": "Patient",
  "Medic": "Docteur",
  "Nurse": "Infirmière",

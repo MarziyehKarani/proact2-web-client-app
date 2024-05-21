@@ -717,6 +717,7 @@
  "MessageDeleteSuccess" :"Il messaggio è stato eliminato",
  "MessageEditSuccess": "Il messaggio è stato modificato",
  "RetakeVideo" : "Registra un nuovo video",
+ "ReplayVideo": "Riproduci il video",
  "Patient" : "Paziente",
  "Medic" : "Medico",
  "Nurse" : "Infermiere",
