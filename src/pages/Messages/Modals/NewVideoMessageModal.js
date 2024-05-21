@@ -6,7 +6,8 @@ import useEnvironment from "../../../infrastructure/session/useEnvironment";
 import { createMessageWithVideoAttachment, createReplyWithVideoAttachment } from "../../../infrastructure/services/network/apiCalls/messagesApiService";
 import messageMood from "../../../constants/messageMood";
 import messageScope from "../../../constants/messageScope";
-import VideoRecorederComponent from "../../../components/Common/VideoRecorderComponent";
+//import VideoRecorederComponent from "../../../components/Common/VideoRecorderComponent";
+import VideoPlayerComponent from "../../../components/Common/VideoRecorderComponent";
 
 export const NewVideoMessageModal = ({ props, isOpen, originalMessageId, closeCallback, successCallback }) => {
 
@@ -96,7 +97,7 @@ export const NewVideoMessageModal = ({ props, isOpen, originalMessageId, closeCa
                     </button>
                 </div>
 
-                <VideoRecorederComponent
+                <VideoPlayerComponent
                     props={props}
                     isOpen={isOpen}
                     onFileGenerated={handleFileVideo}
