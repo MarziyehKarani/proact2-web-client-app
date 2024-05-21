@@ -98,7 +98,6 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
                     }}
                     autoPlay
                     playsInline 
-                   /*  onMouseOver={() => replyVideo()} */
                 />
             </div>
             <div className='text-center'>
