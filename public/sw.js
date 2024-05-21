@@ -22,7 +22,65 @@ self.addEventListener('active', event => {
     );
 })
 
-self.addEventListener('fetch', function(event) {
+
+self.addEventListener('fetch', function (event) {
+
+    if (event.request.method === 'POST' || (event.request.method === 'GET' && event.request.url.indexOf('Users/me') == -1)) {
+        event.respondWith(fetch(event.request));
+        return;
+    }
+
+    if (event.request.method === 'GET') {
+
+        if(navigator.onLine){
+            var fetchRequest=event.request.clone();
+            return fetch(fetchRequest).then(
+                function(response){
+                    if(!response || response.status !== 200 || response.type!== 'basic'){
+                        return response;
+                    }
+    
+                    var responseToCache= response.clone();
+    
+                    caches.open(CACHE_NAME)
+                    .then(function(cache){
+                        cache.put(event.request,responseToCache);
+                    });
+    
+                    return response
+                }
+            )
+    
+        }  else {
+            event.respondWith(
+                caches.open(CACHE_NAME).then(function (cache) {
+                  return cache.match(event.request).then(function (response) {
+                    return response || fetch(event.request).then(function (response) {
+                      cache.put(event.request, response.clone());
+                      return response;
+                    });
+                  });
+                })
+            
+              );
+        }
+  /*   event.respondWith(
+  
+      caches.open(CACHE_NAME).then(function (cache) {
+        return cache.match(event.request).then(function (response) {
+          return response || fetch(event.request).then(function (response) {
+            cache.put(event.request, response.clone());
+            return response;
+          });
+        });
+      })
+  
+    ); */
+}
+  });
+
+
+/* self.addEventListener('fetch', function(event) {
     console.log(`fetching ${event.request.url}`);
     // Exclude POST requests from caching
     if (event.request.method === 'POST') {
@@ -32,6 +90,7 @@ self.addEventListener('fetch', function(event) {
     
     event.respondWith(
         caches.match(event.request).then(function(response) {
+         
             // Cache hit - return response
             if (response) {
                 return response;
@@ -50,10 +109,10 @@ self.addEventListener('fetch', function(event) {
                     cache.put(event.request, responseToCache);
                 });
                 return response;
-            });
+            }); 
         })
     );
-});
+}); */
 
 /* self.addEventListener('fetch',function(event){
     console.log('fetching ${event.request.url}');
