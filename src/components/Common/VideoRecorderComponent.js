@@ -87,7 +87,7 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
                     }}
                     muted
                     autoPlay
-                    webkit-playsinline 
+                    playsInline 
                 />
                 <video
                     ref={recordWebcam.previewRef}
@@ -97,7 +97,7 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
                         display: `${recordWebcam.status === "PREVIEW" ? "block" : "none"}`
                     }}
                     autoPlay
-                    webkit-playsinline 
+                    playsInline 
                    /*  onMouseOver={() => replyVideo()} */
                 />
             </div>
