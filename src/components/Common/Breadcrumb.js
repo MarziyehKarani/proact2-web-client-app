@@ -5,6 +5,13 @@ import { Row, Col, BreadcrumbItem } from "reactstrap"
 import { BackButton } from "../../components/Common/BackButton";
 import { HistoryBackButton } from "./HistoryBackButton";
 const Breadcrumb = props => {
+
+  function handleClick() {
+    if(props.useHistory)
+      props.history.goBack();
+}
+
+
   return (
     <Row>
       <Col className="col-12">
@@ -26,7 +33,7 @@ const Breadcrumb = props => {
           <div className="page-title-right">
             <ol className="breadcrumb m-0">
               <BreadcrumbItem>
-                <Link to="#">{props.title}</Link>
+                <Link to={ !props.useHistory ? props.backButtonLinkTo : "#"} onClick={handleClick} >{props.title}</Link>
               </BreadcrumbItem>
               <BreadcrumbItem active>
                 <Link to="#">{props.breadcrumbItem}</Link>

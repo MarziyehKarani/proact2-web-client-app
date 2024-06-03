@@ -63,7 +63,7 @@ const MoodSelector = ({ onMoodChange }) => {
 
     return (
         <>
-            <a href="#" onClick={() => onMoodClick(messageMood.VERY_BAD)}>
+            <a  onClick={() => onMoodClick(messageMood.VERY_BAD)}>
                 <img
                     src={moodVeryBadBtnImg}
                     height="80px"
@@ -71,7 +71,7 @@ const MoodSelector = ({ onMoodChange }) => {
                     className={veryBadClass}
                 />
             </a>
-            <a href="#" onClick={() => onMoodClick(messageMood.BAD)}>
+            <a  onClick={() => onMoodClick(messageMood.BAD)}>
                 <img
                     src={moodBadBtnImg}
                     height="80px"
@@ -79,7 +79,7 @@ const MoodSelector = ({ onMoodChange }) => {
                     className={BadClass}
                 />
             </a>
-            <a href="#" onClick={() => onMoodClick(messageMood.GOOD)}>
+            <a  onClick={() => onMoodClick(messageMood.GOOD)}>
                 <img
                     src={moodGoodBtnImg}
                     height="80px"
@@ -87,7 +87,7 @@ const MoodSelector = ({ onMoodChange }) => {
                     className={goodClass}
                 />
             </a>
-            <a href="#" onClick={() => onMoodClick(messageMood.VERY_GOOD)}>
+            <a  onClick={() => onMoodClick(messageMood.VERY_GOOD)}>
                 <img
                     src={moodVeryGoodBtnImg}
                     height="80px"
