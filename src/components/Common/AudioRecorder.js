@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AudioAnalyser from "react-audio-analyser";
-import { useState } from "react";
-import { Button, Row } from "reactstrap";
+import { Button } from "reactstrap";
 import { useTimer } from "reactjs-countdown-hook";
-import { useEffect } from "react";
 
-const AudioRecorder = ({ props, onFileGenerated }) => {
+
+const AudioRecorder = ({ props, onFileGenerated, onMediaStreamChanged }) => {
 
     const [status, setStatus] = useState("inactive");
     const [audioSrc, setAudioSrc] = useState();
+    const [mediaStream, setMediaStream] = useState(null);
 
     const audioType = "audio/wav";
     const maxDurationInSeconds = 60;
@@ -18,17 +18,52 @@ const AudioRecorder = ({ props, onFileGenerated }) => {
         status,
         audioSrc,
         timeslice: 1000
+      //  startCallback: (stream) => setMediaStream(stream) // Capture the media stream when recording starts
     };
 
-    function startRecording() {
-        setStatus("recording")
-        resume();
+
+    const startRecording = async () => {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(stream => {
+            setMediaStream(stream);
+            setStatus("recording");
+            resume();
+        })
+        .catch(error => {
+            console.error("Error accessing the microphone", error);
+        });
+    };
+
+    function processStream(stream){
+      setTimeout(()=> stopStream(stream), 5000)
     }
+    
+    function stopStream(stream){
+      stream.getTracks().forEach( track => track.stop() );
+      };
 
     function stopRecording() {
+        if (mediaStream) {
+            console.log(mediaStream.getTracks());
+            mediaStream.getTracks().forEach(track => track.stop());
+            setMediaStream(null);
+        } 
         setStatus("inactive");
+        console.log(status);
         reset();
     }
+
+/*     const stopMediaTracks = () => {
+        if (mediaStreamRef.current) {
+            mediaStreamRef.current.getTracks().forEach(track => track.stop());
+            mediaStreamRef.current = null;
+        }
+        mediaStreamRef=null;
+        if (audioContextRef.current) {
+            audioContextRef.current.close();
+            audioContextRef.current = null;
+        }
+    }; */
 
     function HandleRecording(blob) {
         setAudioSrc(window.URL.createObjectURL(blob));
@@ -37,7 +72,8 @@ const AudioRecorder = ({ props, onFileGenerated }) => {
             preview: URL.createObjectURL(file)
         });
 
-        onFileGenerated(file);
+        stopRecording();
+        onFileGenerated(file,mediaStream);
     }
 
     function IsRecording() {
@@ -61,6 +97,12 @@ const AudioRecorder = ({ props, onFileGenerated }) => {
             pause();
         }
     }, [pause, minutes, status]);
+
+    useEffect(() => {
+        return () => {
+            stopRecording(); // Clean up the media tracks when the component unmounts
+        };
+    }, []);
 
     return (
         <div className="text-center">

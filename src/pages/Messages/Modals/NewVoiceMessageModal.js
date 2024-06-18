@@ -73,6 +73,7 @@ export const NewVoiceMessageModal = ({ props, isOpen, originalMessageId, closeCa
     function closeModalHandler() {
         resetForm();
         closeCallback();
+        window.location.reload();
     }
 
     function handleAudioFile(file) {

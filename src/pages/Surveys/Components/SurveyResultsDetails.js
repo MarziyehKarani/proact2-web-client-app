@@ -5,9 +5,11 @@ import SurveyCompiledAnswerCard from "./CompiledAnswerCard"
 import SurveyDetailsCard from "./SurveyDetailsCard"
 
 const SurveyResultsDetails = ({ props, surveyResults }) => {
+
+  console.log(surveyResults);
   return surveyResults &&
-    surveyResults.data &&
-    surveyResults.data.completedDateTime ? (
+    surveyResults &&
+    surveyResults.completedDateTime ? (
     <Row>
       <Col xs="12">
         {surveyResults.questions.map((question, idx) => (
