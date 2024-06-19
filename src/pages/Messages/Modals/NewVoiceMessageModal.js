@@ -12,6 +12,7 @@ import messageScope from "../../../constants/messageScope";
 export const NewVoiceMessageModal = ({ props, isOpen, originalMessageId, closeCallback, successCallback }) => {
 
     const [attachment, setAttachment] = useState();
+    const [mediaRecorder, setMediaRecorder] = useState(null);
 
     const environment = useEnvironment();
 
@@ -72,12 +73,24 @@ export const NewVoiceMessageModal = ({ props, isOpen, originalMessageId, closeCa
 
     function closeModalHandler() {
         resetForm();
+
+        if(mediaRecorder)
+            {
+                console.log(mediaRecorder.stream);
+                mediaRecorder.stream.getAudioTracks().forEach((track) => track.stop());
+                setMediaRecorder(null);
+            }
+
         closeCallback();
-        window.location.reload();
+       
     }
 
     function handleAudioFile(file) {
         setAttachment(file)
+    }
+
+    function handleStartRecording(recorder) {
+        setMediaRecorder(recorder)
     }
 
     function resetForm() {
@@ -108,7 +121,8 @@ export const NewVoiceMessageModal = ({ props, isOpen, originalMessageId, closeCa
 
                 <AudioRecorder
                     props={props}
-                    onFileGenerated={handleAudioFile} />
+                    onFileGenerated={handleAudioFile} 
+                    onRecordingStarted={handleStartRecording}/>
 
                 <div className="text-end pt-5">
                     {attachment && <Button
