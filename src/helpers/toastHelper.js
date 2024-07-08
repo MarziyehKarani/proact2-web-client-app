@@ -45,6 +45,19 @@ export const showErrorToast = (message) => {
     });
 };
 
+export const showErrorAlert = (message) => {
+    toast.dismiss();
+    toast.error(message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+    });
+};
+
 export const showLoadingToast = () => {
     toast.loading("Waiting...");
 };

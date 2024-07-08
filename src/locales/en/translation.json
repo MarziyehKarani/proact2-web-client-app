@@ -532,5 +532,6 @@
  "Italian": "Italian",
  "Dutch": "Dutch",
  "Spanish": "Spanish",
- "NotAnsweredQuestion": "This question was not answered"
+ "NotAnsweredQuestion": "This question was not answered",
+ "FileUploadHintMessage": "Please upload only PNG or JPEG images."
 } 

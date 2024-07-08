@@ -482,7 +482,6 @@
     "InvalidNumber":"Het invoernummer ligt niet binnen het bereik van geldige waarden.",
     "NumericInputPlaceHolder":"Voer een getal in tussen {min} en {max} met {decimalPlaces} decimale punt(en).",
     "NoStatsForThisQuestionType": "Er worden geen statistieken verstrekt voor dit type vraag.",
-    "NotAnsweredQuestion": "Deze vraag werd niet beantwoord",
     "TRUE": "WAAR",
     "FALSE": "ONWAAR",
     "StartTime": "Start",
@@ -531,6 +530,7 @@
     "German": "Duits",
     "Italian": "Italiaans",
     "Dutch": "Nederlands",
-    "Spanish": "Spaans"
-  
+    "Spanish": "Spaans",
+    "NotAnsweredQuestion": "Deze vraag werd niet beantwoord",
+    "FileUploadHintMessage": "Upload alleen PNG- of JPEG-afbeeldingen."
 }

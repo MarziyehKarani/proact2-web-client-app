@@ -478,7 +478,6 @@
  "InvalidNumber":"Die eingegebene Zahl liegt nicht im Bereich gültiger Werte.",
  "NumericInputPlaceHolder":"Geben Sie eine Zahl zwischen {min} und {max} mit {decimalPlaces} Dezimalstellen ein.",
  "NoStatsForThisQuestionType": "Für diese Art von Fragen werden keine Statistiken bereitgestellt.",
- "NotAnsweredQuestion": "Diese Frage wurde nicht beantwortet",
  "TRUE": "RICHTIG",
  "FALSE": "FALSCH",
  "StartTime": "Anfang",
@@ -527,5 +526,7 @@
  "German": "Deutsch",
  "Italian": "Italienisch",
  "Dutch": "Niederländisch",
- "Spanish": "Spanisch"
+ "Spanish": "Spanisch",
+ "NotAnsweredQuestion": "Diese Frage wurde nicht beantwortet",
+ "FileUploadHintMessage": "Bitte laden Sie nur PNG- oder JPEG-Bilder hoch."
  } 

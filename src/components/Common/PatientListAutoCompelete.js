@@ -10,7 +10,7 @@ const PatientFilter = ({patients,onChange}) => {
 
     //const defaultPatient = { name: "select a Patient", id: 0 };
     // const [patients, setPatients] = useState([]);
-    const [value, setValue] = useState(patients[0]);
+    const [value, setValue] = useState(null);  //patients[0]
     const [inputValue, setInputValue] = useState('');
     const environment = useEnvironment();
   

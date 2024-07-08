@@ -478,7 +478,6 @@
  "InvalidNumber":"Le numéro saisi n’est pas dans la plage de valeurs valides.",
  "NumericInputPlaceHolder":"Saisissez un nombre compris entre {min} et {max} avec {decimalPlaces} point(s) décimal(s).",
  "NoStatsForThisQuestionType": "Aucune statistique n'est fournie pour ce type de question.",
- "NotAnsweredQuestion": "Cette question n'a pas reçu de réponse",
  "TRUE": "VRAI",
  "FALSE": "FAUX",
  "StartTime": "Début",
@@ -527,5 +526,7 @@
  "German": "Allemand",
  "Italian": "Italien",
  "Dutch": "Néerlandais",
- "Spanish": "Espagnol"
+ "Spanish": "Espagnol",
+ "NotAnsweredQuestion": "Cette question n'a pas reçu de réponse",
+ "FileUploadHintMessage": "Veuillez télécharger uniquement des images PNG ou JPEG."
 }

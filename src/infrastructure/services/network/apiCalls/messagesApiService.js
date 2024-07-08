@@ -13,6 +13,20 @@ async function getMessages(projectId, medicalTeamId, pagingCount, onApiOkResultC
         });
 }
 
+async function filterMessagesByPatient(projectId, medicalTeamId, patientId, pagingCount, onApiOkResultCallback, onApiKoResultCallback) {
+    console.log(patientId);
+    console.log(projectId);
+    console.log(medicalTeamId);
+    await axios.get(`Messages/${projectId}/${medicalTeamId}/${patientId}/${pagingCount}`)
+        .then(response => {
+            console.log(response.data);
+            onApiOkResultCallback(response.data);
+        })
+        .catch(error => {
+            onApiKoResultCallback(error);
+        });
+}
+
 async function createMessage(request, onApiOkResultCallback, onApiKoResultCallback) {
     await axios.post(`Messages/${request.projectId}/${request.medicalTeamId}/create`, request)
         .then(response => {
@@ -173,5 +187,6 @@ export {
     createReplyWithVideoAttachment,
     deleteMessage,
     createMessagebyMedic,
-    editBroadcast
+    editBroadcast,
+    filterMessagesByPatient
 };
