@@ -14,9 +14,6 @@ async function getMessages(projectId, medicalTeamId, pagingCount, onApiOkResultC
 }
 
 async function filterMessagesByPatient(projectId, medicalTeamId, patientId, pagingCount, onApiOkResultCallback, onApiKoResultCallback) {
-    console.log(patientId);
-    console.log(projectId);
-    console.log(medicalTeamId);
     await axios.get(`Messages/${projectId}/${medicalTeamId}/${patientId}/${pagingCount}`)
         .then(response => {
             console.log(response.data);

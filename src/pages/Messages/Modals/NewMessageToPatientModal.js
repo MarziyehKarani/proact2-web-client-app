@@ -122,12 +122,17 @@ export const NewMessageToPatientModal = ({ props, isOpen, closeCallback, success
                     <Row>
                         <Col>
                         <Row className="mb-3">
+                            <div className="col-md-4">
+
                                 <label
                                     htmlFor="example-text-input"
                                     className="col-md-4 col-form-label" >
                                     {props.t("Patient")}
                                 </label>
-                                <PatientFilter patients={patients} onChange={handlePatientChange}></PatientFilter>
+                            </div>
+                            <div className="col-md-8">
+                                <PatientFilter props={props} patients={patients} onChange={handlePatientChange}></PatientFilter>
+                            </div>
                             </Row>
                             <Row className="mb-3">
                                 <label

@@ -82,6 +82,8 @@ const Messages = props => {
   const [editingMessage, setEditingMessage] = useState()
   const [patients, setPatients] = useState([])
   const [selectedPatient, setSelectedPatient] = useState(null)
+  const [filterText, setFilterText] = useState(null)
+  const [initialLoadCompleted, setInitialLoadCompleted] = useState(false);
 
   const userSession = useUserSession()
   const environment = useEnvironment()
@@ -89,20 +91,20 @@ const Messages = props => {
   const POOL_REQUEST_INTERVAL_IN_SECONDS = 60000
 
   useEffect(() => {
-    if (environment) {
-      console.log(environment)
+    if (environment && !initialLoadCompleted) {
       getCurrentProjectProperties()
       loadMessages()
       loadPatients()
+      setInitialLoadCompleted(true); // Mark initial load as completed
     }
-  }, [environment])
+  }, [environment, initialLoadCompleted])
 
   useEffect(() => {
-    if (selectedPatient != null) {
+    if (initialLoadCompleted) {
       setPagingCount(0) // Reset paging count when patient changes
       loadMessages(true)
     }
-  }, [selectedPatient])
+  }, [selectedPatient, initialLoadCompleted,filterText])
 
   useEffect(() => {
     if (pagingCount > 0) {
@@ -160,12 +162,21 @@ const Messages = props => {
         handleLoadMessagesError
       )
     }
+
   }
 
   function handleLoadMessages(nextMessages) {
+
+    console.log(nextMessages)
     setMessages(prevMessages =>
       pagingCount === 0 ? nextMessages : [...prevMessages, ...nextMessages]
     )
+
+    console.log(filterText)
+    if (filterText!=null && filterText!="") {
+    filterMessages(filterText)
+    }
+
     setNextPageButtonVisible(nextMessages.length > 0)
     setIsbusy(false)
   }
@@ -430,6 +441,28 @@ const Messages = props => {
     }
   }
 
+  function handleFilterValue(filter) {
+    setFilterText(filter)
+    if (filter === "") {
+      loadMessages(true); // Reload all messages when filter is cleared
+    } else {
+      filterMessages(filter);
+    }
+  }
+
+  function filterMessages(filter) {
+
+    console.log(filter)
+    const filteredMessages = messages.filter(
+      m =>
+        m.originalMessage.body.toLowerCase().includes(filter.toLowerCase()) ||
+      //  m.originalMessage.title.toLowerCase().includes(filter.toLowerCase()) ||
+        m.replyMessages.some(r => r.body.toLowerCase().includes(filter.toLowerCase()))
+    );
+    setMessages(filteredMessages) ;
+
+  }
+
   return (
     <Container>
       <AuthorizedPage />
@@ -485,11 +518,11 @@ const Messages = props => {
         )}
       </Row>
       <Row className="m-3">
-        <div className="col-sm-8">
-        <PatientFilter patients={patients} onChange={handlePatientChange} />
+        <div className="col-md-8">
+        <PatientFilter  props={props} patients={patients} onChange={handlePatientChange} />
         </div>
       
-        <div className="col-sm-4">
+        <div className="col-md-4 d-flex justify-content-end" >
           <div className="search-box me-2 mb-2 d-inline-block">
             <div className="position-relative">
               <label  className="search-label">
@@ -500,8 +533,9 @@ const Messages = props => {
                   id="search-bar-0"
                   type="text"
                   className="form-control"
-                  placeholder=""
-                  
+                  placeholder=  {props.t("SearchbarPlaceholder")}   
+                  value={filterText || ""}
+                  onChange={(e) => handleFilterValue(e.target.value)}
                 />
               </label>
               <i className="bx bx-search-alt search-icon"></i>

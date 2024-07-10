@@ -6,7 +6,7 @@ import useEnvironment from '../../infrastructure/session/useEnvironment';
 import { apiErrorToast, showLoadingToast, showSuccessToast } from '../../helpers/toastHelper';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const PatientFilter = ({patients,onChange}) => {
+const PatientFilter = ({props,patients,onChange}) => {
 
     //const defaultPatient = { name: "select a Patient", id: 0 };
     // const [patients, setPatients] = useState([]);
@@ -62,6 +62,7 @@ const PatientFilter = ({patients,onChange}) => {
     return (
 
       <Autocomplete
+       size="small"
        value={value}
        onChange={handleOnChange}
        inputValue={inputValue}
@@ -74,7 +75,12 @@ const PatientFilter = ({patients,onChange}) => {
         //{patients}
         getOptionLabel={(option) => option.name}
         sx={{ width: 500 }}
-        renderInput={(params) => <TextField {...params} label="select a Patient" />}
+      //  renderInput={(params) => <TextField {...params} label="select a Patient" />}
+        renderInput={(params) => (
+        <div ref={params.InputProps.ref}>
+          <input className="form-control" type="text" {...params.inputProps}  placeholder={props.t("FilterByPatients")} />
+        </div>
+      )}
        
       />
     );
