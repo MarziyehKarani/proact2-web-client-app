@@ -2,7 +2,7 @@ import React from 'react'
 import { Badge } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import surveyReccurence from '../../../constants/surveyReccurence'
-import { toLocalDatetime } from '../../../helpers/formattedDatetime'
+import { toLocalDatetime } from '../../../common/formattedDatetime'
 
 const SurveyDateWithReccurenceCell = ({ props, date, reccurence }) => {
     return (

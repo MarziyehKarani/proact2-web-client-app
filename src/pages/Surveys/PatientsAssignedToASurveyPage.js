@@ -10,7 +10,7 @@ import { withTranslation } from "react-i18next"
 import Breadcrumbs from '../../components/Common/Breadcrumb';
 import userSubscriptionState from '../../constants/userSubscriptionState'
 import { getPatientsAssignedToASurvey } from '../../infrastructure/services/network/apiCalls/surveysApiService';
-import { toLocalDatetime, toLocalDate } from '../../helpers/formattedDatetime';
+import { toLocalDatetime } from '../../common/formattedDatetime';
 
 const PatientsAssignedToASurveyPage = (props) => {
 

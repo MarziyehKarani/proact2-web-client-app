@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBody } from 'reactstrap';
-import { toLocalDate, toLocalDatetime } from '../../../helpers/formattedDatetime';
+import { toLocalDate, toLocalDatetime } from '../../../common/formattedDatetime';
 
 const SurveyDetailsCard = ({ props, surveyDetails }) => {
     return (

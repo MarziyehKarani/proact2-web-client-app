@@ -5,6 +5,7 @@ const toLocaleIsoString = (datetime) => {
 }
 
 const toLocalTime = (datetime) => {
+    datetime = datetime.includes('Z') ? datetime : datetime + 'Z';
     var utcDatetime = new Date(datetime);
     const timeOptions = {
         hour12: false,
