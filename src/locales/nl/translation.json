@@ -106,7 +106,7 @@
 
   "EditTextMessagePageTitle":"Een bericht wijzigen",
 
-  "EmptyComiledSurveysList":"Geen vragenlijst",
+  "EmptyComiledSurveysList":"Er zijn geen vragenlijsten om weer te geven",
 
   "EmptyList":"Er zijn geen items om weer te geven.",
 
@@ -532,5 +532,7 @@
     "Dutch": "Nederlands",
     "Spanish": "Spaans",
     "NotAnsweredQuestion": "Deze vraag werd niet beantwoord",
-    "FileUploadHintMessage": "Upload alleen PNG- of JPEG-afbeeldingen."
+    "FileUploadHintMessage": "Upload alleen PNG- of JPEG-afbeeldingen.",
+    "Open": "open",
+    "Closed": "gesloten"
 }

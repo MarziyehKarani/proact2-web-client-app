@@ -6,7 +6,7 @@ async function getProjects(onApiOkResultCallback, onApiKoResultCallback) {
     await axios.get(`Projects`)
         .then(response => {
             var openProjects = response.data
-                .filter(p => p.status == projectStatus.OPEN)
+               // .filter(p => p.status == projectStatus.OPEN)
 
             onApiOkResultCallback(openProjects);
         })

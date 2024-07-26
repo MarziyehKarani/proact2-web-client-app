@@ -106,7 +106,7 @@
 
   "EditTextMessagePageTitle":"Modifica un mensaje",
 
-  "EmptyComiledSurveysList":"Ningún cuestionario",
+  "EmptyComiledSurveysList":"No hay cuestionarios para mostrar",
 
   "EmptyList":"No hay elementos para mostrar.",
 
@@ -444,11 +444,6 @@
   "AssignedPatientsCodes": "Patients study codes",
   "Period": "Period",
 
-
-
-
-
-
   "UserCantSignin": "No está autorizado para acceder a PROACT 2.0",
   "UserCantReplyToMessage": "No tienes permiso para escribir o comentar mensajes.",
   "LoginDocumentsUnavaliable": "Los términos y condiciones o la política de privacidad no están disponibles, comuníquese con el administrador de su Institución.",
@@ -532,5 +527,7 @@
   "Dutch": "Holandés",
   "Spanish": "Español",
   "NotAnsweredQuestion": "Esta pregunta no fue respondida",
-  "FileUploadHintMessage": "Cargue solo imágenes PNG o JPEG."
+  "FileUploadHintMessage": "Cargue solo imágenes PNG o JPEG.",
+  "Open": "abierto",
+  "Closed": "cerrado"
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect ,useCallback , useMemo , useRef } from "react"
 import { withTranslation } from "react-i18next"
 import { Container, Card, Button, Row, Col, Spinner } from "reactstrap"
 import useEnvironment from "../../infrastructure/session/useEnvironment"
@@ -6,6 +6,7 @@ import {
   deleteMessage,
   getMessages,
   filterMessagesByPatient,
+  filterMessages
 } from "../../infrastructure/services/network/apiCalls/messagesApiService"
 import {
   apiErrorToast,
@@ -37,6 +38,10 @@ import { NewMessageToPatientModal } from "./Modals/NewMessageToPatientModal"
 import { EditBroadcastMessageModal } from "./Modals/EditBroadcastMessageModal"
 import PatientFilter from "../../components/Common/PatientListAutoCompelete"
 import getPatients from "../../infrastructure/services/network/apiCalls/patientsApiService"
+import userSubscriptionState from "../../constants/userSubscriptionState"
+import projectStatus from "../../constants/projectStatus"
+import medicalTeamStatus from "../../constants/medicalTeamStatus"
+import axios from 'axios';
 
 const Messages = props => {
   const [initialising, setInitialization] = useState(true)
@@ -82,22 +87,24 @@ const Messages = props => {
   const [editingMessage, setEditingMessage] = useState()
   const [patients, setPatients] = useState([])
   const [selectedPatient, setSelectedPatient] = useState(null)
-  const [filterText, setFilterText] = useState(null)
-  const [initialLoadCompleted, setInitialLoadCompleted] = useState(false);
+  const [filterText, setFilterText] = useState("")
+  const [initialLoadCompleted, setInitialLoadCompleted] = useState(false)
 
   const userSession = useUserSession()
   const environment = useEnvironment()
+  const cancelToken = useRef(null);
 
   const POOL_REQUEST_INTERVAL_IN_SECONDS = 60000
+
 
   useEffect(() => {
     if (environment && !initialLoadCompleted) {
       getCurrentProjectProperties()
-      loadMessages()
+     // loadMessages()
       loadPatients()
-      setInitialLoadCompleted(true); // Mark initial load as completed
+      setInitialLoadCompleted(true) // Mark initial load as completed
     }
-  }, [environment, initialLoadCompleted])
+  }, [environment])
 
   useEffect(() => {
     if (initialLoadCompleted) {
@@ -117,9 +124,7 @@ const Messages = props => {
       setInitialization(false)
     }
 
-    const interval = initPoolRequest()
-
-    return () => clearInterval(interval)
+    return initPoolRequest()
   }, [messages])
 
   function loadPatients() {
@@ -144,14 +149,24 @@ const Messages = props => {
     if (reset) {
       setMessages([]) // Clear messages when resetting
     }
-    if (selectedPatient) {
-      filterMessagesByPatient(
+
+    if (cancelToken.current) {
+      cancelToken.current.cancel('last Operation canceled due to new request.');
+      }
+
+    cancelToken.current = axios.CancelToken.source();
+
+    if (selectedPatient || filterText!="") {
+      filterMessages(
         environment.projectId,
         environment.medicalTeamId,
-        selectedPatient.userId,
+        selectedPatient?selectedPatient.userId:null,
+        filterText,
         reset ? 0 : pagingCount,
+        userSession.isPatient,
         handleLoadMessages,
-        handleLoadMessagesError
+        handleLoadMessagesError,
+        cancelToken.current.token
       )
     } else {
       getMessages(
@@ -159,23 +174,18 @@ const Messages = props => {
         environment.medicalTeamId,
         reset ? 0 : pagingCount,
         handleLoadMessages,
-        handleLoadMessagesError
+        handleLoadMessagesError,
+        cancelToken.current.token
       )
     }
-
   }
 
-  function handleLoadMessages(nextMessages) {
+ 
 
-    console.log(nextMessages)
+  function handleLoadMessages(nextMessages){
     setMessages(prevMessages =>
       pagingCount === 0 ? nextMessages : [...prevMessages, ...nextMessages]
     )
-
-    console.log(filterText)
-    if (filterText!=null && filterText!="") {
-    filterMessages(filterText)
-    }
 
     setNextPageButtonVisible(nextMessages.length > 0)
     setIsbusy(false)
@@ -183,44 +193,60 @@ const Messages = props => {
 
   function initPoolRequest() {
     const interval = setInterval(() => {
-      if (messages.length > 0) {
+      if (messages && messages.length > 0) {
         performPoolRequest()
       }
     }, POOL_REQUEST_INTERVAL_IN_SECONDS)
 
-    return interval
+    return () => clearInterval(interval)
   }
 
   function performPoolRequest() {
-    if (selectedPatient != null) {
-      filterMessagesByPatient(
-        environment.projectId,
-        environment.medicalTeamId,
-        selectedPatient.userId,
-        0,
-        handlePollRequest,
-        handleLoadMessagesError
-      )
+
+   // setMessages([]) // Clear messages when resetting
+
+    if (cancelToken.current) {
+      cancelToken.current.cancel('Last Operation canceled due to new request.');
+    }
+
+    cancelToken.current = axios.CancelToken.source();
+
+    if (selectedPatient || filterText!="") {
+        filterMessages(
+          environment.projectId,
+          environment.medicalTeamId,
+          selectedPatient?selectedPatient.userId:null,
+          filterText,
+          0,
+          userSession.isPatient,
+          handlePollRequest,
+          handleLoadMessagesError,
+          cancelToken.current.token
+        )
     } else {
       getMessages(
         environment.projectId,
         environment.medicalTeamId,
         0,
         handlePollRequest,
-        handleLoadMessagesError
+        handleLoadMessagesError,
+        cancelToken.current.token
       )
     }
   }
 
   function handlePollRequest(newMessages) {
-    const updatedMessages = messages.filter(
-      m =>
-        !newMessages.some(
-          newMsg =>
-            newMsg.originalMessage.messageId === m.originalMessage.messageId
-        )
-    )
-    setMessages([...newMessages, ...updatedMessages])
+    newMessages.map((elemem, i) => {
+      var index = messages
+        .findIndex((m) => m.originalMessage.messageId == elemem.originalMessage.messageId);
+
+      if (index != -1) {
+        messages.splice(index, 1);
+      }
+    });
+
+    var updatedList = newMessages.concat(messages);
+    setMessages(updatedList);
   }
 
   function handleLoadMessagesError(error) {
@@ -341,6 +367,7 @@ const Messages = props => {
       message.originalMessage.authorId,
       message.originalMessage.messageId
     )
+    console.log(url);
     openBlankWindow(url)
   }
 
@@ -441,74 +468,73 @@ const Messages = props => {
     }
   }
 
-  function handleFilterValue(filter) {
-    setFilterText(filter)
-    if (filter === "") {
-      loadMessages(true); // Reload all messages when filter is cleared
-    } else {
-      filterMessages(filter);
+  function checkIfMedicalTeamIsOpen() {
+    if (userSession && userSession.isPatient && 
+        environment && environment.medicalTeamStatus != medicalTeamStatus.OPEN) {
+      return <Redirect to="/unauthorized" />
     }
   }
 
-  function filterMessages(filter) {
 
-    console.log(filter)
-    const filteredMessages = messages.filter(
-      m =>
-        m.originalMessage.body.toLowerCase().includes(filter.toLowerCase()) ||
-      //  m.originalMessage.title.toLowerCase().includes(filter.toLowerCase()) ||
-        m.replyMessages.some(r => r.body.toLowerCase().includes(filter.toLowerCase()))
-    );
-    setMessages(filteredMessages) ;
-
+  const handleFilterValue = (e) => {
+    setFilterText(e.target.value);
   }
 
+  
   return (
     <Container>
       <AuthorizedPage />
+      {checkIfMedicalTeamIsOpen()}
       {checkIfMessagingIsEnabled()}
 
       <Row>
         <Col className="d-flex justify-content-start">
-          {userSession && userSession.isMedicalProfessional && (
-            <div className="d-flex align-items-center">
-              <div className="me-2">
-                <Button
-                  color="success"
-                  onClick={() => setIsNewBroadcastMesageModalVisible(true)}
-                >
-                  {props.t("NewBroadcastMessageButton")}
-                </Button>
+          {environment &&
+            userSession &&
+            userSession.isMedicalProfessional &&
+            environment.projectStatus === projectStatus.OPEN &&
+            environment.medicalTeamStatus === medicalTeamStatus.OPEN && (
+              <div className="d-flex align-items-center">
+                <div className="me-2">
+                  <Button
+                    color="success"
+                    onClick={() => setIsNewBroadcastMesageModalVisible(true)}
+                  >
+                    {props.t("NewBroadcastMessageButton")}
+                  </Button>
+                </div>
+                <div className="me-2">
+                  <Button
+                    color="info"
+                    onClick={() => setIsNewMesageToPatientModalVisible(true)}
+                  >
+                    {props.t("NewMessageToPatientButton")}
+                  </Button>
+                </div>
               </div>
-              <div className="me-2">
-                <Button
-                  color="info"
-                  onClick={() => setIsNewMesageToPatientModalVisible(true)}
-                >
-                  {props.t("NewMessageToPatientButton")}
-                </Button>
-              </div>
-            </div>
-          )}
+            )}
 
-          {userSession && userSession.isPatient && (
-            <NewMessageButtonsRow
-              props={props}
-              isVideoEnabled={isVideoEnabled}
-              onInfoMessageButtonClick={() =>
-                setIsNewInfoMessageModalVisible(true)
-              }
-              onTextMessageButtonClick={() =>
-                setIsNewTextMessageModalVisible(true)
-              }
-              onAudioMessageButtonClick={() =>
-                setIsNewVoiceMessageModalVisible(true)
-              }
-              onVideoMessageButtonClick={() =>
-                setIsNewVideoMessageModalVisible(true)
-              }
-            />
-          )}
+          {userSession &&
+            userSession.isPatient &&
+            userSession.state != userSubscriptionState.Suspended && (
+              <NewMessageButtonsRow
+                props={props}
+                isVideoEnabled={isVideoEnabled}
+                // isUserSuspended={userSession.state===userSubscriptionState.Suspended}
+                onInfoMessageButtonClick={() =>
+                  setIsNewInfoMessageModalVisible(true)
+                }
+                onTextMessageButtonClick={() =>
+                  setIsNewTextMessageModalVisible(true)
+                }
+                onAudioMessageButtonClick={() =>
+                  setIsNewVoiceMessageModalVisible(true)
+                }
+                onVideoMessageButtonClick={() =>
+                  setIsNewVideoMessageModalVisible(true)
+                }
+              />
+            )}
         </Col>
       </Row>
 
@@ -517,32 +543,39 @@ const Messages = props => {
           <CurrentStudyAndMedicalTeamCard props={props} />
         )}
       </Row>
-      <Row className="m-3">
-        <div className="col-md-8">
-        <PatientFilter  props={props} patients={patients} onChange={handlePatientChange} />
-        </div>
-      
-        <div className="col-md-4 d-flex justify-content-end" >
-          <div className="search-box me-2 mb-2 d-inline-block">
-            <div className="position-relative">
-              <label  className="search-label">
-                <span id="search-bar-0-label" className="sr-only">
-                  Search this table
-                </span>
-                <input
-                  id="search-bar-0"
-                  type="text"
-                  className="form-control"
-                  placeholder=  {props.t("SearchbarPlaceholder")}   
-                  value={filterText || ""}
-                  onChange={(e) => handleFilterValue(e.target.value)}
-                />
-              </label>
-              <i className="bx bx-search-alt search-icon"></i>
+
+      {userSession && userSession.isMedicalProfessional && (
+        <Row className="m-3">
+          <div className="col-md-8 mb-2">
+            <PatientFilter
+              props={props}
+              patients={patients}
+              onChange={handlePatientChange}
+            />
+          </div>
+
+          <div className="col-md-4 d-flex justify-content-center">
+            <div className="search-box me-2 mb-2 d-inline-block">
+              <div className="position-relative">
+                <label className="search-label">
+                  <span id="search-bar-0-label" className="sr-only">
+                    Search ...
+                  </span>
+                  <input
+                    id="search-bar-0"
+                    type="text"
+                    className="form-control"
+                    placeholder={props.t("SearchbarPlaceholder")}
+                    value={filterText || ""}
+                    onChange={handleFilterValue}
+                  />
+                </label>
+                <i className="bx bx-search-alt search-icon"></i>
+              </div>
             </div>
           </div>
-        </div>
-      </Row>
+        </Row>
+      )}
 
       {messages.length > 0 ? (
         messages.map((message, idx) =>
@@ -556,9 +589,17 @@ const Messages = props => {
               }
               patientMenuIsVisible={
                 userSession &&
-                userSession.userId === message.originalMessage.authorId
+                userSession.userId === message.originalMessage.authorId &&
+                userSession.state != userSubscriptionState.Suspended
               }
-              showReplyButtons={userSession && !userSession.isResearcher}
+              showReplyButtons={
+                environment &&
+                userSession &&
+                !userSession.isResearcher &&
+                userSession.state != userSubscriptionState.Suspended &&
+                environment.projectStatus === projectStatus.OPEN &&
+                environment.medicalTeamStatus === medicalTeamStatus.OPEN
+              }
               onVideoAttachmentClick={handleVideoMessagePlay}
               onNewTextReplyClick={() =>
                 openTextReplyModal(message.originalMessage)

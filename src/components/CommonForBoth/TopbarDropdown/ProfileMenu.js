@@ -18,14 +18,18 @@ import avatar from "../../../assets/images/users/avatar.png"
 //Azure b2c
 import { useMsal } from "@azure/msal-react";
 import useUserSession from "../../../infrastructure/session/useUserSession"
+import useEnvironment from "../../../infrastructure/session/useEnvironment"
 import ProfileMenuPatientContent from "./ProfileMenuPatientContent"
 import UserRoles from "../../../infrastructure/session/UserRoles"
 import { ChangeStudyModal } from "../../Common/ChangeStudyModal";
 import { getAnalystConsoleBaseUrl, getControlPanelBaseUrl } from "../../../helpers/externalUrlHelper"
+import projectStatus from "../../../constants/projectStatus"
+import medicalTeamStatus from "../../../constants/medicalTeamStatus"
 
 const ProfileMenu = props => {
 
   const userSession = useUserSession();
+  const environment = useEnvironment()
 
   const [menu, setMenu] = useState(false)
   const { instance, accounts } = useMsal();
@@ -50,6 +54,10 @@ const ProfileMenu = props => {
 
   function currentUserIsPatient() {
     return userSession && userSession.roles.includes(UserRoles.Patient);
+  }
+
+  function currentMedicalTeamIsOpen() {
+    return environment && environment.medicalTeamStatus === medicalTeamStatus.OPEN;
   }
 
   function currentUserIsResearcher() {
@@ -98,7 +106,7 @@ const ProfileMenu = props => {
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-end">
 
-          {currentUserIsPatient() &&
+          {currentUserIsPatient() && currentMedicalTeamIsOpen() &&
             <ProfileMenuPatientContent
               props={props} />
           }

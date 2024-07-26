@@ -105,7 +105,7 @@
 
  "EditTextMessagePageTitle":"Nachricht bearbeiten",
 
- "EmptyComiledSurveysList":"Kein Fragebogen vorhanden",
+ "EmptyComiledSurveysList":"Es sind keine Fragebögen zur Anzeige vorhanden",
 
  "EmptyList":"Es sind keine Elemente zur Anzeige vorhanden",
 
@@ -528,5 +528,7 @@
  "Dutch": "Niederländisch",
  "Spanish": "Spanisch",
  "NotAnsweredQuestion": "Diese Frage wurde nicht beantwortet",
- "FileUploadHintMessage": "Bitte laden Sie nur PNG- oder JPEG-Bilder hoch."
+ "FileUploadHintMessage": "Bitte laden Sie nur PNG- oder JPEG-Bilder hoch.",
+ "Open": "offen",
+ "Closed": "geschlossen"
  } 

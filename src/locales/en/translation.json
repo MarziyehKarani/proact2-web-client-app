@@ -105,7 +105,7 @@
 
  "EditTextMessagePageTitle":"Edit message",
 
- "EmptyComiledSurveysList":"No questionnaire",
+ "EmptyComiledSurveysList":"There are no questionnaires to display",
 
  "EmptyList":"There are no elements to display",
 
@@ -533,5 +533,7 @@
  "Dutch": "Dutch",
  "Spanish": "Spanish",
  "NotAnsweredQuestion": "This question was not answered",
- "FileUploadHintMessage": "Please upload only PNG or JPEG images."
+ "FileUploadHintMessage": "Please upload only PNG or JPEG images.",
+ "Open": "Open",
+ "Closed": "Closed"
 } 

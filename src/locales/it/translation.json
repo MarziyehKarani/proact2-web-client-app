@@ -519,7 +519,7 @@
  "EmptyNotComiledSurveysList" :"Nessun questionario",
  
 
- "EmptyComiledSurveysList" :"Nessun questionario",
+ "EmptyComiledSurveysList" :"Non ci sono questionari da visualizzare",
  
 
 
@@ -750,7 +750,9 @@
  "Dutch":"Olandese",
  "Spanish":"Spagnolo",
  "NotAnsweredQuestion": "A questa domanda non è stata data risposta",
- "FileUploadHintMessage": "Carica solo immagini PNG o JPEG."
+ "FileUploadHintMessage": "Carica solo immagini PNG o JPEG.",
+ "Open": "ouvert",
+ "Closed": "aperto"
 }
 
 

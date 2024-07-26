@@ -16,6 +16,8 @@ const useEnvironment = () => {
     const [medicalTeamId, setmMedicalTeamId] = useState();
     const [projectName, setProjectName] = useState();
     const [medicalTeamName, setMedicalTeamName] = useState();
+    const [projectStatus, setProjectStatus] = useState();
+    const [medicalTeamStatus, setMedicalTeamStatus] = useState(0);
 
     const userSession = useUserSession();
 
@@ -53,8 +55,9 @@ const useEnvironment = () => {
 
     function projectsHandle(projects) {
         if (projects && projects.length > 0) {
-            setProjectId(projects[0].projectId);
             setProjectName(projects[0].name);
+            setProjectStatus(projects[0].status);
+            setProjectId(projects[0].projectId);
         }
     }
 
@@ -66,7 +69,9 @@ const useEnvironment = () => {
         if (medicalTeams && medicalTeams.length > 0) {
             var meedicalteam = medicalTeams[0];
             setMedicalTeamName(meedicalteam.name);
+            setMedicalTeamStatus(meedicalteam.state);
             setmMedicalTeamId(meedicalteam.medicalTeamId);
+            
         }
     }
 
@@ -92,7 +97,9 @@ const useEnvironment = () => {
             medicalTeamId: medicalTeamId,
             projectName: projectName,
             medicalTeamName: medicalTeamName,
-            userId: userSession.userId
+            userId: userSession.userId,
+            projectStatus: projectStatus,
+            medicalTeamStatus: medicalTeamStatus
         }
 
         var environmentStr = JSON.stringify(environment);
@@ -103,13 +110,15 @@ const useEnvironment = () => {
     return environment;
 }
 
-function setSessionEnvironment(userId, projectId, projectName, medicalTeamId, medicalTeamName) {
+function setSessionEnvironment(userId, projectId, projectName, medicalTeamId, medicalTeamName,projectState,medicalTeamState) {
     var environment = {
         projectId: projectId,
         medicalTeamId: medicalTeamId,
         projectName: projectName,
         medicalTeamName: medicalTeamName,
-        userId: userId
+        userId: userId,
+        projectStatus: projectState,
+        medicalTeamStatus: medicalTeamState
     }
 
     var environmentStr = JSON.stringify(environment);

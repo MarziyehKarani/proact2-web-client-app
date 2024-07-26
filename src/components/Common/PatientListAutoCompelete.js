@@ -74,7 +74,7 @@ const PatientFilter = ({props,patients,onChange}) => {
         options={patients}
         //{patients}
         getOptionLabel={(option) => option.name}
-        sx={{ width: 500 }}
+        sx={{ width: "100%" }}
       //  renderInput={(params) => <TextField {...params} label="select a Patient" />}
         renderInput={(params) => (
         <div ref={params.InputProps.ref}>

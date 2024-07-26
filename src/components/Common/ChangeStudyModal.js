@@ -7,6 +7,7 @@ import { apiErrorToast } from "../../helpers/toastHelper";
 import { setSessionEnvironment } from "../../infrastructure/session/useEnvironment";
 import useUserSession from "../../infrastructure/session/useUserSession";
 
+
 export const ChangeStudyModal = ({ props, isOpen, closeCallback }) => {
 
     const userSession = useUserSession();
@@ -75,8 +76,9 @@ export const ChangeStudyModal = ({ props, isOpen, closeCallback }) => {
         var options = [];
         items.forEach(item => {
             var optionItem = {};
-            optionItem.label = item.name;
+            optionItem.label =  item.name  
             optionItem.value = item.projectId;
+            optionItem.state = item.status;
             options.push(optionItem);
         });
 
@@ -87,8 +89,9 @@ export const ChangeStudyModal = ({ props, isOpen, closeCallback }) => {
         var options = [];
         items.forEach(item => {
             var optionItem = {};
-            optionItem.label = item.name;
+            optionItem.label =  item.name  
             optionItem.value = item.medicalTeamId;
+            optionItem.state = item.state;
             options.push(optionItem);
         });
 
@@ -108,7 +111,10 @@ export const ChangeStudyModal = ({ props, isOpen, closeCallback }) => {
                 selectedProject.value, 
                 selectedProject.label, 
                 selectedMedicalTeam.value, 
-                selectedMedicalTeam.label);
+                selectedMedicalTeam.label,
+                selectedProject.state,
+                selectedMedicalTeam.state
+            );
 
                 reloadMainPage();
         }

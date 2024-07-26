@@ -6,7 +6,7 @@ async function getMedicalTeams(projectId, onApiOkResultCallback, onApiKoResultCa
     await axios.get(`MedicalTeam/${projectId}/my`)
         .then(response => {
             var openMedicalTeams = response.data
-            .filter(mt => mt.state == medicalTeamStatus.OPEN);
+         //   .filter(mt => mt.state == medicalTeamStatus.OPEN);
 
             onApiOkResultCallback(openMedicalTeams);
         })

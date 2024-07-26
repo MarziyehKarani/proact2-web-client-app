@@ -224,7 +224,12 @@ const SurveyResultsOverTheTimePage = (props) => {
                             </CardBody>
                         </Card>
                     :
-                    <LoadingSpinner />
+                    <Card >
+                    <CardBody className='text-muted text-center py-5'>
+                        {props.t("EmptyComiledSurveysList")}
+                    </CardBody>
+                </Card>
+                  //  <LoadingSpinner />
             }
         </Container>
     )
