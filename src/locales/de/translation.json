@@ -530,5 +530,8 @@
  "NotAnsweredQuestion": "Diese Frage wurde nicht beantwortet",
  "FileUploadHintMessage": "Bitte laden Sie nur PNG- oder JPEG-Bilder hoch.",
  "Open": "offen",
- "Closed": "geschlossen"
+ "Closed": "geschlossen",
+ "EmptyContactPage":"Es gibt keine Kontaktseite zum Anzeigen",
+ "NoAssignedMedicalTeam": "Wir haben kein mit Ihrem Konto verknüpftes medizinisches Team gefunden. Kontaktieren Sie den Administrator des medizinischen Teams",
+ "EmptyPatientList":"Es sind keine Patienten zum Anzeigen vorhanden"
  } 

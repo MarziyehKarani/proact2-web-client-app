@@ -151,11 +151,14 @@ const PatientsPage = props => {
         breadcrumbItem={props.t("YourPatientsTitle")}
       />
 
-      { environment && (
+        
         <Card>
           <CardBody>
             {patients == null ? (
-              <LoadingSpinner />
+            //  <LoadingSpinner />
+            <div className="text-center"> 
+            {props.t("EmptyPatientList")}
+            </div>
             ) : (
               <TableContainer
                 columns={columns}
@@ -166,7 +169,9 @@ const PatientsPage = props => {
             )}
           </CardBody>
         </Card>
-      )}
+        
+      
+     
     </Container>
   )
 }

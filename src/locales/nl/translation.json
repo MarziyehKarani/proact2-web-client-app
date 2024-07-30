@@ -534,5 +534,8 @@
     "NotAnsweredQuestion": "Deze vraag werd niet beantwoord",
     "FileUploadHintMessage": "Upload alleen PNG- of JPEG-afbeeldingen.",
     "Open": "open",
-    "Closed": "gesloten"
+    "Closed": "gesloten",
+    "EmptyContactPage":"Er is geen contactpagina om weer te geven",
+    "NoAssignedMedicalTeam": "We hebben geen medisch team gevonden dat aan uw account is gekoppeld. Neem contact op met de beheerder van het medisch team",
+    "EmptyPatientList":"Er zijn geen patiënten om weer te geven"
 }

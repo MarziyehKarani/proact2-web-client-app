@@ -138,7 +138,10 @@ const ProjectSurveysPage = (props) => {
                     <Card>
                         <CardBody>
                             {surveys == null ?
-                                <LoadingSpinner />
+                               // <LoadingSpinner />
+                               <div className="text-center"> 
+                               {props.t("EmptyComiledSurveysList")}
+                               </div>
                                 :
                                 <TableContainer
                                     columns={columns}

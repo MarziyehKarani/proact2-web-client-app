@@ -26,11 +26,15 @@ const ContactPage = (props) => {
         getContactPageContent(
             environment.projectId,
             handleApiSuccess,
-            apiErrorToast);
+            handleApiError);
     }
 
     function handleApiSuccess(data) {
         setHtmlContent(data.htmlContent);
+    }
+
+    function handleApiError() {
+        setHtmlContent("");
     }
 
     return (
@@ -44,7 +48,12 @@ const ContactPage = (props) => {
                     {htmlContent ?
                         renderHTML(htmlContent)
                         :
-                        <LoadingSpinner />}
+                        // <LoadingSpinner />
+                        <div className='text-center'>
+                            {props.t("EmptyContactPage")}
+                        </div>
+                        
+                        }
                 </CardBody>
             </Card>
         </Container>

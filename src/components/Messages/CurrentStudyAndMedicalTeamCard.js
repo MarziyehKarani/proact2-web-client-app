@@ -12,10 +12,11 @@ const CurrentStudyAndMedicalTeamCard = ({ props }) => {
     return (
         <>
             {
-                environment &&
+                environment ?
                 <span className='align-middle'>
-                    <Label>{props.t("MedicalTeamGroupTitle")}</Label> : {environment.projectName ? environment.projectName - environment.medicalTeamName - environment.medicalTeamStatus === medicalTeamStatus.OPEN ? props.t("Open") :  props.t("Closed") : props.t("EmptyMedicalTeamsListMessage")}
+                    <Label>{props.t("MedicalTeamGroupTitle")}</Label> :  {environment.projectName} - {environment.medicalTeamName} - {environment.medicalTeamStatus === medicalTeamStatus.OPEN ? props.t("Open") :  props.t("Closed")}
                 </span>
+                : props.t("NoAssignedMedicalTeam")
             }
         </>
 
