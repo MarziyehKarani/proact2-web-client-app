@@ -111,6 +111,16 @@ async function getPatientStats(surveyId, userId, onApiOkResultCallback, onApiKoR
         });
 }
 
+async function getProjectAssignedSurveys(projectId, onApiOkResultCallback, onApiKoResultCallback) {
+    await axios.get(`Survey/${projectId}/all/assigned`)
+        .then(response => {
+            onApiOkResultCallback(response.data);
+        })
+        .catch(error => {
+            onApiKoResultCallback(error);
+        });
+}
+
 export {
     getMineCompiledSurveys,
     getMineNotCompiledSurveys,
@@ -122,5 +132,6 @@ export {
     compileSurvey,
     getPatientsAssignedToASurvey,
     getSurveyStats,
-    getPatientStats
+    getPatientStats,
+    getProjectAssignedSurveys
 };

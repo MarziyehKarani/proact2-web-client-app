@@ -45,12 +45,12 @@ import axios from 'axios';
 
 const Messages = props => {
   const [initialising, setInitialization] = useState(true)
-  const [messages, setMessages] = useState([])
+  const [messages, setMessages] = useState()
   const [pagingCount, setPagingCount] = useState(0)
   const [isbusy, setIsbusy] = useState(false)
   const [projectProperties, setProjectProperties] = useState()
   const [isVideoEnabled, setIsVideoEnabled] = useState(false)
-  const [nextPageButtonVisible, setNextPageButtonVisible] = useState(true)
+  const [nextPageButtonVisible, setNextPageButtonVisible] = useState(false)
   const [selectedMessageIdAttachment, setSelectedMessageIdAttachment] =
     useState()
   const [isAttachmentModalVisible, setIsAttachmentModalVisible] =
@@ -96,19 +96,24 @@ const Messages = props => {
 
   const POOL_REQUEST_INTERVAL_IN_SECONDS = 60000
 
+  console.log(environment);
 
   useEffect(() => {
     if (environment && !initialLoadCompleted) {
+      console.log("setInitialLoadCompleted");
       getCurrentProjectProperties()
      // loadMessages()
       loadPatients()
       setInitialLoadCompleted(true) // Mark initial load as completed
     }
+  // else
+  //     setInitialization(false) 
   }, [environment])
 
   useEffect(() => {
     if (initialLoadCompleted) {
       setPagingCount(0) // Reset paging count when patient changes
+      setInitialization(true)
       loadMessages(true)
     }
   }, [selectedPatient, initialLoadCompleted,filterText])
@@ -120,7 +125,7 @@ const Messages = props => {
   }, [pagingCount])
 
   useEffect(() => {
-    if (messages) {
+    if (messages && messages.length > 0) {
       setInitialization(false)
     }
 
@@ -514,7 +519,8 @@ const Messages = props => {
               </div>
             )}
 
-          {userSession &&
+          {environment &&
+            userSession &&
             userSession.isPatient &&
             userSession.state != userSubscriptionState.Suspended && (
               <NewMessageButtonsRow
@@ -539,12 +545,12 @@ const Messages = props => {
       </Row>
 
       <Row className="mt-4">
-        {userSession && !userSession.isPatient && (
+        {  userSession && !userSession.isPatient && (
           <CurrentStudyAndMedicalTeamCard props={props} />
         )}
       </Row>
 
-      {userSession && userSession.isMedicalProfessional && (
+      {environment && userSession && userSession.isMedicalProfessional && (
         <Row className="m-3">
           <div className="col-md-8 mb-2">
             <PatientFilter
@@ -577,9 +583,12 @@ const Messages = props => {
         </Row>
       )}
 
-      {messages.length > 0 ? (
-        messages.map((message, idx) =>
-          message.originalMessage.messageType !== messageType.BROADCAST ? (
+      {
+     // initialLoadCompleted  && environment ?
+      messages ?
+          messages.length > 0 ? 
+        messages.map((message, idx) => (
+          message.originalMessage.messageType !== messageType.BROADCAST ? 
             <MessageListRow
               key={idx}
               props={props}
@@ -616,8 +625,8 @@ const Messages = props => {
               onOpenAnalysis={() => openAnalysisInAnalystConsole(message)}
               showVideoReplyButton={userSession && isVideoEnabled}
               showReadIcon={userSession && userSession.isMedicalProfessional}
-            />
-          ) : (
+              />
+           : 
             <BroadcastMessageRow
               key={idx}
               props={props}
@@ -635,17 +644,27 @@ const Messages = props => {
             />
           )
         )
-      ) : (
+       : 
         <Card>
           <div className="text-center text-muted m-5 p-5">
             {props.t("EmptyWallMessagesMessage")}
           </div>
         </Card>
-      )}
+        :
+        <></>
+        // : 
+        // <Card className="mt-5">
+        //   <div className="text-center text-muted m-5 p-5">
+        //     {props.t("EmptyWallMessagesMessage")}
+        //   </div>
+        // </Card>
+}
 
-      {initialising ? (
-        <LoadingSpinner />
-      ) : (
+      {  
+          
+        environment ?
+        !initialLoadCompleted ?
+          <LoadingSpinner /> :
         <>
           {nextPageButtonVisible && (
             <div className="p-3 text-center">
@@ -660,7 +679,9 @@ const Messages = props => {
             </div>
           )}
         </>
-      )}
+         : 
+       <> </>
+    }
 
       <VideoPlayeModal
         isOpen={isAttachmentModalVisible}
