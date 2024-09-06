@@ -10,10 +10,6 @@ import { getAgreement ,getCurrentUserAgreement } from "../services/network/apiCa
 const useUserSession = () => {
   const [userSession, setUserSession] = useState(null)
 
-  const [isPolicyAccepted, setIsPolicyAccepted] = useState(null)
-  const [isConditionsAccepted, setIsConditionsAccepted] = useState(null)
-  const [isEmergencyAlertAccepted, setIsEmergencyAlertAccepted] = useState(null)
-
   const userProfileKey = "userProfile"
   const userAgreementKey = "userAgreement"
 
