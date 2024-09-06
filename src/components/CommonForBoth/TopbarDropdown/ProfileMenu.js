@@ -25,6 +25,7 @@ import { ChangeStudyModal } from "../../Common/ChangeStudyModal";
 import { getAnalystConsoleBaseUrl, getControlPanelBaseUrl } from "../../../helpers/externalUrlHelper"
 import projectStatus from "../../../constants/projectStatus"
 import medicalTeamStatus from "../../../constants/medicalTeamStatus"
+import NotificationSettingModal from "../../Common/NotificationSettingModal"
 
 const ProfileMenu = props => {
 
@@ -35,6 +36,7 @@ const ProfileMenu = props => {
   const { instance, accounts } = useMsal();
   const [profileImage, setProfileImage] = useState(avatar);
   const [isChangeStudyModalOpen, setIsChangeStudyModalOpen] = useState(false);
+  const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false);
 
   const handleLogout = () => {
     instance.logoutPopup({ postLogoutRedirectUri: "/signout", mainWindowRedirectUri: "/" })
@@ -78,6 +80,11 @@ const ProfileMenu = props => {
     window.open(url, "_blank")
   }
 
+  function openNotificationSetting() {
+    setIsNotificationModalOpen(true);
+  }
+
+
   useEffect(() => {
     if (userSession) {
       setProfileImage(userSession.avatarUrl);
@@ -108,7 +115,7 @@ const ProfileMenu = props => {
 
           {currentUserIsPatient() && currentMedicalTeamIsOpen() &&
             <ProfileMenuPatientContent
-              props={props} />
+              props={props} openNotificationSetting={openNotificationSetting}  />
           }
 
           {currentUserIsMedicalProfesional() &&
@@ -129,6 +136,12 @@ const ProfileMenu = props => {
                 <i className="fas fa-chart-bar font-size-18 align-middle me-2 text-muted"></i>
                 <span>{props.t("SurveysResultsAndStatistics")}</span>
               </Link>
+              <DropdownItem header>{props.t("NotificationsGroupTitle")}</DropdownItem>
+              <DropdownItem
+                onClick={() => setIsNotificationModalOpen(true)}>
+                <i className="fas fa-exchange-alt font-size-18 align-middle me-2 text-muted"></i>
+                <span>{props.t("NotificationSettingsPageTitle")}</span>
+              </DropdownItem>
               <DropdownItem header>{props.t("ProactTools")}</DropdownItem>
               <DropdownItem onClick={openControlPanel}>
                 <i className="fas fa-cogs font-size-18 align-middle me-2 text-muted"></i>
@@ -160,6 +173,12 @@ const ProfileMenu = props => {
                 <i className="fas fa-chart-bar font-size-18 align-middle me-2 text-muted"></i>
                 <span>{props.t("SurveysResultsAndStatistics")}</span>
               </Link>
+              <DropdownItem header>{props.t("NotificationsGroupTitle")}</DropdownItem>
+              <DropdownItem
+                onClick={() => setIsNotificationModalOpen(true)}>
+                <i className="fas fa-exchange-alt font-size-18 align-middle me-2 text-muted"></i>
+                <span>{props.t("NotificationSettingsPageTitle")}</span>
+              </DropdownItem>
               <DropdownItem header>{props.t("ProactTools")}</DropdownItem>
               <DropdownItem onClick={openControlPanel}>
                 <i className="fas fa-cogs font-size-18 align-middle me-2 text-muted"></i>
@@ -197,6 +216,11 @@ const ProfileMenu = props => {
         props={props}
         isOpen={isChangeStudyModalOpen}
         closeCallback={() => { setIsChangeStudyModalOpen(false) }}
+      />
+        <NotificationSettingModal
+        props={props}
+        isOpen={isNotificationModalOpen}
+        closeCallback={() => { setIsNotificationModalOpen(false) }}
       />
     </React.Fragment>
   )

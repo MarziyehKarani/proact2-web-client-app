@@ -1,4 +1,4 @@
-import React, { useState, useEffect ,useCallback , useMemo , useRef } from "react"
+import React, { useState, useEffect, useCallback, useMemo, useRef } from "react"
 import { withTranslation } from "react-i18next"
 import { Container, Card, Button, Row, Col, Spinner } from "reactstrap"
 import useEnvironment from "../../infrastructure/session/useEnvironment"
@@ -6,7 +6,7 @@ import {
   deleteMessage,
   getMessages,
   filterMessagesByPatient,
-  filterMessages
+  filterMessages,
 } from "../../infrastructure/services/network/apiCalls/messagesApiService"
 import {
   apiErrorToast,
@@ -41,7 +41,10 @@ import getPatients from "../../infrastructure/services/network/apiCalls/patients
 import userSubscriptionState from "../../constants/userSubscriptionState"
 import projectStatus from "../../constants/projectStatus"
 import medicalTeamStatus from "../../constants/medicalTeamStatus"
-import axios from 'axios';
+import axios from "axios"
+import { AcceptPrivacyModal } from "../../components/Common/AcceptPrivacyModal"
+import { EmergencyAlertModal } from "../../components/Common/EmergencyAlertModal"
+import { getSessionUserAgreement } from "../../infrastructure/session/useUserSession"
 
 const Messages = props => {
   const [initialising, setInitialization] = useState(true)
@@ -89,25 +92,39 @@ const Messages = props => {
   const [selectedPatient, setSelectedPatient] = useState(null)
   const [filterText, setFilterText] = useState("")
   const [initialLoadCompleted, setInitialLoadCompleted] = useState(false)
+  const [isPrivacyModalVisible, setIsPrivacyModalVisible] = useState(false)
+  const [isConditionsModalVisible, setIsConditionsModalVisible] =
+    useState(false)
+  const [isEmergencyAlertModalVisible, setIsEmergencyAlertModalVisible] =
+    useState(false)
+  const [agreementLoadCompleted, setAgreementLoadCompleted] = useState(false)
 
   const userSession = useUserSession()
+
   const environment = useEnvironment()
-  const cancelToken = useRef(null);
+  const cancelToken = useRef(null)
 
   const POOL_REQUEST_INTERVAL_IN_SECONDS = 60000
 
-  console.log(environment);
+  useEffect(() => {
+    if (userSession && !initialLoadCompleted) {
+      loadUserAgreement()
+      setAgreementLoadCompleted(true);
+    }
+  }, [userSession])
 
   useEffect(() => {
-    if (environment && !initialLoadCompleted) {
-      console.log("setInitialLoadCompleted");
+    if (environment && agreementLoadCompleted && !initialLoadCompleted) {
       getCurrentProjectProperties()
-     // loadMessages()
-      loadPatients()
+      // loadMessages()
+      if (userSession && userSession.isMedicalProfessional)
+      {
+        loadPatients()
+      }
       setInitialLoadCompleted(true) // Mark initial load as completed
     }
-  // else
-  //     setInitialization(false) 
+    // else
+    //     setInitialization(false)
   }, [environment])
 
   useEffect(() => {
@@ -116,7 +133,7 @@ const Messages = props => {
       setInitialization(true)
       loadMessages(true)
     }
-  }, [selectedPatient, initialLoadCompleted,filterText])
+  }, [selectedPatient, initialLoadCompleted, filterText])
 
   useEffect(() => {
     if (pagingCount > 0) {
@@ -131,6 +148,34 @@ const Messages = props => {
 
     return initPoolRequest()
   }, [messages])
+
+  function loadUserAgreement() {
+    if (
+      userSession &&
+      userSession.isPatient &&
+      userSession.state === userSubscriptionState.Active
+    ) {
+      const userAgreement = getSessionUserAgreement()
+      console.log(userAgreement)
+      if (userAgreement) {
+        if (!userAgreement.privacyAccepted) {
+          setIsPrivacyModalVisible(true)
+        }
+        if (!userAgreement.termsConditionsAccepted) {
+          setIsConditionsModalVisible(true)
+        }
+        if (!userAgreement.proactEmergencyMsgAccepted) {
+          setIsEmergencyAlertModalVisible(true)
+        }
+      }
+      else
+      {
+        setIsPrivacyModalVisible(true)
+        setIsConditionsModalVisible(true)
+        setIsEmergencyAlertModalVisible(true)
+      }
+    }
+  }
 
   function loadPatients() {
     getPatients(
@@ -156,16 +201,16 @@ const Messages = props => {
     }
 
     if (cancelToken.current) {
-      cancelToken.current.cancel('last Operation canceled due to new request.');
-      }
+      cancelToken.current.cancel("last Operation canceled due to new request.")
+    }
 
-    cancelToken.current = axios.CancelToken.source();
+    cancelToken.current = axios.CancelToken.source()
 
-    if (selectedPatient || filterText!="") {
+    if (selectedPatient || filterText != "") {
       filterMessages(
         environment.projectId,
         environment.medicalTeamId,
-        selectedPatient?selectedPatient.userId:null,
+        selectedPatient ? selectedPatient.userId : null,
         filterText,
         reset ? 0 : pagingCount,
         userSession.isPatient,
@@ -185,9 +230,7 @@ const Messages = props => {
     }
   }
 
- 
-
-  function handleLoadMessages(nextMessages){
+  function handleLoadMessages(nextMessages) {
     setMessages(prevMessages =>
       pagingCount === 0 ? nextMessages : [...prevMessages, ...nextMessages]
     )
@@ -207,27 +250,26 @@ const Messages = props => {
   }
 
   function performPoolRequest() {
-
-   // setMessages([]) // Clear messages when resetting
+    // setMessages([]) // Clear messages when resetting
 
     if (cancelToken.current) {
-      cancelToken.current.cancel('Last Operation canceled due to new request.');
+      cancelToken.current.cancel("Last Operation canceled due to new request.")
     }
 
-    cancelToken.current = axios.CancelToken.source();
+    cancelToken.current = axios.CancelToken.source()
 
-    if (selectedPatient || filterText!="") {
-        filterMessages(
-          environment.projectId,
-          environment.medicalTeamId,
-          selectedPatient?selectedPatient.userId:null,
-          filterText,
-          0,
-          userSession.isPatient,
-          handlePollRequest,
-          handleLoadMessagesError,
-          cancelToken.current.token
-        )
+    if (selectedPatient || filterText != "") {
+      filterMessages(
+        environment.projectId,
+        environment.medicalTeamId,
+        selectedPatient ? selectedPatient.userId : null,
+        filterText,
+        0,
+        userSession.isPatient,
+        handlePollRequest,
+        handleLoadMessagesError,
+        cancelToken.current.token
+      )
     } else {
       getMessages(
         environment.projectId,
@@ -242,16 +284,17 @@ const Messages = props => {
 
   function handlePollRequest(newMessages) {
     newMessages.map((elemem, i) => {
-      var index = messages
-        .findIndex((m) => m.originalMessage.messageId == elemem.originalMessage.messageId);
+      var index = messages.findIndex(
+        m => m.originalMessage.messageId == elemem.originalMessage.messageId
+      )
 
       if (index != -1) {
-        messages.splice(index, 1);
+        messages.splice(index, 1)
       }
-    });
+    })
 
-    var updatedList = newMessages.concat(messages);
-    setMessages(updatedList);
+    var updatedList = newMessages.concat(messages)
+    setMessages(updatedList)
   }
 
   function handleLoadMessagesError(error) {
@@ -372,7 +415,7 @@ const Messages = props => {
       message.originalMessage.authorId,
       message.originalMessage.messageId
     )
-    console.log(url);
+    console.log(url)
     openBlankWindow(url)
   }
 
@@ -474,18 +517,35 @@ const Messages = props => {
   }
 
   function checkIfMedicalTeamIsOpen() {
-    if (userSession && userSession.isPatient && 
-        environment && environment.medicalTeamStatus != medicalTeamStatus.OPEN) {
+    if (
+      userSession &&
+      userSession.isPatient &&
+      environment &&
+      environment.medicalTeamStatus != medicalTeamStatus.OPEN
+    ) {
       return <Redirect to="/unauthorized" />
     }
   }
 
-
-  const handleFilterValue = (e) => {
-    setFilterText(e.target.value);
+  const handleFilterValue = e => {
+    setFilterText(e.target.value)
   }
 
-  
+  const handleClosePrivacyModal = () => {
+    setIsPrivacyModalVisible(false)
+    //  setIsEmergencyAlertModalVisible(value);
+  }
+
+  const handleCloseEmergencyModal = () => {
+    setIsEmergencyAlertModalVisible(false)
+    loadUserAgreement()
+  }
+
+  const handleContinuePrivacyModal = () => {
+    setIsPrivacyModalVisible(false)
+    setIsEmergencyAlertModalVisible(true)
+  }
+
   return (
     <Container>
       <AuthorizedPage />
@@ -545,7 +605,7 @@ const Messages = props => {
       </Row>
 
       <Row className="mt-4">
-        {  userSession && !userSession.isPatient && (
+        {userSession && !userSession.isPatient && (
           <CurrentStudyAndMedicalTeamCard props={props} />
         )}
       </Row>
@@ -584,104 +644,111 @@ const Messages = props => {
       )}
 
       {
-     // initialLoadCompleted  && environment ?
-      messages ?
-          messages.length > 0 ? 
-        messages.map((message, idx) => (
-          message.originalMessage.messageType !== messageType.BROADCAST ? 
-            <MessageListRow
-              key={idx}
-              props={props}
-              message={message}
-              showAnalysisCount={
-                projectProperties && projectProperties.isAnalystConsoleActive
-              }
-              patientMenuIsVisible={
-                userSession &&
-                userSession.userId === message.originalMessage.authorId &&
-                userSession.state != userSubscriptionState.Suspended
-              }
-              showReplyButtons={
-                environment &&
-                userSession &&
-                !userSession.isResearcher &&
-                userSession.state != userSubscriptionState.Suspended &&
-                environment.projectStatus === projectStatus.OPEN &&
-                environment.medicalTeamStatus === medicalTeamStatus.OPEN
-              }
-              onVideoAttachmentClick={handleVideoMessagePlay}
-              onNewTextReplyClick={() =>
-                openTextReplyModal(message.originalMessage)
-              }
-              onNewVideoReplyClick={() =>
-                openVideoReplyModal(message.originalMessage)
-              }
-              onNewVoiceReplyClick={() =>
-                openVoiceReplyModal(message.originalMessage)
-              }
-              onMessageDeleteButtonClick={() =>
-                handleDeleteButtonClick(message.originalMessage)
-              }
-              onOpenAnalysis={() => openAnalysisInAnalystConsole(message)}
-              showVideoReplyButton={userSession && isVideoEnabled}
-              showReadIcon={userSession && userSession.isMedicalProfessional}
-              />
-           : 
-            <BroadcastMessageRow
-              key={idx}
-              props={props}
-              message={message}
-              menuIsVisible={
-                userSession &&
-                userSession.userId === message.originalMessage.authorId
-              }
-              onMessageEditButtonClick={() =>
-                handleEditBroadcastButtonClick(message.originalMessage)
-              }
-              onMessageDeleteButtonClick={() =>
-                handleDeleteBroadcastButtonClick(message.originalMessage)
-              }
-            />
+        // initialLoadCompleted  && environment ?
+        messages ? (
+          messages.length > 0 ? (
+            messages.map((message, idx) =>
+              message.originalMessage.messageType !== messageType.BROADCAST ? (
+                <MessageListRow
+                  key={idx}
+                  props={props}
+                  message={message}
+                  showAnalysisCount={
+                    projectProperties &&
+                    projectProperties.isAnalystConsoleActive
+                  }
+                  patientMenuIsVisible={
+                    userSession &&
+                    userSession.userId === message.originalMessage.authorId &&
+                    userSession.state != userSubscriptionState.Suspended
+                  }
+                  showReplyButtons={
+                    environment &&
+                    userSession &&
+                    !userSession.isResearcher &&
+                    userSession.state != userSubscriptionState.Suspended &&
+                    environment.projectStatus === projectStatus.OPEN &&
+                    environment.medicalTeamStatus === medicalTeamStatus.OPEN
+                  }
+                  onVideoAttachmentClick={handleVideoMessagePlay}
+                  onNewTextReplyClick={() =>
+                    openTextReplyModal(message.originalMessage)
+                  }
+                  onNewVideoReplyClick={() =>
+                    openVideoReplyModal(message.originalMessage)
+                  }
+                  onNewVoiceReplyClick={() =>
+                    openVoiceReplyModal(message.originalMessage)
+                  }
+                  onMessageDeleteButtonClick={() =>
+                    handleDeleteButtonClick(message.originalMessage)
+                  }
+                  onOpenAnalysis={() => openAnalysisInAnalystConsole(message)}
+                  showVideoReplyButton={userSession && isVideoEnabled}
+                  showReadIcon={
+                    userSession && userSession.isMedicalProfessional
+                  }
+                />
+              ) : (
+                <BroadcastMessageRow
+                  key={idx}
+                  props={props}
+                  message={message}
+                  menuIsVisible={
+                    userSession &&
+                    userSession.userId === message.originalMessage.authorId
+                  }
+                  onMessageEditButtonClick={() =>
+                    handleEditBroadcastButtonClick(message.originalMessage)
+                  }
+                  onMessageDeleteButtonClick={() =>
+                    handleDeleteBroadcastButtonClick(message.originalMessage)
+                  }
+                />
+              )
+            )
+          ) : (
+            <Card>
+              <div className="text-center text-muted m-5 p-5">
+                {props.t("EmptyWallMessagesMessage")}
+              </div>
+            </Card>
           )
+        ) : (
+          <></>
         )
-       : 
-        <Card>
-          <div className="text-center text-muted m-5 p-5">
-            {props.t("EmptyWallMessagesMessage")}
-          </div>
-        </Card>
-        :
-        <></>
-        // : 
+        // :
         // <Card className="mt-5">
         //   <div className="text-center text-muted m-5 p-5">
         //     {props.t("EmptyWallMessagesMessage")}
         //   </div>
         // </Card>
-}
+      }
 
-      {  
-          
-        environment ?
-        !initialLoadCompleted ?
-          <LoadingSpinner /> :
-        <>
-          {nextPageButtonVisible && (
-            <div className="p-3 text-center">
-              <Button
-                color="success"
-                className="btn-rounded px-3"
-                onClick={loadNextPage}
-              >
-                {isbusy && <Spinner size="sm" color="light" className="me-2" />}
-                {props.t("LoadMore")}
-              </Button>
-            </div>
-          )}
-        </>
-         : 
-       <> </>
-    }
+      {environment ? (
+        !initialLoadCompleted ? (
+          <LoadingSpinner />
+        ) : (
+          <>
+            {nextPageButtonVisible && (
+              <div className="p-3 text-center">
+                <Button
+                  color="success"
+                  className="btn-rounded px-3"
+                  onClick={loadNextPage}
+                >
+                  {isbusy && (
+                    <Spinner size="sm" color="light" className="me-2" />
+                  )}
+                  {props.t("LoadMore")}
+                </Button>
+              </div>
+            )}
+          </>
+        )
+      ) : (
+        <> </>
+      )}
 
       <VideoPlayeModal
         isOpen={isAttachmentModalVisible}
@@ -781,6 +848,25 @@ const Messages = props => {
           successCallback={handleEditMessage}
         />
       )}
+
+      {userSession && agreementLoadCompleted && isPrivacyModalVisible && (
+        <AcceptPrivacyModal
+          props={props}
+          isOpen={isPrivacyModalVisible}
+          closeCallback={() => handleClosePrivacyModal(true)}
+          continueCallBack={() => handleContinuePrivacyModal()}
+        />
+      )}
+
+      {userSession && agreementLoadCompleted &&
+        isEmergencyAlertModalVisible &&
+        !isPrivacyModalVisible && (
+          <EmergencyAlertModal
+            props={props}
+            isOpen={isEmergencyAlertModalVisible && !isPrivacyModalVisible}
+            closeCallback={() => handleCloseEmergencyModal(true)}
+          />
+        )}
     </Container>
   )
 }

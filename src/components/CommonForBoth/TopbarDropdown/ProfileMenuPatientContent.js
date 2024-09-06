@@ -1,10 +1,11 @@
-import React, {  useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { DropdownItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 import getProtocols from "../../../infrastructure/services/network/apiCalls/protocolApiService"
 import getInstitute from "../../../infrastructure/services/network/apiCalls/instituteApiService"
-import useUserSession from "../../../infrastructure/session/useUserSession"
+//import useUserSession from "../../../infrastructure/session/useUserSession"
+//import NotificationSettingModal from "../../Common/NotificationSettingModal"
 
 import {
     apiErrorToast,
@@ -12,9 +13,11 @@ import {
     closeToast
   } from "../../../helpers/toastHelper"
 
-const ProfileMenuPatientContent = ({ props }) => {
+const ProfileMenuPatientContent = ({ props , openNotificationSetting }) => {
 
-    const userSession = useUserSession();
+   // const userSession = useUserSession();
+
+   // const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false);
 
     function getPatientsProtocols() {
         showLoadingToast();
@@ -64,6 +67,13 @@ const ProfileMenuPatientContent = ({ props }) => {
                 <span>{props.t("ShowProtocol")}</span>
             </DropdownItem>
 
+            <DropdownItem header>{props.t("NotificationsGroupTitle")}</DropdownItem>
+              <DropdownItem
+                onClick={() => openNotificationSetting()}>
+                <i className="fas fa-exchange-alt font-size-18 align-middle me-2 text-muted"></i>
+                <span>{props.t("NotificationSettingsPageTitle")}</span>
+              </DropdownItem>
+
             <DropdownItem header>{props.t("HelpDeskGroupTitle")}</DropdownItem>
             <Link to="/contact" className="dropdown-item">
                 <i className="fas fa-question-circle font-size-18 align-middle me-2 text-muted"></i>
@@ -79,6 +89,14 @@ const ProfileMenuPatientContent = ({ props }) => {
                 <i className="fas fa-file-contract font-size-18 align-middle me-2 text-muted"></i>
                 <span>{props.t("PrivacyPolicyTitle")}</span>
             </DropdownItem>
+
+   {/*  {isNotificationModalOpen && 
+        <NotificationSettingModal
+        props={props}
+        isOpen={isNotificationModalOpen}
+        closeCallback={() => { setIsNotificationModalOpen(false) }}
+      />
+   } */}
         </>
     );
 }
