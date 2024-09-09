@@ -132,5 +132,8 @@
   },
   "devDependencies": {
     "redux-devtools": "^3.7.0"
-  }
+  },
+  "engines": {
+    "node": ">=16.0.0 <18"
+}
 }
