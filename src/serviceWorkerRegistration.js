@@ -1,5 +1,4 @@
 export default function LocalServiceWorkerRegister() {
-    //const swPath = `${process.env.PUBLIC_URL}/sw.js`;
     const swPath = `${process.env.PUBLIC_URL}/OneSignalSDKWorker.js`;
     if ('serviceWorker' in navigator ) {
       window.addEventListener('load', function () {
