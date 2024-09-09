@@ -19,8 +19,9 @@ const useUserSession = () => {
     const userProfileStr = ReactSession.get(userProfileKey)
     if (userProfileStr) {
       var user = getSessionUserProfile()
+      console.log(user)
       if (user.accountId == account.localAccountId) {
-        LoadUserAgreement()
+        LoadUserAgreement(user.userId)
         setUserSession(user)
       } else {
         loadUserProfile()
@@ -35,11 +36,11 @@ const useUserSession = () => {
     getCurrentUserDetails(saveUserProfile, errorHandle)
   }
 
-  function  LoadUserAgreement()
+  function  LoadUserAgreement(userId)
   {    
-    const agreement = ReactSession.get(userAgreementKey)
+    var agreement = ReactSession.get(userAgreementKey)
     console.log(agreement)
-    if(typeof agreement === "undefined")
+    if(typeof agreement === "undefined" || agreement == null || agreement.userId!=userId)
     {
       getUserAgreement()
     }
@@ -51,7 +52,7 @@ const useUserSession = () => {
   function saveUserProfile(userData) {
     console.log('saveUserProfile')
     var userDataWithRolers = defineRoles(userData)
-    
+
     getUserAgreement()
 
     var userProfileStr = JSON.stringify(userDataWithRolers);
