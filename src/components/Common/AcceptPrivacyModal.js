@@ -2,15 +2,11 @@ import React, { useState, useEffect } from "react"
 import { Modal, Row, Col, Spinner, FormText } from "reactstrap"
 import Switch from "react-switch"
 import Select from "react-select"
-import { apiErrorToast ,
-    showLoadingToast,
-    closeToast } from "../../helpers/toastHelper"
-import { setSessionEnvironment } from "../../infrastructure/session/useEnvironment"
+import { apiErrorToast  } from "../../helpers/toastHelper"
 import getInstitute from "../../infrastructure/services/network/apiCalls/instituteApiService"
 import contract from "../../assets/images/popupAlerts/ic_contract_color.png"
 import { acceptPolicyConditionsAgreement } from "../../infrastructure/services/network/apiCalls/userAgreementApiService"
 import { setSessionUserAgreement } from "../../infrastructure/session/useUserSession"
-import { set } from "lodash"
 import useUserSession from "../../infrastructure/session/useUserSession";
 
 export const AcceptPrivacyModal = ({ props, isOpen, closeCallback,continueCallBack }) => {

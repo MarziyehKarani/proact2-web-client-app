@@ -538,5 +538,9 @@
  "Closed": "Closed",
  "EmptyContactPage":"There is no contact page to display",
  "NoAssignedMedicalTeam": "We did not find any medical team associated with your account. Contact Medical Team Admin",
- "EmptyPatientList":"There are no patients to display"
+ "EmptyPatientList":"There are no patients to display",
+ "Home" : "Home",
+ "Page" : "Page",
+ "records" : "records",
+ "selectPlaceholder" : "Select..."
 } 

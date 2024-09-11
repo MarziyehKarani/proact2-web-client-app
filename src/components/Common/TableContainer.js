@@ -12,6 +12,7 @@ import {
 } from "react-table";
 import { Table, Row, Col, Button, Input } from "reactstrap";
 import { Filter, DefaultColumnFilter } from "./filters";
+import { useTranslation , withTranslation } from "react-i18next"
 
 const TableContainer = ({
   columns,
@@ -28,6 +29,9 @@ const TableContainer = ({
   isAddInvoice,
   handleInvoiceClicks,
 }) => {
+
+  const { t } = useTranslation();
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -79,6 +83,7 @@ const TableContainer = ({
       <Row className="mb-3">
       {isGlobalFilter && (
           <GlobalFilter
+
             preGlobalFilteredRows={preGlobalFilteredRows}
             globalFilter={state.globalFilter}
             setGlobalFilter={setGlobalFilter}
@@ -145,7 +150,7 @@ const TableContainer = ({
           </Col>
         )}
 
-        <Col sm="2">
+        <Col sm="3">
           <select
             className="form-select"
             value={pageSize}
@@ -153,7 +158,7 @@ const TableContainer = ({
           >
             {[10, 20, 30, 40, 50].map((pageSize) => (
               <option key={pageSize} value={pageSize}>
-                Show {pageSize}
+                {t("Show")} {pageSize}
               </option>
             ))}
           </select>
@@ -265,7 +270,7 @@ const TableContainer = ({
           </div>
         </Col>
         <Col className="col-md-auto d-block">
-          Page{" "}
+          {t("Page")}{" "}
           <strong>
             {pageIndex + 1} of {pageOptions.length}
           </strong>
@@ -306,6 +311,9 @@ function GlobalFilter({
   globalFilter,
   setGlobalFilter,
 }) {
+
+  const { t } = useTranslation();
+
   const count = preGlobalFilteredRows.length;
   const [value, setValue] = React.useState(globalFilter);
   const onChange = useAsyncDebounce((value) => {
@@ -319,7 +327,7 @@ function GlobalFilter({
           <div className="position-relative">
             <label htmlFor="search-bar-0" className="search-label">
               <span id="search-bar-0-label" className="sr-only">
-                Search this table
+              {t('SearchbarPlaceholder')}
               </span>
               <input
                 onChange={(e) => {
@@ -329,7 +337,7 @@ function GlobalFilter({
                 id="search-bar-0"
                 type="text"
                 className="form-control"
-                placeholder={`${count} records...`}
+                placeholder={`${count} ${t('records')}...`}
                 value={value || ""}
               />
             </label>
@@ -345,4 +353,4 @@ TableContainer.propTypes = {
   preGlobalFilteredRows: PropTypes.any,
 };
 
-export default TableContainer;
+export default withTranslation()(TableContainer);

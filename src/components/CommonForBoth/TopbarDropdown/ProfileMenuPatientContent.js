@@ -70,7 +70,7 @@ const ProfileMenuPatientContent = ({ props , openNotificationSetting }) => {
             <DropdownItem header>{props.t("NotificationsGroupTitle")}</DropdownItem>
               <DropdownItem
                 onClick={() => openNotificationSetting()}>
-                <i className="fas fa-exchange-alt font-size-18 align-middle me-2 text-muted"></i>
+                <i className="fas fa-bell font-size-18 align-middle me-2 text-muted"></i>
                 <span>{props.t("NotificationSettingsPageTitle")}</span>
               </DropdownItem>
 

@@ -19,9 +19,11 @@ const useUserSession = () => {
     const userProfileStr = ReactSession.get(userProfileKey)
     if (userProfileStr) {
       var user = getSessionUserProfile()
-      console.log(user)
       if (user.accountId == account.localAccountId) {
-        LoadUserAgreement(user.userId)
+        if (user.isPatient)
+        {
+          LoadUserAgreement(user.userId)
+        }
         setUserSession(user)
       } else {
         loadUserProfile()
@@ -53,7 +55,10 @@ const useUserSession = () => {
     console.log('saveUserProfile')
     var userDataWithRolers = defineRoles(userData)
 
-    getUserAgreement()
+    if (userDataWithRolers.isPatient)
+    {
+      getUserAgreement()
+    }
 
     var userProfileStr = JSON.stringify(userDataWithRolers);
     ReactSession.set(userProfileKey, userProfileStr)

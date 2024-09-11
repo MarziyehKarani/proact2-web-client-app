@@ -2,7 +2,8 @@ import React from "react";
 import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
 
-export const BackButton = ({ title, linkTo }) => {
+export const BackButton = ({ title,linkTo }) => {
+
     return (
         <Link to={linkTo}>
             <Button
@@ -10,7 +11,7 @@ export const BackButton = ({ title, linkTo }) => {
                 className="btn-sm me-4"
                 outline
             >
-                <i className="fas fa-chevron-left"></i> {title}
+                <i className="fas fa-chevron-left"></i> { title}
             </Button>
         </Link>
     );

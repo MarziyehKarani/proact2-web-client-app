@@ -440,8 +440,8 @@
  "YourPatientsTitle":"Ihre Patienten", 
 
  "Show":"Anzeigen", 
- "AssignedPatientsCodes": "Patients study codes",
- "Period": "Period",
+ "AssignedPatientsCodes": "Patientenstudiencodes",
+ "Period": "Periode",
 
  
 
@@ -501,7 +501,7 @@
  "Reply": "Antwort",
  "Replies": "Antworten",
  "LoadMore": "Zeig mehr",
- "ProactTools": "OTHER TOOLS",
+ "ProactTools": "ANDERE WERKZEUGE",
  "OpenAnalystConsole": "Öffnen Sie die Analyst-Konsole",
  "OpenControlPanel": "Control panel",
  "UnauthorizedMessage": "Sie sind nicht berechtigt, auf PROACT 2.0 zuzugreifen",
@@ -533,5 +533,10 @@
  "Closed": "geschlossen",
  "EmptyContactPage":"Es gibt keine Kontaktseite zum Anzeigen",
  "NoAssignedMedicalTeam": "Wir haben kein mit Ihrem Konto verknüpftes medizinisches Team gefunden. Kontaktieren Sie den Administrator des medizinischen Teams",
- "EmptyPatientList":"Es sind keine Patienten zum Anzeigen vorhanden"
+ "EmptyPatientList":"Es sind keine Patienten zum Anzeigen vorhanden",
+ "MessageToPatientPageTitle":"Nachricht an einen Patienten senden",
+ "Home" : "Home",
+ "Page" : "Seite",
+ "records" : "Aufzeichnungen",
+  "selectPlaceholder" : "Auswählen..."
  } 

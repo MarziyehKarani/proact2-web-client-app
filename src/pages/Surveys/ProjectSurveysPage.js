@@ -122,7 +122,7 @@ const ProjectSurveysPage = (props) => {
                 }
             }
         ],
-        []
+        [props.t]
     );
 
     return (

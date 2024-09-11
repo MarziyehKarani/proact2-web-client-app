@@ -139,7 +139,7 @@ const ProfileMenu = props => {
               <DropdownItem header>{props.t("NotificationsGroupTitle")}</DropdownItem>
               <DropdownItem
                 onClick={() => setIsNotificationModalOpen(true)}>
-                <i className="fas fa-exchange-alt font-size-18 align-middle me-2 text-muted"></i>
+                <i className="fas fa-bell font-size-18 align-middle me-2 text-muted"></i>
                 <span>{props.t("NotificationSettingsPageTitle")}</span>
               </DropdownItem>
               <DropdownItem header>{props.t("ProactTools")}</DropdownItem>
@@ -176,7 +176,7 @@ const ProfileMenu = props => {
               <DropdownItem header>{props.t("NotificationsGroupTitle")}</DropdownItem>
               <DropdownItem
                 onClick={() => setIsNotificationModalOpen(true)}>
-                <i className="fas fa-exchange-alt font-size-18 align-middle me-2 text-muted"></i>
+                <i className="fas fa-bell font-size-18 align-middle me-2 text-muted"></i>
                 <span>{props.t("NotificationSettingsPageTitle")}</span>
               </DropdownItem>
               <DropdownItem header>{props.t("ProactTools")}</DropdownItem>

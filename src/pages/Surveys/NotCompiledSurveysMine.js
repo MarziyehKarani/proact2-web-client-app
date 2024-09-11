@@ -136,7 +136,7 @@ const NotCompiledSurveysMine = (props) => {
                 }
             }
         ],
-        []
+        [props.t]
     );
 
     return (

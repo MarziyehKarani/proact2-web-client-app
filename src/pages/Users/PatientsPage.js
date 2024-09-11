@@ -68,7 +68,7 @@ const PatientsPage = props => {
     generateAndDownloadTextFile(content, filename)
   }
 
-  const columns = useMemo(
+  var columns = useMemo(
     () => [
       {
         Header: props.t("Patient"),
@@ -140,7 +140,7 @@ const PatientsPage = props => {
       //     }
       // }
     ],
-    []
+    [props.t]
   )
 
   return (

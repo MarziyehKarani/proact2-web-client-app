@@ -107,18 +107,19 @@ const Messages = props => {
   const POOL_REQUEST_INTERVAL_IN_SECONDS = 60000
 
   useEffect(() => {
-    if (userSession && !initialLoadCompleted) {
+    if (userSession && userSession.isPatient && !initialLoadCompleted) {
       loadUserAgreement()
       setAgreementLoadCompleted(true);
     }
   }, [userSession])
 
   useEffect(() => {
-    if (environment && agreementLoadCompleted && !initialLoadCompleted) {
+    if (environment && !initialLoadCompleted) {
       getCurrentProjectProperties()
       // loadMessages()
       if (userSession && userSession.isMedicalProfessional)
       {
+        console.log("loadPatients")
         loadPatients()
       }
       setInitialLoadCompleted(true) // Mark initial load as completed

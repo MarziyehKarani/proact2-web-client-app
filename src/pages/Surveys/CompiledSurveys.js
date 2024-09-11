@@ -78,7 +78,7 @@ const CompiledSurveys = (props) => {
                 }
             }
         ],
-        []
+        [props.t]
     );
 
     return (

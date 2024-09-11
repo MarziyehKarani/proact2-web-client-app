@@ -97,7 +97,7 @@ const PatientsAssignedToASurveyPage = (props) => {
                 }
             }
         ],
-        []
+        [props.t]
     );
 
     return (

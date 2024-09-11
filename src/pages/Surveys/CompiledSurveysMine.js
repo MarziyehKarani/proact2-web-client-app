@@ -78,7 +78,7 @@ const CompiledSurveysMine = (props) => {
         }
       }
     ],
-    []
+    [props.t]
   );
 
   return (

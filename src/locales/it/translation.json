@@ -663,7 +663,7 @@
  "AddAnalysisValidationError" :"Devi selezionare almeno un elemento.",
  
  "Show" :"Visualizza",
- "AssignedPatientsCodes": "Patients study codes",
+ "AssignedPatientsCodes": "Codici di studio dei pazienti",
  "Period": "Periodo",
  
 
@@ -755,7 +755,12 @@
  "Closed": "aperto",
  "EmptyContactPage":"Non c'è alcuna pagina di contatto da visualizzare",
  "NoAssignedMedicalTeam": "Non abbiamo trovato alcun team medico associato al tuo account. Contatta l'amministratore del team medico",
- "EmptyPatientList":"Non ci sono pazienti da visualizzare"
+ "EmptyPatientList":"Non ci sono pazienti da visualizzare",
+ "MessageToPatientPageTitle":"Invia un messaggio a un paziente",
+ "Home" : "Home",
+ "Page" : "Pagina",
+ "records" : "registrazioni",
+  "selectPlaceholder" : "Seleziona..."
 }
 
 

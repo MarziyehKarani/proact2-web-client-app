@@ -441,8 +441,8 @@
   "YourPatientsTitle":"Uw patiënten",
 
     "Show":"Tonen",
-    "AssignedPatientsCodes": "Patients study codes",
-    "Period": "Period",
+    "AssignedPatientsCodes": "Patiëntenstudiecodes",
+    "Period": "periode",
 
 
 
@@ -505,7 +505,7 @@
     "Reply": "Antwoord",
     "Replies": "Antwoorden",
     "LoadMore": "Laat meer zien",
-    "ProactTools": "OTHER TOOLS",
+    "ProactTools": "ANDERE HULPMIDDELEN",
     "OpenAnalystConsole": "Open de analistenconsole",
     "OpenControlPanel": "Control panel",
     "UnauthorizedMessage": "U bent niet geautoriseerd voor toegang tot PROACT 2.0",
@@ -537,5 +537,10 @@
     "Closed": "gesloten",
     "EmptyContactPage":"Er is geen contactpagina om weer te geven",
     "NoAssignedMedicalTeam": "We hebben geen medisch team gevonden dat aan uw account is gekoppeld. Neem contact op met de beheerder van het medisch team",
-    "EmptyPatientList":"Er zijn geen patiënten om weer te geven"
+    "EmptyPatientList":"Er zijn geen patiënten om weer te geven",
+    "MessageToPatientPageTitle":"Stuur een bericht naar een patiënt",
+    "Home" : "Home",
+    "Page" : "Pagina",
+    "records" : "verslagen",
+  "selectPlaceholder" : "Selecteren..."
 }

@@ -4,7 +4,11 @@ import { Link } from "react-router-dom"
 import { Row, Col, BreadcrumbItem } from "reactstrap"
 import { BackButton } from "../../components/Common/BackButton";
 import { HistoryBackButton } from "./HistoryBackButton";
+import { useTranslation } from "react-i18next"
+
 const Breadcrumb = props => {
+
+  const { t } = useTranslation();
 
   function handleClick() {
     if(props.useHistory)
@@ -22,9 +26,9 @@ const Breadcrumb = props => {
               !props.backButtonHidden &&
               <>
                { props.useHistory ?
-                <HistoryBackButton title="Back" history={props.history} />
+                <HistoryBackButton title={ t("Back") } history={props.history} />
                 :
-                <BackButton linkTo={props.backButtonLinkTo} title="Back" />}
+                <BackButton linkTo={props.backButtonLinkTo} title={ t("Back") } />}
               </>
             }
             {" "} {props.breadcrumbItem}

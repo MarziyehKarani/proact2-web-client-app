@@ -42,6 +42,7 @@ export const ChangeStudyModal = ({ props, isOpen, closeCallback }) => {
 
     function handleLoadProjectsSuccess(data) {
         var options = getProjectSelectOptionsFromItems(data);
+        console.log(options);
         setProjects(options);
         setIsProjectsBusy(false);
     }
@@ -159,6 +160,7 @@ export const ChangeStudyModal = ({ props, isOpen, closeCallback }) => {
                                         onChange={setSelectedProject}
                                         options={projects}
                                         classNamePrefix="select2-selection"
+                                        placeholder={props.t('selectPlaceholder')}
                                     />
                                 </div>
                                 {
@@ -183,6 +185,7 @@ export const ChangeStudyModal = ({ props, isOpen, closeCallback }) => {
                                         onChange={setSelectedMedicalTeam}
                                         options={medicalTeams}
                                         classNamePrefix="select2-selection"
+                                        placeholder={props.t('selectPlaceholder')}
                                     />
                                 </div>
                                 {
