@@ -46,8 +46,8 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
       } else if (data.active) {
         console.log(data.startAtUtc)
         console.log(data.stopAtUtc)
-        var start =moment.utc(data.startAtUtc).local();
-        var end = moment.utc(data.stopAtUtc).local();
+        var start =moment.utc(data.startAtUtc);
+        var end = moment.utc(data.stopAtUtc);
         console.log(start)
         console.log(end)
         setFromTime(start)
