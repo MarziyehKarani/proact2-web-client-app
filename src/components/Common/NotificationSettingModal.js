@@ -46,12 +46,21 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
       } else if (data.active) {
         console.log(data.startAtUtc)
         console.log(data.stopAtUtc)
-        var start =moment.utc(data.startAtUtc);
-        var end = moment.utc(data.stopAtUtc);
+        
+        var start = toLocalTime(data.startAtUtc)
+        var end = toLocalTime(data.stopAtUtc)
         console.log(start)
         console.log(end)
-        setFromTime(start)
-        setEndTime(end)
+
+        var fTime =moment(data.startAtUtc).local();
+        var eTime = moment(data.stopAtUtc).local();
+        console.log(fTime)
+        console.log(eTime)
+        console.log("Local Start Time:", fTime.format("YYYY-MM-DD HH:mm:ss"));
+        console.log("Local End Time:", eTime.format("YYYY-MM-DD HH:mm:ss"));
+
+        setFromTime(fTime)
+        setEndTime(eTime)
 
         console.log(fromTime)
         console.log(endTime)
@@ -66,11 +75,11 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
 
   function handleStartTimeValueChanged(value) {
     console.log(value.format(format))
-    setFromTime(value)
+    setFromTime(value.local())
   }
 
   function handleEndTimeValueChanged(value) {
-    setEndTime(value)
+    setEndTime(value.local())
   }
 
   function handleApiRequestError(message) {
@@ -140,37 +149,18 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
     const requestBody = {
       active: notificationEnabled,
       allDay: notificationEnabled && fromTime == endTime,
-      StartAtUtc: fromTime != null ? createDateTime(fromTime) : null,
-      StopAtUtc: endTime != null ? createDateTime(endTime) : null,
+      StartAtUtc: fromTime  ? createDateTime(fromTime) : null,
+      StopAtUtc: endTime  ? createDateTime(endTime) : null,
     }
     return requestBody
   }
 
-  const createDateTime = timeStr => {
+  const createDateTime = time => {
 
-    console.log(timeStr)
-
-    timeStr = timeStr.format('HH:mm')
-    // Get the current date
-    const currentDate =  moment();
-
-    // Extract hours and minutes from the time string
-    const [hours, minutes] = timeStr.split(":").map(Number)
-
-    console.log(hours)
-    console.log(minutes)
-
-    // Set the hours and minutes on the current date
-    currentDate.set({
-      hour: hours,
-      minute: minutes,
-      second: 0, // Optional: Set seconds to 0
-    });
-  
-
-    console.log(currentDate)
-
-    return currentDate
+    const currentDate = moment().local(); // Ensure local time
+    const [hours, minutes] = time.format('HH:mm').split(":").map(Number);
+    currentDate.set({ hour: hours, minute: minutes, second: 0 });
+    return currentDate.utc().format(); // Convert to UTC for saving
   }
 
   return (
