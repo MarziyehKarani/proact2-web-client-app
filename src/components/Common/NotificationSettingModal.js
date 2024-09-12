@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from "react"
 import { Modal, Row, Col, Spinner, FormText } from "reactstrap"
 import Switch from "react-switch"
-import TimePicker from "react-time-picker"
 import {
   getNotificationSetting,
   setNotificationSetting,
 } from "../../infrastructure/services/network/apiCalls/NotificationSettingsApiService"
 import { apiErrorToast, showSuccessToast } from "../../helpers/toastHelper"
-//import useUserSession from "../../infrastructure/session/useUserSession"
-import "react-time-picker/dist/TimePicker.css"
-import "react-clock/dist/Clock.css"
 import { toLocalTime } from "../../common/formattedDatetime"
 
+import "rc-time-picker/assets/index.css"
+import TimePicker from "rc-time-picker"
+import moment from 'moment';
 
 const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
- // const userSession = useUserSession()
   const [isErrorVisible, setIsErrorVisible] = useState(false)
   const [errorMessage, setErrorMessage] = useState()
   const [notificationEnabled, setNotificationEnabled] = useState(false)
   const [fromTime, setFromTime] = useState(null)
   const [endTime, setEndTime] = useState(null)
 
+  const format = "hh:mm a"
 
   useEffect(() => {
     if (isOpen) {
@@ -44,9 +43,11 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
       if (data.allDay) {
         setFromTime(null)
         setEndTime(null)
-      } else if(notificationEnabled) {
-        var start = toLocalTime(data.startAtUtc)
-        var end = toLocalTime(data.stopAtUtc)
+      } else if (data.active) {
+        console.log(data.startAtUtc)
+        console.log(data.stopAtUtc)
+        var start =moment.utc(data.startAtUtc).local();
+        var end = moment.utc(data.stopAtUtc).local();
         console.log(start)
         console.log(end)
         setFromTime(start)
@@ -64,6 +65,7 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
   }
 
   function handleStartTimeValueChanged(value) {
+    console.log(value.format(format))
     setFromTime(value)
   }
 
@@ -118,6 +120,7 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
   function handleChangeButtonClick() {
     if (validate()) {
       const request = prepareRequestBody()
+      console.log(request)
       setNotificationSetting(request, apiSuccessHandler, apiErrorToast)
 
       //  reloadMainPage();
@@ -144,8 +147,12 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
   }
 
   const createDateTime = timeStr => {
+
+    console.log(timeStr)
+
+    timeStr = timeStr.format('HH:mm')
     // Get the current date
-    const currentDate = new Date()
+    const currentDate =  moment();
 
     // Extract hours and minutes from the time string
     const [hours, minutes] = timeStr.split(":").map(Number)
@@ -154,9 +161,12 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
     console.log(minutes)
 
     // Set the hours and minutes on the current date
-    currentDate.setHours(hours)
-    currentDate.setMinutes(minutes)
-    currentDate.setSeconds(0) // Optional: Set seconds to 0
+    currentDate.set({
+      hour: hours,
+      minute: minutes,
+      second: 0, // Optional: Set seconds to 0
+    });
+  
 
     console.log(currentDate)
 
@@ -200,25 +210,49 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
             <div>
               <label
                 htmlFor="example-text-input"
-                className="col-md-4 col-form-label"
+                className="col-md-6 col-form-label"
               >
                 {props.t("NotificationsReceivingTime")}
               </label>
             </div>
             <div className="row mb-1">
               <div className="col-md-4">
-                <lable>{props.t("NotificationsTimeFrom")}</lable>
-                 <TimePicker
+                <lable className="me-2">{props.t("NotificationsTimeFrom")}</lable>
+                {/* <TimePicker
                   className="m-2"
                   onChange={setFromTime}
                   value={fromTime}
-                /> 
-
+                  clockIcon={null}
+                />  */}
+                <TimePicker
+                  showSecond={false}
+                  value={fromTime}
+                  className="xxx m-2"
+                  onChange={handleStartTimeValueChanged}
+                  format={format}
+                  use12Hours
+                  inputReadOnly
+                />
+                
               </div>
 
               <div className="col-md-4">
-                <lable>{props.t("NotificationsTimeTo")}</lable>
-                 <TimePicker className="m-2" onChange={setEndTime} value={endTime} /> 
+                <lable className="me-3">{props.t("NotificationsTimeTo")}</lable>
+                {/*  <TimePicker
+                  className="m-2"
+                  onChange={setEndTime}
+                  value={endTime}
+                /> */}
+
+                <TimePicker
+                  showSecond={false}
+                  value={endTime}
+                  className="xxx m-2"
+                  onChange={handleEndTimeValueChanged}
+                  format={format}
+                  use12Hours
+                  inputReadOnly
+                />
               </div>
             </div>
 
