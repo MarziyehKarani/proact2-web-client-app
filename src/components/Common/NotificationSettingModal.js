@@ -75,11 +75,11 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
 
   function handleStartTimeValueChanged(value) {
     console.log(value.format(format))
-    setFromTime(value.local())
+    setFromTime(value)
   }
 
   function handleEndTimeValueChanged(value) {
-    setEndTime(value.local())
+    setEndTime(value)
   }
 
   function handleApiRequestError(message) {
