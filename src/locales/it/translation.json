@@ -705,7 +705,7 @@
  "StartTime": "Inizia",
  "ExpireTime": "Scade",
  "Actions": "Azioni",
- "StudySurveys": "Quesionari dello studio",
+ "StudySurveys": "Questionari dello studio",
  "SurveyStats": "Statistiche",
  "SurveyResults":"Risposte del paziente",
  "SurveyResultsOverTheTime":"Risposte del paziente nel tempo",
@@ -760,7 +760,8 @@
  "Home" : "Home",
  "Page" : "Pagina",
  "records" : "registrazioni",
-  "selectPlaceholder" : "Seleziona..."
+  "selectPlaceholder" : "Seleziona...",
+ "NotificationSettingsUpdated" : "L'impostazione di notifica è stata aggiornata"
 }
 
 

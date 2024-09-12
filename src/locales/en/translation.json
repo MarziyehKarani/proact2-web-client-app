@@ -507,7 +507,7 @@
  "Replies": "Replies",
  "LoadMore": "Show more",
  "ProactTools": "OTHER TOOLS",
- "OpenAnalystConsole": "Open the analyst console",
+ "OpenAnalystConsole": "Analyst console",
  "OpenControlPanel": "Control panel",
  "UnauthorizedMessage": "You are not authorized to access PROACT 2.0",
  "CompileSurvey": "Fill in",
@@ -542,5 +542,6 @@
  "Home" : "Home",
  "Page" : "Page",
  "records" : "records",
- "selectPlaceholder" : "Select..."
+ "selectPlaceholder" : "Select...",
+ "NotificationSettingsUpdated" : "Notification setting has been updated"
 } 

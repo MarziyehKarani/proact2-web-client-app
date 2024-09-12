@@ -506,7 +506,7 @@
     "Replies": "Antwoorden",
     "LoadMore": "Laat meer zien",
     "ProactTools": "ANDERE HULPMIDDELEN",
-    "OpenAnalystConsole": "Open de analistenconsole",
+    "OpenAnalystConsole": "Analyst console",
     "OpenControlPanel": "Control panel",
     "UnauthorizedMessage": "U bent niet geautoriseerd voor toegang tot PROACT 2.0",
     "CompileSurvey": "Invullen",
@@ -542,5 +542,6 @@
     "Home" : "Home",
     "Page" : "Pagina",
     "records" : "verslagen",
-  "selectPlaceholder" : "Selecteren..."
+  "selectPlaceholder" : "Selecteren...",
+ "NotificationSettingsUpdated" : "Meldingsinstelling is bijgewerkt"
 }
