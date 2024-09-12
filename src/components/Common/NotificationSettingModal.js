@@ -52,8 +52,8 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
         console.log(start)
         console.log(end)
 
-        var fTime =moment(data.startAtUtc).local();
-        var eTime = moment(data.stopAtUtc).local();
+        var fTime =moment(data.startAtUtc);
+        var eTime = moment(data.stopAtUtc);
         console.log(fTime)
         console.log(eTime)
         console.log("Local Start Time:", fTime.format("YYYY-MM-DD HH:mm:ss"));
