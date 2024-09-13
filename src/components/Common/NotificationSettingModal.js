@@ -6,8 +6,6 @@ import {
   setNotificationSetting,
 } from "../../infrastructure/services/network/apiCalls/NotificationSettingsApiService"
 import { apiErrorToast, showSuccessToast } from "../../helpers/toastHelper"
-import { toLocalTime } from "../../common/formattedDatetime"
-
 import "rc-time-picker/assets/index.css"
 import TimePicker from "rc-time-picker"
 import moment from 'moment';
@@ -37,28 +35,18 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
 
   function handleLoadNotificationSettingSuccess(data) {
     if (data != null) {
-      console.log(data)
       setNotificationEnabled(data.active)
 
       if (data.allDay) {
         setFromTime(null)
         setEndTime(null)
       } else if (data.active) {
-        console.log(data.startAtUtc)
-        console.log(data.stopAtUtc)
 
         var fTime =moment.utc(data.startAtUtc);
         var eTime = moment.utc(data.stopAtUtc);
-        console.log(fTime)
-        console.log(eTime)
-        console.log("Local Start Time:", fTime.format("YYYY-MM-DD HH:mm:ss"));
-        console.log("Local End Time:", eTime.format("YYYY-MM-DD HH:mm:ss"));
 
         setFromTime(fTime)
         setEndTime(eTime)
-
-        console.log(fromTime)
-        console.log(endTime)
       }
       //  setSettings(data);
     }
@@ -203,12 +191,6 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
             <div className="row mb-1">
               <div className="col-md-4">
                 <lable className="me-2">{props.t("NotificationsTimeFrom")}</lable>
-                {/* <TimePicker
-                  className="m-2"
-                  onChange={setFromTime}
-                  value={fromTime}
-                  clockIcon={null}
-                />  */}
                 <TimePicker
                   showSecond={false}
                   value={fromTime}
@@ -223,12 +205,6 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
 
               <div className="col-md-4">
                 <lable className="me-3">{props.t("NotificationsTimeTo")}</lable>
-                {/*  <TimePicker
-                  className="m-2"
-                  onChange={setEndTime}
-                  value={endTime}
-                /> */}
-
                 <TimePicker
                   showSecond={false}
                   value={endTime}
