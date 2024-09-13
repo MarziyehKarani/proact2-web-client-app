@@ -144,15 +144,15 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
     const requestBody = {
       active: notificationEnabled,
       allDay: notificationEnabled && fromTime == endTime,
-      StartAtUtc: fromTime  ? createDateTime(fromTime) : null,
-      StopAtUtc: endTime  ? createDateTime(endTime) : null,
+      StartAtUtc: fromTime  ? fromTime.format('HH:mm') : null,
+      StopAtUtc: endTime  ? endTime.format('HH:mm') : null,
     }
     return requestBody
   }
 
   const createDateTime = time => {
 
-    const currentDate = moment(); // Ensure local time
+    const currentDate = moment();   // Get current date
     const [hours, minutes] = time.format('HH:mm').split(":").map(Number);
     currentDate.set({ hour: hours, minute: minutes, second: 0 });
     return currentDate.utc().format(); // Convert to UTC for saving
