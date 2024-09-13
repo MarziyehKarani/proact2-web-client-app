@@ -46,14 +46,9 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
       } else if (data.active) {
         console.log(data.startAtUtc)
         console.log(data.stopAtUtc)
-        
-        var start = toLocalTime(data.startAtUtc)
-        var end = toLocalTime(data.stopAtUtc)
-        console.log(start)
-        console.log(end)
 
-        var fTime =moment(data.startAtUtc);
-        var eTime = moment(data.stopAtUtc);
+        var fTime =moment(data.startAtUtc).local();
+        var eTime = moment(data.stopAtUtc).local();
         console.log(fTime)
         console.log(eTime)
         console.log("Local Start Time:", fTime.format("YYYY-MM-DD HH:mm:ss"));
@@ -157,7 +152,7 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
 
   const createDateTime = time => {
 
-    const currentDate = moment().local(); // Ensure local time
+    const currentDate = moment(); // Ensure local time
     const [hours, minutes] = time.format('HH:mm').split(":").map(Number);
     currentDate.set({ hour: hours, minute: minutes, second: 0 });
     return currentDate.utc().format(); // Convert to UTC for saving
