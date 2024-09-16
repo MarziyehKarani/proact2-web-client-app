@@ -539,5 +539,6 @@
  "Page" : "Page",
  "records" : "enregistrements",
   "selectPlaceholder" : "Sélectionner...",
- "NotificationSettingsUpdated" : "Le paramètre de notification a été mis à jour"
+ "NotificationSettingsUpdated" : "Le paramètre de notification a été mis à jour",
+ "InstituteConfigErrorMessage":"Il y a un problème de configuration avec cette étude"
 }

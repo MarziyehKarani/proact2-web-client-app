@@ -538,5 +538,6 @@
   "Page" : "Página",
   "records" : "archivos",
   "selectPlaceholder" : "Seleccionar...",
- "NotificationSettingsUpdated" : "Se ha actualizado la configuración de notificaciones"
+ "NotificationSettingsUpdated" : "Se ha actualizado la configuración de notificaciones",
+ "InstituteConfigErrorMessage":"Hay un problema de configuración con este estudio."
 }

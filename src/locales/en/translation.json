@@ -543,5 +543,6 @@
  "Page" : "Page",
  "records" : "records",
  "selectPlaceholder" : "Select...",
- "NotificationSettingsUpdated" : "Notification setting has been updated"
+ "NotificationSettingsUpdated" : "Notification setting has been updated",
+ "InstituteConfigErrorMessage":"There is a configuration issue with this study"
 } 

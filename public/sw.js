@@ -23,9 +23,9 @@ self.addEventListener('active', event => {
 })
 
 
-self.addEventListener('fetch', function (event) {
+/* self.addEventListener('fetch', function (event) {
 
-    if (event.request.method === 'POST' || (event.request.method === 'GET' && event.request.url.indexOf('Users/me') == -1)) {
+    if (event.request.method === 'POST' || (event.request.method === 'GET' && event.request.url.indexOf('Users/me') > -1)) {
         event.respondWith(fetch(event.request));
         return;
     }
@@ -65,7 +65,55 @@ self.addEventListener('fetch', function (event) {
               );
         }
     }
-  });
+  }); */
+
+
+    self.addEventListener('fetch', async (event) => {
+        const { request } = event;
+    
+        // Handle POST requests and specific GET requests immediately
+        if (request.method === 'POST' || (request.method === 'GET' && !request.url.includes('Users/me'))) {
+            event.respondWith(fetch(request));
+            return;
+        }
+    
+        // Handle GET requests with caching
+        if (request.method === 'GET') {
+            if (navigator.onLine) {
+                try {
+                    const response = await fetch(request.clone());
+                    if (response && response.status === 200 && response.type === 'basic') {
+                        const responseToCache = response.clone();
+                        const cache = await caches.open(CACHE_NAME);
+                        await cache.put(request, responseToCache);
+                    }
+                    return response;
+                } catch (error) {
+                    console.error('Fetch failed:', error);
+                    // Optionally return a fallback response here
+                }
+            } else {
+                try {
+                    const cache = await caches.open(CACHE_NAME);
+                    let response = await cache.match(request);
+                    if (!response) {
+                        response = await fetch(request);
+                        if (response && response.status === 200 && response.type === 'basic') {
+                            const responseToCache = response.clone();
+                            await cache.put(request, responseToCache);
+                        }
+                    }
+                    return response;
+                } catch (error) {
+                    console.error('Cache or network fetch failed:', error);
+                    // Optionally return a fallback response here
+                }
+            }
+        }
+    });
+    
+
+
 
 
 /* self.addEventListener('fetch', function(event) {

@@ -761,7 +761,8 @@
  "Page" : "Pagina",
  "records" : "registrazioni",
   "selectPlaceholder" : "Seleziona...",
- "NotificationSettingsUpdated" : "L'impostazione di notifica è stata aggiornata"
+ "NotificationSettingsUpdated" : "L'impostazione di notifica è stata aggiornata",
+ "InstituteConfigErrorMessage":"C'è un problema di configurazione con questo studio"
 }
 
 

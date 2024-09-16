@@ -543,5 +543,6 @@
     "Page" : "Pagina",
     "records" : "verslagen",
   "selectPlaceholder" : "Selecteren...",
- "NotificationSettingsUpdated" : "Meldingsinstelling is bijgewerkt"
+ "NotificationSettingsUpdated" : "Meldingsinstelling is bijgewerkt",
+ "InstituteConfigErrorMessage":"Er is een configuratieprobleem met deze studie"
 }

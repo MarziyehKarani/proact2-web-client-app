@@ -539,5 +539,6 @@
  "Page" : "Seite",
  "records" : "Aufzeichnungen",
   "selectPlaceholder" : "Auswählen...",
- "NotificationSettingsUpdated" : "Die Benachrichtigungseinstellung wurde aktualisiert"
+ "NotificationSettingsUpdated" : "Die Benachrichtigungseinstellung wurde aktualisiert",
+ "InstituteConfigErrorMessage":"Bei dieser Studie liegt ein Konfigurationsproblem vor"
  } 
