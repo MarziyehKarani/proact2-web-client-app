@@ -102,10 +102,9 @@ const MessageVideoAttachment = ({ props, attachment, messageId, onClickCallback 
                 <i className="fas fa-play-circle fa-5x text-white" style={iconStyle}></i>
                 <h3 style={badgeDurationStyle}><Badge className='bg-dark' pill="true" >{duration}</Badge></h3>
                 <img
-                    width="100%"
-                    height="350px"
-                    style={{ objectFit: "cover" }}
+                    style={{ objectFit: "cover", marginLeft: "8%" }}
                     src={attachment.thumbnailUrl}
+                    
                 />
             </div>
 

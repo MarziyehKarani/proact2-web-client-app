@@ -10,7 +10,8 @@ import getInstitute from "../../../infrastructure/services/network/apiCalls/inst
 import {
     apiErrorToast,
     showLoadingToast,
-    closeToast
+    closeToast,
+    showErrorToast
   } from "../../../helpers/toastHelper"
 
 const ProfileMenuPatientContent = ({ props , openNotificationSetting }) => {
@@ -21,8 +22,14 @@ const ProfileMenuPatientContent = ({ props , openNotificationSetting }) => {
 
     function getPatientsProtocols() {
         showLoadingToast();
-        getProtocols(handleProtocolsRequestSuccess, apiErrorToast);
+        getProtocols(handleProtocolsRequestSuccess, onProtocolRequestError);
     }
+
+    function onProtocolRequestError() {
+        closeToast();
+        showErrorToast(props.t("InstituteConfigErrorMessage"))
+    }
+
 
     function handleProtocolsRequestSuccess(protocols) {
         closeToast();
