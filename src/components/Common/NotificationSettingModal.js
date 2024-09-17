@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Modal, Row, Col, Spinner, FormText } from "reactstrap"
+import { Modal, Row, Col, Spinner, FormText, Label } from "reactstrap"
 import Switch from "react-switch"
 import {
   getNotificationSetting,
@@ -166,13 +166,13 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
         <form>
           <div>
             <div className="mb-3 d-flex flex-row">
-              <label
+              <Label
                 htmlFor="example-text-input"
                 className="col-form-label"
                 style={{ paddingInlineEnd: "150px" }}
               >
                 {props.t("AllowNotifications")}
-              </label>
+              </Label>
 
               <Switch
                 onChange={handleActiveNotificationToggle}
@@ -181,16 +181,16 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
             </div>
 
             <div>
-              <label
+              <Label
                 htmlFor="example-text-input"
                 className="col-md-6 col-form-label"
               >
                 {props.t("NotificationsReceivingTime")}
-              </label>
+              </Label>
             </div>
             <div className="row mb-1">
               <div className="col-md-4">
-                <lable className="me-2">{props.t("NotificationsTimeFrom")}</lable>
+                <Label className="me-2">{props.t("NotificationsTimeFrom")}</Label>
                 <TimePicker
                   showSecond={false}
                   value={fromTime}
@@ -204,7 +204,7 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
               </div>
 
               <div className="col-md-4">
-                <lable className="me-3">{props.t("NotificationsTimeTo")}</lable>
+                <Label className="me-3">{props.t("NotificationsTimeTo")}</Label>
                 <TimePicker
                   showSecond={false}
                   value={endTime}

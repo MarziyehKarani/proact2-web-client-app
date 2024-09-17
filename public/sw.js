@@ -72,20 +72,21 @@ self.addEventListener('active', event => {
         const { request } = event;
     
         // Handle POST requests and specific GET requests immediately
-        if (request.method === 'POST' || (request.method === 'GET' && !request.url.includes('Users/me'))) {
+        if (request.method != 'GET' || (request.method === 'GET' && request.url.includes('Users/me'))) {
             event.respondWith(fetch(request));
             return;
         }
     
         // Handle GET requests with caching
-        if (request.method === 'GET') {
+        else if (request.method === 'GET') {
             if (navigator.onLine) {
                 try {
                     const response = await fetch(request.clone());
                     if (response && response.status === 200 && response.type === 'basic') {
                         const responseToCache = response.clone();
-                        const cache = await caches.open(CACHE_NAME);
-                        await cache.put(request, responseToCache);
+                        caches.open(CACHE_NAME).then(cache => {
+                         cache.put(request, responseToCache);
+                        });
                     }
                     return response;
                 } catch (error) {
