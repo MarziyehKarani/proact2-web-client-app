@@ -5,7 +5,10 @@ import UserRoles from "./UserRoles"
 import { aquireAccessToken } from "../azure/aquireAccessToken"
 import getCurrentUserDetails from "../services/network/apiCalls/usersApiService"
 import { useState, useEffect } from "react"
-import { getAgreement ,getCurrentUserAgreement } from "../services/network/apiCalls/userAgreementApiService"
+import {
+  getAgreement,
+  getCurrentUserAgreement,
+} from "../services/network/apiCalls/userAgreementApiService"
 
 const useUserSession = () => {
   const [userSession, setUserSession] = useState(null)
@@ -20,10 +23,11 @@ const useUserSession = () => {
     if (userProfileStr) {
       var user = getSessionUserProfile()
       if (user.accountId == account.localAccountId) {
-       /*  if (user.isPatient)
+         if (user.isPatient)
         {
           LoadUserAgreement(user.userId)
-        } */
+          user.setAgreement=true;
+        } 
         setUserSession(user)
       } else {
         loadUserProfile()
@@ -37,27 +41,27 @@ const useUserSession = () => {
     getCurrentUserDetails(saveUserProfile, errorHandle)
   }
 
-  function  LoadUserAgreement(userId)
-  {    
-    var agreement = ReactSession.get(userAgreementKey)
-    if(typeof agreement === "undefined" || agreement == null || agreement.userId!=userId)
-    {
+  function LoadUserAgreement(userId) {
+    var agreement = ReactSession.get("userAgreement")
+    if (
+      typeof agreement === "undefined" ||
+      agreement == null ||
+      agreement.userId != userId
+    ) {
       getUserAgreement()
     }
-
-
-}
-
+  }
 
   function saveUserProfile(userData) {
     var userDataWithRolers = defineRoles(userData)
 
-  /*   if (userDataWithRolers.isPatient)
+    if (userDataWithRolers.isPatient)
     {
       getUserAgreement()
-    } */
+      userDataWithRolers.setAgreement=true;
+    } 
 
-    var userProfileStr = JSON.stringify(userDataWithRolers);
+    var userProfileStr = JSON.stringify(userDataWithRolers)
     ReactSession.set(userProfileKey, userProfileStr)
     setUserSession(userDataWithRolers)
   }
@@ -85,16 +89,13 @@ const useUserSession = () => {
     return userData
   }
 
-
   function setUserAgreement(agreement) {
     if (agreement) {
-      var userAgreementStr = JSON.stringify(agreement) 
-      ReactSession.set(userAgreementKey, userAgreementStr)
-      return agreement;
-    }
-    else
-    {
-      return null;
+      var userAgreementStr = JSON.stringify(agreement)
+      ReactSession.set("userAgreement", userAgreementStr)
+      return agreement
+    } else {
+      return null
     }
   }
 
@@ -105,39 +106,45 @@ const useUserSession = () => {
   return userSession
 }
 
-function setSessionUserAgreement(userId,isPolicyAccepted,isConditionsAccepted,isEmergencyAlertAccepted) {
+function setSessionUserAgreement(
+  userId,
+  isPolicyAccepted,
+  isConditionsAccepted,
+  isEmergencyAlertAccepted
+) {
   var agreement = getSessionUserAgreement()
-  if(agreement)
-  {
-    agreement.privacyAccepted = isPolicyAccepted!=null?isPolicyAccepted:agreement.privacyAccepted
-    agreement.termsConditionsAccepted = isConditionsAccepted!=null?isConditionsAccepted:agreement.termsConditionsAccepted
-    agreement.proactEmergencyMsgAccepted = isEmergencyAlertAccepted!=null?isEmergencyAlertAccepted:agreement.proactEmergencyMsgAccepted
-  }
-  else
-  {
+  if (agreement) {
+    agreement.privacyAccepted =
+      isPolicyAccepted != null ? isPolicyAccepted : agreement.privacyAccepted
+    agreement.termsConditionsAccepted =
+      isConditionsAccepted != null
+        ? isConditionsAccepted
+        : agreement.termsConditionsAccepted
+    agreement.proactEmergencyMsgAccepted =
+      isEmergencyAlertAccepted != null
+        ? isEmergencyAlertAccepted
+        : agreement.proactEmergencyMsgAccepted
+  } else {
     agreement = {
       userId: userId,
       privacyAccepted: isPolicyAccepted,
       termsConditionsAccepted: isConditionsAccepted,
-      proactEmergencyMsgAccepted: isEmergencyAlertAccepted
+      proactEmergencyMsgAccepted: isEmergencyAlertAccepted,
     }
   }
 
-  var userAgreementStr = JSON.stringify(agreement) 
-  ReactSession.set('userAgreement', userAgreementStr)
- }
+  var userAgreementStr = JSON.stringify(agreement)
+  ReactSession.set("userAgreement", userAgreementStr)
+}
 
- function getSessionUserAgreement() {
-  const userAgreementStr = ReactSession.get('userAgreement')
-  if(userAgreementStr)
+function getSessionUserAgreement() {
+  const userAgreementStr = ReactSession.get("userAgreement")
+  if (typeof userAgreementStr === "undefined" || userAgreementStr == null) {
+     return null;
+  } else {
     return JSON.parse(userAgreementStr)
-  else
-  {
-    return getUserAgreement();
   }
 }
 
-
-
-export default useUserSession;
-export {setSessionUserAgreement , getSessionUserAgreement} ;
+export default useUserSession
+export { setSessionUserAgreement, getSessionUserAgreement }

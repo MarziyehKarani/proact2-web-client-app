@@ -45,6 +45,8 @@ import axios from "axios"
 import { AcceptPrivacyModal } from "../../components/Common/AcceptPrivacyModal"
 import { EmergencyAlertModal } from "../../components/Common/EmergencyAlertModal"
 import { getSessionUserAgreement } from "../../infrastructure/session/useUserSession"
+import useUserAgreement from "../../infrastructure/session/useUserAgreement"
+
 
 const Messages = props => {
   const [initialising, setInitialization] = useState(true)
@@ -102,12 +104,15 @@ const Messages = props => {
   const userSession = useUserSession()
 
   const environment = useEnvironment()
+
+  const userAgreement = useUserAgreement()
+
   const cancelToken = useRef(null)
 
   const POOL_REQUEST_INTERVAL_IN_SECONDS = 60000
 
   useEffect(() => {
-    if (userSession && userSession.isPatient && !initialLoadCompleted) {
+    if (userSession && userSession.isPatient && userSession.Active && userAgreement && !initialLoadCompleted) {
       loadUserAgreement()
       setAgreementLoadCompleted(true);
     }
@@ -151,12 +156,9 @@ const Messages = props => {
   }, [messages])
 
   function loadUserAgreement() {
-    if (
-      userSession &&
-      userSession.isPatient &&
-      userSession.state === userSubscriptionState.Active
-    ) {
-      const userAgreement = getSessionUserAgreement()
+  
+      // const userAgreement = userAgreement
+       console.log(userAgreement);
       if (userAgreement) {
         if (!userAgreement.privacyAccepted) {
           setIsPrivacyModalVisible(true)
@@ -174,7 +176,7 @@ const Messages = props => {
         setIsConditionsModalVisible(true)
         setIsEmergencyAlertModalVisible(true)
       }
-    }
+    
   }
 
   function loadPatients() {
