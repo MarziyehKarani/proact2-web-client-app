@@ -34,14 +34,12 @@ const useUserSession = () => {
   }
 
   function loadUserProfile() {
-    console.log('loadUserProfile')
     getCurrentUserDetails(saveUserProfile, errorHandle)
   }
 
   function  LoadUserAgreement(userId)
   {    
     var agreement = ReactSession.get(userAgreementKey)
-    console.log(agreement)
     if(typeof agreement === "undefined" || agreement == null || agreement.userId!=userId)
     {
       getUserAgreement()
@@ -52,7 +50,6 @@ const useUserSession = () => {
 
 
   function saveUserProfile(userData) {
-    console.log('saveUserProfile')
     var userDataWithRolers = defineRoles(userData)
 
     if (userDataWithRolers.isPatient)
@@ -62,7 +59,6 @@ const useUserSession = () => {
 
     var userProfileStr = JSON.stringify(userDataWithRolers);
     ReactSession.set(userProfileKey, userProfileStr)
-    console.log(userDataWithRolers)
     setUserSession(userDataWithRolers)
   }
 
@@ -91,7 +87,6 @@ const useUserSession = () => {
 
 
   function setUserAgreement(agreement) {
-    console.log(agreement)
     if (agreement) {
       var userAgreementStr = JSON.stringify(agreement) 
       ReactSession.set(userAgreementKey, userAgreementStr)
@@ -124,14 +119,12 @@ function setSessionUserAgreement(userId,isPolicyAccepted,isConditionsAccepted,is
     }
   }
 
-  console.log(agreement)
   var userAgreementStr = JSON.stringify(agreement) 
   ReactSession.set('userAgreement', userAgreementStr)
  }
 
  function getSessionUserAgreement() {
   const userAgreementStr = ReactSession.get('userAgreement')
-  console.log(userAgreementStr)
   if(userAgreementStr)
     return JSON.parse(userAgreementStr)
   return null;

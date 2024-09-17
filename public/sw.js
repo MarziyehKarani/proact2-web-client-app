@@ -66,13 +66,13 @@ self.addEventListener('active', event => {
         }
     }
   }); */
-
+  
 
     self.addEventListener('fetch', async (event) => {
         const { request } = event;
     
         // Handle POST requests and specific GET requests immediately
-        if (request.method != 'GET' || (request.method === 'GET' && request.url.includes('Users/me'))) {
+        if (request.method != 'GET' || (request.method === 'GET' && request.url.includes('Users/me') && request.url.includes('UserAgreement/me')  )) {
             event.respondWith(fetch(request));
             return;
         }

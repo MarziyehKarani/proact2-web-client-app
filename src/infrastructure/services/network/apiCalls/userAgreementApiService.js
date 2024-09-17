@@ -3,7 +3,6 @@ const axios = require('axios');
 async function getAgreement(userId,onApiOkResultCallback, onApiKoResultCallback) {
     await axios.get(`UserAgreement/${userId}`)
         .then(response => {
-            console.log(response.data);
             onApiOkResultCallback(response.data);
         })
         .catch(error => {
@@ -14,7 +13,6 @@ async function getAgreement(userId,onApiOkResultCallback, onApiKoResultCallback)
 async function getCurrentUserAgreement(onApiOkResultCallback, onApiKoResultCallback) {
     await axios.get(`UserAgreement/me`)
         .then(response => {
-            console.log(response.data);
             onApiOkResultCallback(response.data);
         })
         .catch(error => {
