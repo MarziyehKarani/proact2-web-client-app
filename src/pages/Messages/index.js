@@ -157,7 +157,6 @@ const Messages = props => {
       userSession.state === userSubscriptionState.Active
     ) {
       const userAgreement = getSessionUserAgreement()
-      console.log(userAgreement)
       if (userAgreement) {
         if (!userAgreement.privacyAccepted) {
           setIsPrivacyModalVisible(true)

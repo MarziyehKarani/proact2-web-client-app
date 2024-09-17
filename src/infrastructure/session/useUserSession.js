@@ -20,10 +20,10 @@ const useUserSession = () => {
     if (userProfileStr) {
       var user = getSessionUserProfile()
       if (user.accountId == account.localAccountId) {
-        if (user.isPatient)
+       /*  if (user.isPatient)
         {
           LoadUserAgreement(user.userId)
-        }
+        } */
         setUserSession(user)
       } else {
         loadUserProfile()
@@ -52,10 +52,10 @@ const useUserSession = () => {
   function saveUserProfile(userData) {
     var userDataWithRolers = defineRoles(userData)
 
-    if (userDataWithRolers.isPatient)
+  /*   if (userDataWithRolers.isPatient)
     {
       getUserAgreement()
-    }
+    } */
 
     var userProfileStr = JSON.stringify(userDataWithRolers);
     ReactSession.set(userProfileKey, userProfileStr)
@@ -90,6 +90,11 @@ const useUserSession = () => {
     if (agreement) {
       var userAgreementStr = JSON.stringify(agreement) 
       ReactSession.set(userAgreementKey, userAgreementStr)
+      return agreement;
+    }
+    else
+    {
+      return null;
     }
   }
 
@@ -102,7 +107,6 @@ const useUserSession = () => {
 
 function setSessionUserAgreement(userId,isPolicyAccepted,isConditionsAccepted,isEmergencyAlertAccepted) {
   var agreement = getSessionUserAgreement()
-  console.log(agreement)
   if(agreement)
   {
     agreement.privacyAccepted = isPolicyAccepted!=null?isPolicyAccepted:agreement.privacyAccepted
@@ -127,7 +131,10 @@ function setSessionUserAgreement(userId,isPolicyAccepted,isConditionsAccepted,is
   const userAgreementStr = ReactSession.get('userAgreement')
   if(userAgreementStr)
     return JSON.parse(userAgreementStr)
-  return null;
+  else
+  {
+    return getUserAgreement();
+  }
 }
 
 
