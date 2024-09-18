@@ -9,47 +9,41 @@ import {
   getCurrentUserAgreement,
 } from "../services/network/apiCalls/userAgreementApiService"
 
-const useUserAgreement = () => {
+ const useUserAgreement = () => {
   
     const [userAgreement, setUserAgreement] = useState();
-  
-    const userSession = useUserSession();
 
-    const userAgreementKey = "userAgreement"
-  
+/*     const userSession = useUserSession();
+
     useEffect(() => {
-      if (userSession) {
-        LoadUserAgreement(userSession.userId);
+        if (userSession) {
+            userSessionHandle();
+        }
+    }, [userSession]); */
+  
+    async function LoadUserAgreement(userId) {
+      console.log("Loading user agreement...");
+      const agreement = ReactSession.get("userAgreement");
+    
+      if (!agreement || agreement.userId !== userId) {
+         await getUserAgreement(); // Ensure this returns the agreement
       }
-  }, [userSession]);
-
-
-  function LoadUserAgreement(userId) {
-    var agreement = ReactSession.get(userAgreementKey)
-    if (
-      typeof agreement === "undefined" ||
-      agreement == null ||
-      agreement.userId != userId
-    ) {
-      getUserAgreement()
+      return getSessionUserAgreement();
     }
-    else
-    {
-      var userAgreementStr = JSON.stringify(agreement)
-      setUserAgreement(userAgreementStr);
-    }
-  }
 
   function addUserAgreementToSession(agreement) {
+    console.log("addUserAgreementToSession")
+    console.log(agreement)
     if (agreement) {
       var userAgreementStr = JSON.stringify(agreement)
-      ReactSession.set(userAgreementKey, userAgreementStr)
-      setUserAgreement(agreement);
+      ReactSession.set("userAgreement", userAgreementStr)
+     // setUserAgreement(userAgreementStr);
     } 
+
   }
 
-  function getUserAgreement() {
-    getCurrentUserAgreement(addUserAgreementToSession, errorHandle)
+  async function getUserAgreement() {
+    await getCurrentUserAgreement(addUserAgreementToSession, errorHandle)
   }
 
   function errorHandle() {
@@ -57,17 +51,24 @@ const useUserAgreement = () => {
     ReactSession.set(loadingKey, false)
   }
 
-    function getSessionUserAgreement() {
+/*     function getSessionUserAgreement() {
       const userAgreementStr = ReactSession.get("userAgreement")
       if (typeof userAgreementStr === "undefined" || userAgreementStr == null) {
          getUserAgreement()
       } else {
         return JSON.parse(userAgreementStr)
       }
-    }
-return userAgreement;
+    } */
 
-}
+    function getSessionUserAgreement() {
+      const userAgreementStr = ReactSession.get('userAgreement')
+      console.log(userAgreementStr)
+      if(userAgreementStr)
+        return JSON.parse(userAgreementStr)
+      return null;
+    }
+
+
 
 function setSessionUserAgreement(
   userId,
@@ -98,7 +99,11 @@ function setSessionUserAgreement(
 
   var userAgreementStr = JSON.stringify(agreement)
   ReactSession.set("userAgreement", userAgreementStr)
+  setUserAgreement(userAgreementStr);
 }
 
-export default useUserAgreement
-export { setSessionUserAgreement }
+return { userAgreement, setSessionUserAgreement ,LoadUserAgreement };
+
+}
+
+export default useUserAgreement;

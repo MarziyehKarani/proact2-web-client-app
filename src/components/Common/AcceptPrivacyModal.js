@@ -5,13 +5,17 @@ import Select from "react-select"
 import { apiErrorToast  } from "../../helpers/toastHelper"
 import getInstitute from "../../infrastructure/services/network/apiCalls/instituteApiService"
 import contract from "../../assets/images/popupAlerts/ic_contract_color.png"
-import { acceptPolicyConditionsAgreement } from "../../infrastructure/services/network/apiCalls/userAgreementApiService"
-import { setSessionUserAgreement } from "../../infrastructure/session/useUserSession"
+import { acceptPolicyConditionsAgreement } from  "../../infrastructure/services/network/apiCalls/userAgreementApiService"
+//import  {setSessionUserAgreement} from "../../infrastructure/session/useUserAgreement";
+import useUserAgreement from "../../infrastructure/session/useUserAgreement"
+
 import useUserSession from "../../infrastructure/session/useUserSession";
 
 export const AcceptPrivacyModal = ({ props, isOpen, closeCallback,continueCallBack }) => {
 
   const userSession = useUserSession();
+
+  const { setSessionUserAgreement } = useUserAgreement();
 
   const [privacyAccepted, setPrivacyAccepted] = useState(false)
   const [conditionsAccepted, setConditionsAccepted] = useState(false)

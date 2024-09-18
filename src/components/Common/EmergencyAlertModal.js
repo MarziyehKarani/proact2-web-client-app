@@ -6,12 +6,15 @@ import { apiErrorToast } from "../../helpers/toastHelper"
 import { setSessionEnvironment } from "../../infrastructure/session/useEnvironment"
 import contract from "../../assets/images/popupAlerts/ic_urgent_message.png"
 import {acceptEmergencyAlert} from "../../infrastructure/services/network/apiCalls/userAgreementApiService"
-import { setSessionUserAgreement } from "../../infrastructure/session/useUserSession"
+//import  {setSessionUserAgreement} from "../../infrastructure/session/useUserAgreement";
 import useUserSession from "../../infrastructure/session/useUserSession";
+import useUserAgreement from "../../infrastructure/session/useUserAgreement"
 
 export const EmergencyAlertModal = ({ props, isOpen, closeCallback }) => {
 
   const userSession = useUserSession();
+
+  const { setSessionUserAgreement } = useUserAgreement();
 
   const [emergencyAlertAccepted, setEmergencyAlertAccepted] = useState(false)
   const [isErrorVisible, setIsErrorVisible] = useState(false)

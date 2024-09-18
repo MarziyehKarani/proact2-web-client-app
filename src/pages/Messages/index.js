@@ -44,7 +44,7 @@ import medicalTeamStatus from "../../constants/medicalTeamStatus"
 import axios from "axios"
 import { AcceptPrivacyModal } from "../../components/Common/AcceptPrivacyModal"
 import { EmergencyAlertModal } from "../../components/Common/EmergencyAlertModal"
-import { getSessionUserAgreement } from "../../infrastructure/session/useUserSession"
+//import  {LoadUserAgreement} from "../../infrastructure/session/useUserAgreement";
 import useUserAgreement from "../../infrastructure/session/useUserAgreement"
 
 
@@ -105,21 +105,25 @@ const Messages = props => {
 
   const environment = useEnvironment()
 
-  const userAgreement = useUserAgreement()
+  const { userAgreement,LoadUserAgreement } = useUserAgreement();
+
+  //const userAgreement = useUserAgreement()
 
   const cancelToken = useRef(null)
 
   const POOL_REQUEST_INTERVAL_IN_SECONDS = 60000
 
-  useEffect(() => {
-    if (userSession && userSession.isPatient && userSession.Active && userAgreement && !initialLoadCompleted) {
-      loadUserAgreement()
+  useEffect( async () => {
+    if (userSession  && !initialLoadCompleted) {
+      console.log("loadUserAgreement")
+       await GetUserAgreement()
+       
       setAgreementLoadCompleted(true);
     }
   }, [userSession])
 
   useEffect(() => {
-    if (environment && !initialLoadCompleted) {
+    if (environment && agreementLoadCompleted && !initialLoadCompleted) {
       getCurrentProjectProperties()
       // loadMessages()
       if (userSession && userSession.isMedicalProfessional)
@@ -131,9 +135,10 @@ const Messages = props => {
     }
     // else
     //     setInitialization(false)
-  }, [environment])
+  }, [environment,agreementLoadCompleted])
 
   useEffect(() => {
+    console.log(initialLoadCompleted)
     if (initialLoadCompleted) {
       setPagingCount(0) // Reset paging count when patient changes
       setInitialization(true)
@@ -155,10 +160,14 @@ const Messages = props => {
     return initPoolRequest()
   }, [messages])
 
-  function loadUserAgreement() {
-  
+  async  function GetUserAgreement() {
+  console.log("GetUserAgreement");
+    if(userSession.isPatient &&  userSession.state == userSubscriptionState.Active)
+    {
       // const userAgreement = userAgreement
-       console.log(userAgreement);
+      console.log("loadUserAgreement func")
+       var userAgreement= await LoadUserAgreement(userSession.userId)
+       console.log(userAgreement)
       if (userAgreement) {
         if (!userAgreement.privacyAccepted) {
           setIsPrivacyModalVisible(true)
@@ -176,6 +185,9 @@ const Messages = props => {
         setIsConditionsModalVisible(true)
         setIsEmergencyAlertModalVisible(true)
       }
+
+    }
+
     
   }
 
@@ -540,7 +552,7 @@ const Messages = props => {
 
   const handleCloseEmergencyModal = () => {
     setIsEmergencyAlertModalVisible(false)
-    loadUserAgreement()
+    GetUserAgreement()
   }
 
   const handleContinuePrivacyModal = () => {

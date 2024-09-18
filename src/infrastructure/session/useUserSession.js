@@ -5,16 +5,11 @@ import UserRoles from "./UserRoles"
 import { aquireAccessToken } from "../azure/aquireAccessToken"
 import getCurrentUserDetails from "../services/network/apiCalls/usersApiService"
 import { useState, useEffect } from "react"
-import {
-  getAgreement,
-  getCurrentUserAgreement,
-} from "../services/network/apiCalls/userAgreementApiService"
 
 const useUserSession = () => {
   const [userSession, setUserSession] = useState(null)
 
   const userProfileKey = "userProfile"
-  const userAgreementKey = "userAgreement"
 
   aquireAccessToken(loadCurrentUserData)
 
@@ -23,11 +18,11 @@ const useUserSession = () => {
     if (userProfileStr) {
       var user = getSessionUserProfile()
       if (user.accountId == account.localAccountId) {
-         if (user.isPatient)
+        /*  if (user.isPatient)
         {
           LoadUserAgreement(user.userId)
           user.setAgreement=true;
-        } 
+        }  */
         setUserSession(user)
       } else {
         loadUserProfile()
@@ -55,11 +50,11 @@ const useUserSession = () => {
   function saveUserProfile(userData) {
     var userDataWithRolers = defineRoles(userData)
 
-    if (userDataWithRolers.isPatient)
+   /*  if (userDataWithRolers.isPatient)
     {
       getUserAgreement()
       userDataWithRolers.setAgreement=true;
-    } 
+    } */ 
 
     var userProfileStr = JSON.stringify(userDataWithRolers)
     ReactSession.set(userProfileKey, userProfileStr)
@@ -89,7 +84,7 @@ const useUserSession = () => {
     return userData
   }
 
-  function setUserAgreement(agreement) {
+ /*  function setUserAgreement(agreement) {
     if (agreement) {
       var userAgreementStr = JSON.stringify(agreement)
       ReactSession.set("userAgreement", userAgreementStr)
@@ -101,50 +96,10 @@ const useUserSession = () => {
 
   function getUserAgreement() {
     getCurrentUserAgreement(setUserAgreement, errorHandle)
-  }
+  } */
 
   return userSession
 }
 
-function setSessionUserAgreement(
-  userId,
-  isPolicyAccepted,
-  isConditionsAccepted,
-  isEmergencyAlertAccepted
-) {
-  var agreement = getSessionUserAgreement()
-  if (agreement) {
-    agreement.privacyAccepted =
-      isPolicyAccepted != null ? isPolicyAccepted : agreement.privacyAccepted
-    agreement.termsConditionsAccepted =
-      isConditionsAccepted != null
-        ? isConditionsAccepted
-        : agreement.termsConditionsAccepted
-    agreement.proactEmergencyMsgAccepted =
-      isEmergencyAlertAccepted != null
-        ? isEmergencyAlertAccepted
-        : agreement.proactEmergencyMsgAccepted
-  } else {
-    agreement = {
-      userId: userId,
-      privacyAccepted: isPolicyAccepted,
-      termsConditionsAccepted: isConditionsAccepted,
-      proactEmergencyMsgAccepted: isEmergencyAlertAccepted,
-    }
-  }
-
-  var userAgreementStr = JSON.stringify(agreement)
-  ReactSession.set("userAgreement", userAgreementStr)
-}
-
-function getSessionUserAgreement() {
-  const userAgreementStr = ReactSession.get("userAgreement")
-  if (typeof userAgreementStr === "undefined" || userAgreementStr == null) {
-     return null;
-  } else {
-    return JSON.parse(userAgreementStr)
-  }
-}
-
 export default useUserSession
-export { setSessionUserAgreement, getSessionUserAgreement }
+
