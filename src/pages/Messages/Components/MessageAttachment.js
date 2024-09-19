@@ -61,7 +61,7 @@ const MessageImageAttachment = ({ props, attachment }) => {
 
                     width="100%"
                     height="350px"
-                    style={{ objectFit: "cover" }}
+                    style={{ objectFit: "contain" }}
                     src={attachment.url}
                 />
             </Link>
@@ -98,14 +98,14 @@ const MessageVideoAttachment = ({ props, attachment, messageId, onClickCallback 
     return (
         <Link to="#" onClick={onClickHandler} >
 
-            <div style={{ position: "relative" }}>
+            <div style={{ position: "relative" , maxWidth:"270px" , margin:"0 auto" }}>
                 <i className="fas fa-play-circle fa-5x text-white" style={iconStyle}></i>
                 <h3 style={badgeDurationStyle}><Badge className='bg-dark' pill >{duration}</Badge></h3>
                 <img
-                    style={{ objectFit: "cover" }}
+                    style={{ objectFit: "contain" }}
                     src={attachment.thumbnailUrl}
-                    width="100%"
-                    height="350px"
+                    width="270px"
+                    height="480px"
                 />
             </div>
 
