@@ -15,12 +15,14 @@ function millisToMinutesAndSeconds(millis) {
 
 function getThumbnailWidth(width) {
     const thumbnailWidth = width ? width : 540;
-    return Math.min(thumbnailWidth / 2, window.innerWidth * 0.9);  // Limit to 90% of the screen width
+    return thumbnailWidth;
+   // return Math.min(thumbnailWidth / 2, window.innerWidth * 0.9);  // Limit to 90% of the screen width
 }
 
 function getThumbnailHeight(height) {
     const thumbnailHeight = height ? height : 960;
-    return Math.min(thumbnailHeight / 2, window.innerHeight * 0.5);  // Limit to 50% of the screen height
+    return thumbnailHeight;
+   // return Math.min(thumbnailHeight / 2, window.innerHeight * 0.5);  // Limit to 50% of the screen height
 }
 
 const MessageAttachment = ({ props, attachment, messageId, onClickCallback }) => {

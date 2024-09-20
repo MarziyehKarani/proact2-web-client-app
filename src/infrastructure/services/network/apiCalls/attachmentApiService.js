@@ -27,7 +27,31 @@ async function addAttachmentToMessage(attachment, messageId, attachmentType, onA
     });
 }
 
+async function addVideoAttachmentToMessage(attachment, messageId, attachmentType,width,height, onApiOkResultCallback, onApiKoResultCallback) {
+    const formData = new FormData();
+    formData.append("mediaFile", attachment);
+
+    console.log("width", width);
+    console.log("height", height);
+        // Append the width and height
+        formData.append("width", width);
+        formData.append("height", height);
+
+    await axios.post(`Attachments/${messageId}/${attachmentType}`, formData, {
+       /*  headers: {
+            "Content-Type": "multipart/form-data"
+        } */
+    })
+    .then(response => {
+        onApiOkResultCallback(response.data);
+    })
+    .catch(error => {
+        onApiKoResultCallback(error);
+    });
+}
+
 export {
     getAttachmentSasUriApi,
-    addAttachmentToMessage
+    addAttachmentToMessage,
+    addVideoAttachmentToMessage
 };

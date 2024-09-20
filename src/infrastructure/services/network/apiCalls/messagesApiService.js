@@ -1,5 +1,5 @@
 const axios = require('axios');
-import {addAttachmentToMessage} from "./attachmentApiService";
+import {addAttachmentToMessage , addVideoAttachmentToMessage} from "./attachmentApiService";
 import attachmentType from "../../../../constants/attachmentType";
 
 async function getMessages(projectId, medicalTeamId, pagingCount, onApiOkResultCallback, onApiKoResultCallback,cancelToken) {
@@ -90,12 +90,14 @@ async function createMessageWithVoiceAttachment(request, attachment, onApiOkResu
     }), onApiKoResultCallback);
 }
 
-async function createMessageWithVideoAttachment(request, attachment, onApiOkResultCallback, onApiKoResultCallback) {
+async function createMessageWithVideoAttachment(request, attachment,width,height, onApiOkResultCallback, onApiKoResultCallback) {
     createMessage(request, (message => {
-        addAttachmentToMessage(
+        addVideoAttachmentToMessage(
             attachment,
             message.messageId,
             attachmentType.VIDEO,
+            width,
+            height,
             onApiOkResultCallback,
             onApiKoResultCallback);
 
@@ -156,12 +158,14 @@ async function createReplyWithVoiceAttachment(request, attachment, onApiOkResult
     }), onApiKoResultCallback);
 }
 
-async function createReplyWithVideoAttachment(request, attachment, onApiOkResultCallback, onApiKoResultCallback) {
+async function createReplyWithVideoAttachment(request, attachment,width,height, onApiOkResultCallback, onApiKoResultCallback) {
     createReply(request, (message => {
-        addAttachmentToMessage(
+        addVideoAttachmentToMessage(
             attachment,
             message.messageId,
             attachmentType.VIDEO,
+            width,
+            height,
             onApiOkResultCallback,
             onApiKoResultCallback);
 

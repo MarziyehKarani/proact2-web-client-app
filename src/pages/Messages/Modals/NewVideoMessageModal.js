@@ -32,28 +32,28 @@ export const NewVideoMessageModal = ({ props, isOpen, originalMessageId, closeCa
         return request;
     }
 
-    function sendMessage(attachment) {
+    function sendMessage(attachment,width,height) {
         if (Validate(attachment)) {
             showLoadingToast();
             if(originalMessageId){
-                sendReplyMessage(attachment);
+                sendReplyMessage(attachment,width,height);
             }
             else{
-                sendNewMessage(attachment);
+                sendNewMessage(attachment,width,height);
             }
         }
     }
 
-    function sendNewMessage(attachment){
+    function sendNewMessage(attachment,width,height){
         const request = prepareRequestBody();
         createMessageWithVideoAttachment(
-            request, attachment, apiSuccessHandler, apiErrorToast);
+            request, attachment,width,height, apiSuccessHandler, apiErrorToast);
     }
 
-    function sendReplyMessage(attachment){
+    function sendReplyMessage(attachment,width,height){
         const request = prepareReplyRequestBody();
         createReplyWithVideoAttachment(
-            request, attachment, apiSuccessHandler, apiErrorToast);
+            request, attachment,width,height, apiSuccessHandler, apiErrorToast);
     }
 
     function apiSuccessHandler(resultData) {
@@ -72,8 +72,8 @@ export const NewVideoMessageModal = ({ props, isOpen, originalMessageId, closeCa
         closeCallback();
     }
 
-    function handleFileVideo(file) {
-        sendMessage(file)
+    function handleFileVideo(file,width,height) {
+        sendMessage(file,width,height)
     }
 
     return (
