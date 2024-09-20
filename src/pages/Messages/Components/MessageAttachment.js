@@ -13,6 +13,18 @@ function millisToMinutesAndSeconds(millis) {
     return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
 
+function getThumbnailWidth(width)
+{
+    const thumbnailWidth=width??540;
+    return thumbnailWidth/2;
+}
+
+function getThumbnailHeight(height)
+{
+    const thumbnailHeight=height??960;
+    return thumbnailHeight/2;
+}
+
 const MessageAttachment = ({ props, attachment, messageId, onClickCallback }) => {
     if (attachment != null) {
         if (attachment.attachmentType == 0) {
@@ -75,6 +87,9 @@ const MessageVideoAttachment = ({ props, attachment, messageId, onClickCallback 
     const duration
         = millisToMinutesAndSeconds(attachment.durationInMilliseconds);
 
+    const width=getThumbnailWidth(attachment.width);
+    const height=getThumbnailHeight(attachment.height);
+
     function onClickHandler() {
         if (onClickCallback != null) {
             onClickCallback(messageId);
@@ -90,7 +105,7 @@ const MessageVideoAttachment = ({ props, attachment, messageId, onClickCallback 
 
     const badgeDurationStyle = {
         top: "1%",
-        left: "90%",
+        left: "85%",
         position: "absolute",
         transform: "translate(-50%, 50%)"
     }
@@ -98,14 +113,14 @@ const MessageVideoAttachment = ({ props, attachment, messageId, onClickCallback 
     return (
         <Link to="#" onClick={onClickHandler} >
 
-            <div style={{ position: "relative" , maxWidth:"270px" , margin:"0 auto" }}>
+            <div style={{ position: "relative" , maxWidth:"fit-content" , margin:"0 auto" }}>
                 <i className="fas fa-play-circle fa-5x text-white" style={iconStyle}></i>
                 <h3 style={badgeDurationStyle}><Badge className='bg-dark' pill >{duration}</Badge></h3>
                 <img
                     style={{ objectFit: "contain" }}
                     src={attachment.thumbnailUrl}
-                    width="270px"
-                    height="480px"
+                    width={width}
+                    height={height}
                 />
             </div>
 
