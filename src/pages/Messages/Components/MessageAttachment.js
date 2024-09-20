@@ -13,16 +13,14 @@ function millisToMinutesAndSeconds(millis) {
     return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
 
-function getThumbnailWidth(width)
-{
-    const thumbnailWidth=width??540;
-    return thumbnailWidth/2;
+function getThumbnailWidth(width) {
+    const thumbnailWidth = width ? width : 540;
+    return Math.min(thumbnailWidth / 2, window.innerWidth * 0.9);  // Limit to 90% of the screen width
 }
 
-function getThumbnailHeight(height)
-{
-    const thumbnailHeight=height??960;
-    return thumbnailHeight/2;
+function getThumbnailHeight(height) {
+    const thumbnailHeight = height ? height : 960;
+    return Math.min(thumbnailHeight / 2, window.innerHeight * 0.5);  // Limit to 50% of the screen height
 }
 
 const MessageAttachment = ({ props, attachment, messageId, onClickCallback }) => {
@@ -117,7 +115,7 @@ const MessageVideoAttachment = ({ props, attachment, messageId, onClickCallback 
                 <i className="fas fa-play-circle fa-5x text-white" style={iconStyle}></i>
                 <h3 style={badgeDurationStyle}><Badge className='bg-dark' pill >{duration}</Badge></h3>
                 <img
-                    style={{ objectFit: "contain" }}
+                    style={{ objectFit: "contain" ,  maxwidth: "100%" , height: "auto" }}
                     src={attachment.thumbnailUrl}
                     width={width}
                     height={height}
