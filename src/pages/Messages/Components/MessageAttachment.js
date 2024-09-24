@@ -14,15 +14,15 @@ function millisToMinutesAndSeconds(millis) {
 }
 
 function getThumbnailWidth(width) {
-    const thumbnailWidth = width ? width : 540;
-    return thumbnailWidth;
-   // return Math.min(thumbnailWidth / 2, window.innerWidth * 0.9);  // Limit to 90% of the screen width
+    const thumbnailWidth = width ? width : 720;
+   // return thumbnailWidth;
+    return Math.min(thumbnailWidth / 2, window.innerWidth * 0.9);  // Limit to 90% of the screen width
 }
 
 function getThumbnailHeight(height) {
-    const thumbnailHeight = height ? height : 960;
-    return thumbnailHeight;
-   // return Math.min(thumbnailHeight / 2, window.innerHeight * 0.5);  // Limit to 50% of the screen height
+    const thumbnailHeight = height ? height : 1280;
+   // return thumbnailHeight;
+    return Math.min(thumbnailHeight / 2, window.innerHeight * 0.5);  // Limit to 50% of the screen height
 }
 
 const MessageAttachment = ({ props, attachment, messageId, onClickCallback }) => {
@@ -71,8 +71,8 @@ const MessageImageAttachment = ({ props, attachment }) => {
                         setLightboxVisible(true)
                     }}
 
-                    width="100%"
-                    height="350px"
+                     width="100%"
+                    height="350px" 
                     style={{ objectFit: "contain" }}
                     src={attachment.url}
                 />
@@ -119,8 +119,8 @@ const MessageVideoAttachment = ({ props, attachment, messageId, onClickCallback 
                 <img
                     style={{ objectFit: "contain" }}
                     src={attachment.thumbnailUrl}
-                    width= "100%"
-                    height="auto"
+                    width= {width}
+                    height={height}
                 />
             </div>
 
