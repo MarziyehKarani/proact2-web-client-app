@@ -1,7 +1,7 @@
 import React from "react";
 import { RecordWebcam, useRecordWebcam } from "react-record-webcam";
 import { Button, Spinner } from "reactstrap";
-import { useEffect,useRef } from "react";
+import { useEffect,useRef,useState } from "react";
 import Countdown from "./Countdown";
 
 const OPTIONS = {
@@ -14,6 +14,7 @@ const OPTIONS = {
 const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
 
     const recordWebcam = useRecordWebcam(OPTIONS);
+    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
     useEffect(() => {
         if (isOpen && recordWebcam.status === "CLOSED") {
@@ -29,16 +30,16 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
     const saveFile = async () => {
         console.log("saveFile");
 
-        const stream = await navigator.mediaDevices.getUserMedia({video: true});
-        const {width, height} = stream.getVideoTracks()[0].getSettings();
-        console.log(`${width}x${height}`); 
+       /*  const stream = await navigator.mediaDevices.getUserMedia({video: true});
+        const {width, height} = stream.getVideoTracks()[0].getSettings(); */
+        console.log(`${dimensions.width}x${dimensions.height}`); 
 
         const blob = await recordWebcam.getRecording();
         var file = new File([blob], "patientVideo.mp4", { type: OPTIONS.mimeType });
         Object.assign(file, {
             preview: URL.createObjectURL(file)
         });
-        onFileGenerated(file,width, height);
+        onFileGenerated(file,dimensions.width, dimensions.height);
     };
 
     function startRecording() {
@@ -73,15 +74,24 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
         return recordWebcam.status === "PREVIEW";
     }
 
-    function replyVideo() {
+    function replayVideo() {
         recordWebcam.previewRef.current.play();
     }
+
+    const handleLoadedMetadata = (e) => {
+        const videoElement = e.target;
+        setDimensions({
+          width: videoElement.videoWidth,
+          height: videoElement.videoHeight,
+        });
+      };
 
     return (
         <div>
             <div>
                 <video
                     ref={recordWebcam.webcamRef}
+                    onLoadedMetadata={handleLoadedMetadata}
                     style={{
                         height: "auto",
                         width: "100%",
@@ -151,7 +161,7 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
                             className="btn-rounded px-5 me-4" >{props.t("RetakeVideo")}</Button>
                         <Button
                             color="primary"
-                            onClick={replyVideo}
+                            onClick={replayVideo}
                             className="btn-rounded px-5 me-4" >{props.t("ReplayVideo")}</Button>
                         <Button
                             color="success"
