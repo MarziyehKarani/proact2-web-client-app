@@ -120,7 +120,7 @@ const MessageVideoAttachment = ({ props, attachment, messageId, onClickCallback 
                     style={{ objectFit: "contain" }}
                     src={attachment.thumbnailUrl}
                     width= {width}
-                    height={height}
+                    height="auto"
                 />
             </div>
 
