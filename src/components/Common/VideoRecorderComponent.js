@@ -91,7 +91,7 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
             <div>
                 <video
                     ref={recordWebcam.webcamRef}
-                    onLoadedMetadata={handleLoadedMetadata}
+                  //  onLoadedMetadata={handleLoadedMetadata}
                     style={{
                         height: "auto",
                         width: "100%",
@@ -107,6 +107,7 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
                 />
                 <video
                     ref={recordWebcam.previewRef}
+                    onLoadedMetadata={handleLoadedMetadata}
                     style={{
                         height: "auto",
                         width: "100%",
