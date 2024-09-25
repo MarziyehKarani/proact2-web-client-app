@@ -16,11 +16,11 @@ export const VideoPlayeModal = ({ isOpen, closeCallback, messageId }) => {
         }
     }, [isOpen]);
 
-    useEffect(() => {
+/*     useEffect(() => {
         if (sasUri) {
             openFullscreen();
         }
-    }, [sasUri]);
+    }, [sasUri]); */
 
     function LoadUrl() {
         if (messageId) {
@@ -55,7 +55,8 @@ export const VideoPlayeModal = ({ isOpen, closeCallback, messageId }) => {
 
     return (
         <Modal
-            size="lg"
+            fullscreen
+          //  size="xl"
             isOpen={isOpen} >
 
             <div className="modal-header">
