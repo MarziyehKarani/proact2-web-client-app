@@ -73,15 +73,15 @@ export const VideoPlayeModal = ({ isOpen, closeCallback, messageId }) => {
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div className="modal-body">
+            <div className="modal-body p-0">
                 {sasUri ?
                     <div className="embed-responsive embed-responsive-16by9 ratio ratio-16x9">
                         <iframe
-                            ref={iframeRef}
                             className="embed-responsive-item"
                             allowFullScreen
                             allow='autoplay'
                             src={sasUri}
+                            style={{ width: "100%", height: "100%" }} // Ensure iframe fills the container
                         />
 
                     </div>
