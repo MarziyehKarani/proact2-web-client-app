@@ -6,12 +6,20 @@ import { aquireAccessToken } from "../azure/aquireAccessToken"
 import getCurrentUserDetails from "../services/network/apiCalls/usersApiService"
 import { useState, useEffect } from "react"
 
-const useUserSession = () => {
-  const [userSession, setUserSession] = useState(null)
+
 
   const userProfileKey = "userProfile"
+const useUserSession = () => {
+  console.log("useUserSession: start")
+  const [userSession, setUserSession] = useState(null)
 
-  aquireAccessToken(loadCurrentUserData)
+
+  // useEffect(() => {
+  //   console.log("useUserSession: useEffect")
+    aquireAccessToken(loadCurrentUserData)
+  // }, [])
+
+  
 
   function loadCurrentUserData(account) {
     const userProfileStr = ReactSession.get(userProfileKey)

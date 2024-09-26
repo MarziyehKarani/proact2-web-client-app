@@ -55,7 +55,7 @@ export const VideoPlayeModal = ({ isOpen, closeCallback, messageId }) => {
 
     return (
         <Modal
-           // fullscreen
+           fullscreen
             size="xl"
             isOpen={isOpen} >
 
@@ -73,18 +73,16 @@ export const VideoPlayeModal = ({ isOpen, closeCallback, messageId }) => {
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div className="modal-body p-0 bg-primary" >
+            {/* <div className="embed-responsive embed-responsive-16by9 ratio ratio-16x9"> */}
+            <div className="modal-body p-0 bg-primary position-relative" >
                 {sasUri ?
-                    <div className="embed-responsive embed-responsive-16by9 ratio ratio-16x9">
                         <iframe
                             className="embed-responsive-item"
                             allowFullScreen
                             allow='autoplay'
                             src={sasUri}
-                           //  style={{ width: "100%" , height: "100%"}} // Ensure iframe fills the container
+                            style={{ width: "100%" , height: "100%" , position:"absolute" , top:"0" , left:"0"}} // Ensure iframe fills the container
                         />
-
-                    </div>
                     :
                     <LoadingSpinner />
                 }
