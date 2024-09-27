@@ -12,17 +12,8 @@ import {
  const useUserAgreement = () => {
   
     const [userAgreement, setUserAgreement] = useState();
-
-/*     const userSession = useUserSession();
-
-    useEffect(() => {
-        if (userSession) {
-            userSessionHandle();
-        }
-    }, [userSession]); */
   
     async function LoadUserAgreement(userId) {
-      console.log("Loading user agreement...");
       const agreement = ReactSession.get("userAgreement");
     
       if (!agreement || agreement.userId !== userId) {
@@ -32,12 +23,9 @@ import {
     }
 
   function addUserAgreementToSession(agreement) {
-    console.log("addUserAgreementToSession")
-    console.log(agreement)
     if (agreement) {
       var userAgreementStr = JSON.stringify(agreement)
       ReactSession.set("userAgreement", userAgreementStr)
-     // setUserAgreement(userAgreementStr);
     } 
 
   }
@@ -51,24 +39,12 @@ import {
     ReactSession.set(loadingKey, false)
   }
 
-/*     function getSessionUserAgreement() {
-      const userAgreementStr = ReactSession.get("userAgreement")
-      if (typeof userAgreementStr === "undefined" || userAgreementStr == null) {
-         getUserAgreement()
-      } else {
-        return JSON.parse(userAgreementStr)
-      }
-    } */
-
     function getSessionUserAgreement() {
       const userAgreementStr = ReactSession.get('userAgreement')
-      console.log(userAgreementStr)
       if(userAgreementStr)
         return JSON.parse(userAgreementStr)
       return null;
     }
-
-
 
 function setSessionUserAgreement(
   userId,

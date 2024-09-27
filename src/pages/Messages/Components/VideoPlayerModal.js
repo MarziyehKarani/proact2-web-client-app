@@ -74,7 +74,7 @@ export const VideoPlayeModal = ({ isOpen, closeCallback, messageId }) => {
                 </button>
             </div>
             {/* <div className="embed-responsive embed-responsive-16by9 ratio ratio-16x9"> */}
-            <div className="modal-body p-0 bg-primary position-relative" >
+            <div className="modal-body p-0 position-relative" >
                 {sasUri ?
                         <iframe
                             className="embed-responsive-item"

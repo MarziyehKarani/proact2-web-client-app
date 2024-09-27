@@ -47,6 +47,15 @@ import { EmergencyAlertModal } from "../../components/Common/EmergencyAlertModal
 //import  {LoadUserAgreement} from "../../infrastructure/session/useUserAgreement";
 import useUserAgreement from "../../infrastructure/session/useUserAgreement"
 
+// const Messages = props => {
+//   const usersession=useUserSession();
+//   return(
+// <div>
+//   <h1>Messages</h1>
+// </div>
+
+//   )
+// }
 
 const Messages = props => {
   const [initialising, setInitialization] = useState(true)
@@ -115,7 +124,6 @@ const Messages = props => {
 
   useEffect( async () => {
     if (userSession  && !initialLoadCompleted) {
-      console.log("loadUserAgreement")
        await GetUserAgreement()
        
       setAgreementLoadCompleted(true);
@@ -128,7 +136,6 @@ const Messages = props => {
       // loadMessages()
       if (userSession && userSession.isMedicalProfessional)
       {
-        console.log("loadPatients")
         loadPatients()
       }
       setInitialLoadCompleted(true) // Mark initial load as completed
@@ -138,7 +145,6 @@ const Messages = props => {
   }, [environment,agreementLoadCompleted])
 
   useEffect(() => {
-    console.log(initialLoadCompleted)
     if (initialLoadCompleted) {
       setPagingCount(0) // Reset paging count when patient changes
       setInitialization(true)
@@ -161,13 +167,9 @@ const Messages = props => {
   }, [messages])
 
   async  function GetUserAgreement() {
-  console.log("GetUserAgreement");
     if(userSession.isPatient &&  userSession.state == userSubscriptionState.Active)
     {
-      // const userAgreement = userAgreement
-      console.log("loadUserAgreement func")
        var userAgreement= await LoadUserAgreement(userSession.userId)
-       console.log(userAgreement)
       if (userAgreement) {
         if (!userAgreement.privacyAccepted) {
           setIsPrivacyModalVisible(true)
@@ -342,7 +344,7 @@ const Messages = props => {
   }
 
   const handleVideoMessage = async message => {
-    await delay(30000)
+    //await delay(10000)
     showSuccessToast(props.t("VideoMessageSentSuccessfullyAlert"))
   }
 
