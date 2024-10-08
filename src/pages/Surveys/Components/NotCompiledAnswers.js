@@ -165,7 +165,7 @@ const NotCompiledMultipleAnswer = ({ question, addCompiledQuestion }) => {
 }
 
 const NotCompiledBooleanAnswer = ({ props, question, addCompiledQuestion }) => {
-  const [value, setValue] = useState(false)
+  const [value, setValue] = useState(null)
 
   function handleValueChange(value) {
     setValue(value)
@@ -179,7 +179,7 @@ const NotCompiledBooleanAnswer = ({ props, question, addCompiledQuestion }) => {
         color="success"
         outline
         onClick={() => handleValueChange(true)}
-        active={value}
+        active={value!=null && value}
       >
         {props.t("True")}
       </Button>
@@ -187,7 +187,7 @@ const NotCompiledBooleanAnswer = ({ props, question, addCompiledQuestion }) => {
         color="danger"
         outline
         onClick={() => handleValueChange(false)}
-        active={!value}
+        active={value!=null && !value}
       >
         {props.t("False")}
       </Button>
