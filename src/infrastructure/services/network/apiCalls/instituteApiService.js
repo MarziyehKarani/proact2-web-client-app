@@ -1,7 +1,8 @@
 const axios = require('axios');
+import axiosInstance from "../axiosInstance";
 
 async function getInstitute(onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`Institutes/me`)
+    await axiosInstance.get(`Institutes/me`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })

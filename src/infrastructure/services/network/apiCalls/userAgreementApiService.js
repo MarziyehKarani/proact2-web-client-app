@@ -1,7 +1,8 @@
 const axios = require('axios');
+import axiosInstance from "../axiosInstance";
 
 async function getAgreement(userId,onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`UserAgreement/${userId}`)
+    await axiosInstance.get(`UserAgreement/${userId}`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -11,7 +12,7 @@ async function getAgreement(userId,onApiOkResultCallback, onApiKoResultCallback)
 }
 
 async function getCurrentUserAgreement(onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`UserAgreement/me`)
+    await axiosInstance.get(`UserAgreement/me`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -22,20 +23,17 @@ async function getCurrentUserAgreement(onApiOkResultCallback, onApiKoResultCallb
 
 
 async function acceptPolicyConditionsAgreement(request, onApiOkResultCallback, onApiKoResultCallback ){
-    console.log(request);
-    await axios.post(`UserAgreement/acceptAgreement`, request)
+    await axiosInstance.post(`UserAgreement/acceptAgreement`, request)
     .then(response => {
         onApiOkResultCallback(response.data);
     })
     .catch(error => {
-        console.log(error);
-        console.log('Error response:', error.response);
         onApiKoResultCallback(error);
     });
 }
 
 async function acceptEmergencyAlert(request, onApiOkResultCallback, onApiKoResultCallback ){
-    await axios.put(`UserAgreement/acceptEmergencyAlert`, request)
+    await axiosInstance.put(`UserAgreement/acceptEmergencyAlert`, request)
     .then(response => {
         onApiOkResultCallback(response.data);
     })

@@ -1,7 +1,8 @@
 const axios = require('axios');
+import axiosInstance from "../axiosInstance";
 
 async function getCurrentUserDetails( onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`Users/me`)
+    await axiosInstance.get(`Users/me`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })

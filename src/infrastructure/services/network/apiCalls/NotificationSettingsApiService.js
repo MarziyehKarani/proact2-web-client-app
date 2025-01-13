@@ -1,8 +1,8 @@
 const axios = require('axios');
-
+import axiosInstance from "../axiosInstance";
 
 async function getNotificationSetting(onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`PushNotifications/Settings`)
+    await axiosInstance.get(`PushNotifications/Settings`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -13,8 +13,7 @@ async function getNotificationSetting(onApiOkResultCallback, onApiKoResultCallba
 
 
 async function setNotificationSetting(request, onApiOkResultCallback, onApiKoResultCallback ){
-    console.log(request);
-    await axios.post(`PushNotifications/setNotification`, request)
+    await axiosInstance.post(`PushNotifications/setNotification`, request)
     .then(response => {
         onApiOkResultCallback(response.data);
     })
@@ -24,7 +23,7 @@ async function setNotificationSetting(request, onApiOkResultCallback, onApiKoRes
 }
 
 async function setRangeNotificationSetting(request, onApiOkResultCallback, onApiKoResultCallback ){
-    await axios.put(`PushNotifications/SetRange`, request)
+    await axiosInstance.put(`PushNotifications/SetRange`, request)
     .then(response => {
         onApiOkResultCallback(response.data);
     })
@@ -34,7 +33,7 @@ async function setRangeNotificationSetting(request, onApiOkResultCallback, onApi
 }
 
 async function resetNotificationSetting(request, onApiOkResultCallback, onApiKoResultCallback ){
-    await axios.put(`PushNotifications/reset`, request)
+    await axiosInstance.put(`PushNotifications/reset`, request)
     .then(response => {
         onApiOkResultCallback(response.data);
     })

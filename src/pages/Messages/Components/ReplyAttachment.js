@@ -96,7 +96,7 @@ const ReplyVideoAttachment = ({ props, attachment, messageId, onClickCallback })
         <Link to="#" onClick={onClickHandler}>
             <div style={{ position: "relative" }}>
                 <i className="fas fa-play-circle fa-3x text-white" style={iconStyle}></i>
-                <h5 style={badgeDurationStyle}><Badge className='bg-dark' pill="true" >{duration}</Badge></h5>
+                <h5 style={badgeDurationStyle}><Badge className='bg-dark' pill={true} >{duration}</Badge></h5>
                 <img
                     className="card-img-top img-fluid"
                     style={{ objectFit: "cover" }}

@@ -1,9 +1,10 @@
 import projectStatus from "../../../../constants/projectStatus"
 
 const axios = require('axios');
+import axiosInstance from "../axiosInstance";
 
 async function getProjects(onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`Projects`)
+    await axiosInstance.get(`Projects`)
         .then(response => {
             var openProjects = response.data
                // .filter(p => p.status == projectStatus.OPEN)
@@ -16,7 +17,7 @@ async function getProjects(onApiOkResultCallback, onApiKoResultCallback) {
 }
 
 async function getProjectDetails(projectId, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`Projects/${projectId}`)
+    await axiosInstance.get(`Projects/${projectId}`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -26,7 +27,7 @@ async function getProjectDetails(projectId, onApiOkResultCallback, onApiKoResult
 }
 
 async function getContactPageContent(projectId, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`ProjectContacts/${projectId}`)
+    await axiosInstance.get(`ProjectContacts/${projectId}`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })

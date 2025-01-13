@@ -1,7 +1,8 @@
 const axios = require('axios');
+import axiosInstance from "../axiosInstance";
 
 async function getAttachmentSasUriApi(messageId, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`Attachments/${messageId}`)
+    await axiosInstance.get(`Attachments/${messageId}`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -14,7 +15,7 @@ async function addAttachmentToMessage(attachment, messageId, attachmentType, onA
     const formData = new FormData();
     formData.append("mediaFile", attachment);
 
-    await axios.post(`Attachments/${messageId}/${attachmentType}`, formData, {
+    await axiosInstance.post(`Attachments/${messageId}/${attachmentType}`, formData, {
         headers: {
             "Content-Type": "multipart/form-data"
         }
@@ -37,7 +38,7 @@ async function addVideoAttachmentToMessage(attachment, messageId, attachmentType
         formData.append("width", width);
         formData.append("height", height);
 
-    await axios.post(`Attachments/${messageId}/${attachmentType}`, formData, {
+    await axiosInstance.post(`Attachments/${messageId}/${attachmentType}`, formData, {
        /*  headers: {
             "Content-Type": "multipart/form-data"
         } */

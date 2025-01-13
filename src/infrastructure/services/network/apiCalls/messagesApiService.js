@@ -1,9 +1,10 @@
 const axios = require('axios');
 import {addAttachmentToMessage , addVideoAttachmentToMessage} from "./attachmentApiService";
 import attachmentType from "../../../../constants/attachmentType";
+import axiosInstance from "../axiosInstance";
 
 async function getMessages(projectId, medicalTeamId, pagingCount, onApiOkResultCallback, onApiKoResultCallback,cancelToken) {
-    await axios.get(`Messages/${projectId}/${medicalTeamId}/${pagingCount}`,{ cancelToken })
+    await axiosInstance.get(`Messages/${projectId}/${medicalTeamId}/${pagingCount}`,{ cancelToken })
         .then(response => {
             console.log(response.data);
             onApiOkResultCallback(response.data);
@@ -14,13 +15,13 @@ async function getMessages(projectId, medicalTeamId, pagingCount, onApiOkResultC
 }
 
 async function filterMessagesByPatient(projectId, medicalTeamId, patientId, pagingCount, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`Messages/${projectId}/${medicalTeamId}/${patientId}/${pagingCount}`)
+    await axiosInstance.get(`Messages/${projectId}/${medicalTeamId}/${patientId}/${pagingCount}`)
         .then(response => {
             console.log(response.data);
             onApiOkResultCallback(response.data);
         })
         .catch(error => {
-            if (axios.isCancel(error)) {
+            if (axiosInstance.isCancel(error)) {
                 console.log('Request canceled', error.message);
             } else {
                 onApiKoResultCallback(error);
@@ -42,13 +43,13 @@ async function filterMessages(projectId, medicalTeamId,patientId,searchText, pag
         url = url + `&patient=${patientId}`;
 
     console.log(url);
-    await axios.get(url,{ cancelToken })
+    await axiosInstance.get(url,{ cancelToken })
         .then(response => {
             console.log(response.data);
             onApiOkResultCallback(response.data);
         })
         .catch(error => {
-            if (axios.isCancel(error)) {
+            if (axiosInstance.isCancel(error)) {
                 console.log('Request canceled', error.message);
             } else {
                 onApiKoResultCallback(error);
@@ -57,7 +58,7 @@ async function filterMessages(projectId, medicalTeamId,patientId,searchText, pag
 }
 
 async function createMessage(request, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.post(`Messages/${request.projectId}/${request.medicalTeamId}/create`, request)
+    await axiosInstance.post(`Messages/${request.projectId}/${request.medicalTeamId}/create`, request)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -105,7 +106,7 @@ async function createMessageWithVideoAttachment(request, attachment,width,height
 }
 
 async function createBroadcast(request, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.post(`Messages/${request.projectId}/${request.medicalTeamId}/createbroadcast`, request)
+    await axiosInstance.post(`Messages/${request.projectId}/${request.medicalTeamId}/createbroadcast`, request)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -115,7 +116,7 @@ async function createBroadcast(request, onApiOkResultCallback, onApiKoResultCall
 }
 
 async function editBroadcast(request, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.post(`Messages/${request.projectId}/${request.medicalTeamId}/${request.messageId}/editbroadcast`, request)
+    await axiosInstance.post(`Messages/${request.projectId}/${request.medicalTeamId}/${request.messageId}/editbroadcast`, request)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -125,7 +126,7 @@ async function editBroadcast(request, onApiOkResultCallback, onApiKoResultCallba
 }
 
 async function createReply(request, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.post(`Messages/${request.projectId}/${request.medicalTeamId}/replyTo/${request.originalMessageId}`, request)
+    await axiosInstance.post(`Messages/${request.projectId}/${request.medicalTeamId}/replyTo/${request.originalMessageId}`, request)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -173,7 +174,7 @@ async function createReplyWithVideoAttachment(request, attachment,width,height, 
 }
 
 async function createMessagebyMedic(request, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.post(`Messages/${request.projectId}/${request.medicalTeamId}/${request.patientId}/createbyMedic`, request)
+    await axiosInstance.post(`Messages/${request.projectId}/${request.medicalTeamId}/${request.patientId}/createbyMedic`, request)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -183,7 +184,7 @@ async function createMessagebyMedic(request, onApiOkResultCallback, onApiKoResul
 }
 
 async function deleteMessage(request, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.delete(`Messages/${request.projectId}/${request.medicalTeamId}/${request.messageId}`)
+    await axiosInstance.delete(`Messages/${request.projectId}/${request.medicalTeamId}/${request.messageId}`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })

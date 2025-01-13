@@ -544,5 +544,6 @@
  "records" : "records",
  "selectPlaceholder" : "Select...",
  "NotificationSettingsUpdated" : "Notification setting has been updated",
- "InstituteConfigErrorMessage":"There is a configuration issue with this study"
+ "InstituteConfigErrorMessage":"There is a configuration issue with this study",
+ "NewMessageAddedd":"Message sent successfully"
 } 

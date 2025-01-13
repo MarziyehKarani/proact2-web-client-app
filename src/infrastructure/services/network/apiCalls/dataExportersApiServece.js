@@ -1,7 +1,8 @@
 const axios = require('axios');
+import axiosInstance from "../axiosInstance";
 
 async function getSurveyStatsOverTheTime(surveyId, patientId, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`DataExporters/survey/${surveyId}/user/${patientId}/csv`)
+    await axiosInstance.get(`DataExporters/survey/${surveyId}/user/${patientId}/csv`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -11,7 +12,7 @@ async function getSurveyStatsOverTheTime(surveyId, patientId, onApiOkResultCallb
 }
 
 async function getAnalysisOfAPatient(userId, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`DataExporters/analysis/user/${userId}/csv`)
+    await axiosInstance.get(`DataExporters/analysis/user/${userId}/csv`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -21,7 +22,7 @@ async function getAnalysisOfAPatient(userId, onApiOkResultCallback, onApiKoResul
 }
 
 async function getSurveyResultAsExcel(surveyId, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`DataExporters/survey/${surveyId}/Excel`)
+    await axiosInstance.get(`DataExporters/survey/${surveyId}/Excel`)
         .then(response => {
             console.log(response.data);
             onApiOkResultCallback(response.data);

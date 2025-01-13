@@ -44,3 +44,5 @@ LocalServiceWorkerRegister();
        });
      });
    } */
+
+     export {msalInstance} ;

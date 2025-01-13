@@ -1,9 +1,10 @@
 import medicalTeamStatus from '../../../../constants/medicalTeamStatus';
 
 const axios = require('axios');
+import axiosInstance from "../axiosInstance";
 
 async function getMedicalTeams(projectId, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`MedicalTeam/${projectId}/my`)
+    await axiosInstance.get(`MedicalTeam/${projectId}/my`)
         .then(response => {
             var openMedicalTeams = response.data
          //   .filter(mt => mt.state == medicalTeamStatus.OPEN);

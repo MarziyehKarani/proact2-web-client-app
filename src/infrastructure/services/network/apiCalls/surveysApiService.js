@@ -1,7 +1,8 @@
 const axios = require('axios');
+import axiosInstance from "../axiosInstance";
 
 async function getMineCompiledSurveys(onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`SurveyAssegnations/completed/me`)
+    await axiosInstance.get(`SurveyAssegnations/completed/me`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -11,7 +12,7 @@ async function getMineCompiledSurveys(onApiOkResultCallback, onApiKoResultCallba
 }
 
 async function getMineNotCompiledSurveys(onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`SurveyAssegnations/notcompleted/me`)
+    await axiosInstance.get(`SurveyAssegnations/notcompleted/me`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -21,7 +22,7 @@ async function getMineNotCompiledSurveys(onApiOkResultCallback, onApiKoResultCal
 }
 
 async function getMineSurveyResults(assignationId, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`SurveyAssegnations/${assignationId}/compiled/me`)
+    await axiosInstance.get(`SurveyAssegnations/${assignationId}/compiled/me`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -31,7 +32,7 @@ async function getMineSurveyResults(assignationId, onApiOkResultCallback, onApiK
 }
 
 async function getSurveyResults(assignationId, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`SurveyAssegnations/${assignationId}/compiled`)
+    await axiosInstance.get(`SurveyAssegnations/${assignationId}/compiled`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -41,7 +42,7 @@ async function getSurveyResults(assignationId, onApiOkResultCallback, onApiKoRes
 }
 
 async function getCompiledSurveys(userId, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`SurveyAssegnations/${userId}/completed`)
+    await axiosInstance.get(`SurveyAssegnations/${userId}/completed`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -52,7 +53,7 @@ async function getCompiledSurveys(userId, onApiOkResultCallback, onApiKoResultCa
 
 
 async function getProjectSurveys(projectId, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`Survey/${projectId}/all`)
+    await axiosInstance.get(`Survey/${projectId}/all`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -62,7 +63,7 @@ async function getProjectSurveys(projectId, onApiOkResultCallback, onApiKoResult
 }
 
 async function getSurvey(surveyId, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`Survey/${surveyId}`)
+    await axiosInstance.get(`Survey/${surveyId}`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -72,7 +73,7 @@ async function getSurvey(surveyId, onApiOkResultCallback, onApiKoResultCallback)
 }
 
 async function compileSurvey(surveyId, assegnationId, request, onApiOkResultCallback, onApiKoResultCallback ){
-    await axios.post(`SurveyAssegnations/${surveyId}/${assegnationId}/compile`, request)
+    await axiosInstance.post(`SurveyAssegnations/${surveyId}/${assegnationId}/compile`, request)
     .then(response => {
         onApiOkResultCallback(response.data);
     })
@@ -82,7 +83,7 @@ async function compileSurvey(surveyId, assegnationId, request, onApiOkResultCall
 }
 
 async function getPatientsAssignedToASurvey(surveyId, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`SurveyAssegnations/${surveyId}/patients`)
+    await axiosInstance.get(`SurveyAssegnations/${surveyId}/patients`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -92,7 +93,7 @@ async function getPatientsAssignedToASurvey(surveyId, onApiOkResultCallback, onA
 }
 
 async function getSurveyStats(surveyId, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`Survey/${surveyId}/stats`)
+    await axiosInstance.get(`Survey/${surveyId}/stats`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -102,7 +103,7 @@ async function getSurveyStats(surveyId, onApiOkResultCallback, onApiKoResultCall
 }
 
 async function getPatientStats(surveyId, userId, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`Survey/${surveyId}/user/${userId}/stats`)
+    await axiosInstance.get(`Survey/${surveyId}/user/${userId}/stats`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -112,7 +113,7 @@ async function getPatientStats(surveyId, userId, onApiOkResultCallback, onApiKoR
 }
 
 async function getProjectAssignedSurveys(projectId, onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`Survey/${projectId}/all/assigned`)
+    await axiosInstance.get(`Survey/${projectId}/all/assigned`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })

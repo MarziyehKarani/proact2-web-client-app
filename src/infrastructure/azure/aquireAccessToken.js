@@ -10,6 +10,9 @@ export const aquireAccessToken = (onTokenAquiredCallBack) => {
 
     const { instance, accounts, inProgress } = useMsal();
     const account = useAccount(accounts[0] || {});
+
+   // console.log("aquireAccessToken: first" );
+   // console.log("aquireAccessToken: account" +  JSON.stringify(account) );
     
     function accessTokenAquireHandler(accessToken) {
         setApiAuthToken(accessToken);
@@ -23,7 +26,8 @@ export const aquireAccessToken = (onTokenAquiredCallBack) => {
                         scopes: protectedResources.api.scopes,
                         account: account
                     }).then((response) => {
-        
+                        console.log("acquireTokenSilent" );
+                        console.log(response);
                         accessTokenAquireHandler(response.accessToken);
         
                     }).catch((error) => {
@@ -40,7 +44,7 @@ export const aquireAccessToken = (onTokenAquiredCallBack) => {
                             // }
                         }
                     });
-    }, [instance]);
+    }, [instance, accounts, inProgress]);
 
     // useEffect(() => {
     //     console.log("aquireAccessToken: useEffect,inprogress:" + inProgress);

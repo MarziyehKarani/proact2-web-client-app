@@ -1,7 +1,8 @@
 const axios = require('axios');
+import axiosInstance from "../axiosInstance";
 
 async function getProtocols(onApiOkResultCallback, onApiKoResultCallback) {
-    await axios.get(`Protocols/me`)
+    await axiosInstance.get(`Protocols/me`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
