@@ -6,7 +6,6 @@ import axiosInstance from "../axiosInstance";
 async function getMessages(projectId, medicalTeamId, pagingCount, onApiOkResultCallback, onApiKoResultCallback,cancelToken) {
     await axiosInstance.get(`Messages/${projectId}/${medicalTeamId}/${pagingCount}`,{ cancelToken })
         .then(response => {
-            console.log(response.data);
             onApiOkResultCallback(response.data);
         })
         .catch(error => {
@@ -17,7 +16,6 @@ async function getMessages(projectId, medicalTeamId, pagingCount, onApiOkResultC
 async function filterMessagesByPatient(projectId, medicalTeamId, patientId, pagingCount, onApiOkResultCallback, onApiKoResultCallback) {
     await axiosInstance.get(`Messages/${projectId}/${medicalTeamId}/${patientId}/${pagingCount}`)
         .then(response => {
-            console.log(response.data);
             onApiOkResultCallback(response.data);
         })
         .catch(error => {

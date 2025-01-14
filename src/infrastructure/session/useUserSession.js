@@ -2,19 +2,14 @@ import React from "react"
 import { ReactSession } from "react-client-session"
 import { apiErrorToast } from "../../helpers/toastHelper"
 import UserRoles from "./UserRoles"
-import { aquireAccessToken } from "../azure/aquireAccessToken"
 import getCurrentUserDetails from "../services/network/apiCalls/usersApiService"
 import { useState, useEffect } from "react"
-import { useMsal, useAccount } from "@azure/msal-react";
 import {msalInstance} from "../../index";
 
 const userProfileKey = "userProfile"
 const useUserSession = () => {
  // console.log("useUserSession: start")
   const [userSession, setUserSession] = useState(null)
-  const [accessToken, setAccessToken] = useState(null)
-  const [tokenExpiry, setTokenExpiry] = useState(null)
-  const [account, setAccount] = useState(null)
 
  // aquireAccessToken(loadCurrentUserData);
 
@@ -28,7 +23,6 @@ const useUserSession = () => {
 
 
   function loadCurrentUserData(account) {
-    console.log("loadCurrentUserData: " + JSON.stringify(account))
     const userProfileStr = ReactSession.get(userProfileKey)
     if (userProfileStr) {
       var user = getSessionUserProfile()

@@ -22,8 +22,7 @@ axiosInstance.interceptors.request.use(async (request) => {
         const { accessToken } = await instance.acquireTokenSilent(
             accessTokenRequest
         )
-
-        console.log('accessToken: ' + accessToken);
+        
         if (accessToken) request.headers.Authorization = `Bearer ${accessToken}`
     } catch (error) {
         // Should not be used according to MS documentation
