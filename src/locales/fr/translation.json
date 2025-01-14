@@ -540,5 +540,7 @@
  "records" : "enregistrements",
   "selectPlaceholder" : "Sélectionner...",
  "NotificationSettingsUpdated" : "Le paramètre de notification a été mis à jour",
- "InstituteConfigErrorMessage":"Il y a un problème de configuration avec cette étude"
+ "InstituteConfigErrorMessage":"Il y a un problème de configuration avec cette étude",
+ "NewMessageAddedd":"Votre message a été envoyé avec succès",
+ "NewVideoMessageAdded":"Votre message vidéo a été téléchargé et envoyé avec succès"
 }

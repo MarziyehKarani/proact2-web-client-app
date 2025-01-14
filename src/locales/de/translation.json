@@ -538,7 +538,9 @@
  "Home" : "Home",
  "Page" : "Seite",
  "records" : "Aufzeichnungen",
-  "selectPlaceholder" : "Auswählen...",
+ "selectPlaceholder" : "Auswählen...",
  "NotificationSettingsUpdated" : "Die Benachrichtigungseinstellung wurde aktualisiert",
- "InstituteConfigErrorMessage":"Bei dieser Studie liegt ein Konfigurationsproblem vor"
+ "InstituteConfigErrorMessage":"Bei dieser Studie liegt ein Konfigurationsproblem vor",
+ "NewMessageAddedd":"Ihre Nachricht wurde erfolgreich gesendet",
+ "NewVideoMessageAdded":"Ihre Video-Nachricht wurde erfolgreich hochgeladen und gesendet"
  } 

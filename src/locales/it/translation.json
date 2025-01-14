@@ -762,7 +762,9 @@
  "records" : "registrazioni",
   "selectPlaceholder" : "Seleziona...",
  "NotificationSettingsUpdated" : "L'impostazione di notifica è stata aggiornata",
- "InstituteConfigErrorMessage":"C'è un problema di configurazione con questo studio"
+ "InstituteConfigErrorMessage":"C'è un problema di configurazione con questo studio",
+ "NewMessageAddedd":"Il tuo messaggio è stato inviato con successo",
+ "NewVideoMessageAdded":"Il tuo messaggio video è stato caricato e inviato con successo"
 }
 
 

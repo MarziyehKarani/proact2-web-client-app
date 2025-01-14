@@ -345,7 +345,7 @@ const Messages = props => {
 
   const handleVideoMessage = async message => {
     //await delay(10000)
-    showSuccessToast(props.t("VideoMessageSentSuccessfullyAlert"))
+    showSuccessToast(props.t("NewVideoMessageAdded"))
 
     setMessages(prevMessages => [
       { originalMessage: message, replyMessages: [] },
@@ -816,7 +816,7 @@ const Messages = props => {
         props={props}
         isOpen={isNewVideoMessageModalVisible}
         closeCallback={() => setIsNewVideoMessageModalVisible(false)}
-        successCallback={handleNewMessage}
+        successCallback={handleVideoMessage}
       />
 
       <NewTextReplyMessageModal

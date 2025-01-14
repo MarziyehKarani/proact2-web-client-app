@@ -36,7 +36,7 @@ export const showErrorToast = (message) => {
     toast.dismiss();
     toast.error(message, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -49,7 +49,7 @@ export const showErrorAlert = (message) => {
     toast.dismiss();
     toast.error(message, {
         position: "top-center",
-        autoClose: 3000,
+        autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

@@ -544,5 +544,7 @@
     "records" : "verslagen",
   "selectPlaceholder" : "Selecteren...",
  "NotificationSettingsUpdated" : "Meldingsinstelling is bijgewerkt",
- "InstituteConfigErrorMessage":"Er is een configuratieprobleem met deze studie"
+ "InstituteConfigErrorMessage":"Er is een configuratieprobleem met deze studie",
+ "NewMessageAddedd":"Je bericht is succesvol verzonden",
+ "NewVideoMessageAdded":"Je videobericht is succesvol geüpload en verzonden"
 }

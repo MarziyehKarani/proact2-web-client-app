@@ -539,5 +539,7 @@
   "records" : "archivos",
   "selectPlaceholder" : "Seleccionar...",
  "NotificationSettingsUpdated" : "Se ha actualizado la configuración de notificaciones",
- "InstituteConfigErrorMessage":"Hay un problema de configuración con este estudio."
+ "InstituteConfigErrorMessage":"Hay un problema de configuración con este estudio.",
+ "NewMessageAddedd":"Tu mensaje ha sido enviado con éxito",
+ "NewVideoMessageAdded":"Tu mensaje de video ha sido cargado y enviado con éxito"
 }
