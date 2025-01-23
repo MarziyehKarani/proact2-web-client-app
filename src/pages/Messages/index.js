@@ -109,12 +109,13 @@ const Messages = props => {
   const [isEmergencyAlertModalVisible, setIsEmergencyAlertModalVisible] =
     useState(false)
   const [agreementLoadCompleted, setAgreementLoadCompleted] = useState(false)
+  const [refreshingMessages, setRefreshingMessages] = useState(true)
 
   const userSession = useUserSession()
 
   const environment = useEnvironment()
 
-  const { userAgreement,LoadUserAgreement } = useUserAgreement();
+  const { userAgreement, LoadUserAgreement } = useUserAgreement()
 
   //const userAgreement = useUserAgreement()
 
@@ -122,11 +123,11 @@ const Messages = props => {
 
   const POOL_REQUEST_INTERVAL_IN_SECONDS = 60000
 
-  useEffect( async () => {
-    if (userSession  && !initialLoadCompleted) {
-       await GetUserAgreement()
-       
-      setAgreementLoadCompleted(true);
+  useEffect(async () => {
+    if (userSession && !initialLoadCompleted) {
+      await GetUserAgreement()
+
+      setAgreementLoadCompleted(true)
     }
   }, [userSession])
 
@@ -134,15 +135,14 @@ const Messages = props => {
     if (environment && agreementLoadCompleted && !initialLoadCompleted) {
       getCurrentProjectProperties()
       // loadMessages()
-      if (userSession && userSession.isMedicalProfessional)
-      {
+      if (userSession && userSession.isMedicalProfessional) {
         loadPatients()
       }
       setInitialLoadCompleted(true) // Mark initial load as completed
     }
     // else
     //     setInitialization(false)
-  }, [environment,agreementLoadCompleted])
+  }, [environment, agreementLoadCompleted])
 
   useEffect(() => {
     if (initialLoadCompleted) {
@@ -164,12 +164,14 @@ const Messages = props => {
     }
 
     return initPoolRequest()
-  }, [messages])
+  }, [messages, refreshingMessages])
 
-  async  function GetUserAgreement() {
-    if(userSession.isPatient &&  userSession.state == userSubscriptionState.Active)
-    {
-       var userAgreement= await LoadUserAgreement(userSession.userId)
+  async function GetUserAgreement() {
+    if (
+      userSession.isPatient &&
+      userSession.state == userSubscriptionState.Active
+    ) {
+      var userAgreement = await LoadUserAgreement(userSession.userId)
       if (userAgreement) {
         if (!userAgreement.privacyAccepted) {
           setIsPrivacyModalVisible(true)
@@ -180,17 +182,12 @@ const Messages = props => {
         if (!userAgreement.proactEmergencyMsgAccepted) {
           setIsEmergencyAlertModalVisible(true)
         }
-      }
-      else
-      {
+      } else {
         setIsPrivacyModalVisible(true)
         setIsConditionsModalVisible(true)
         setIsEmergencyAlertModalVisible(true)
       }
-
     }
-
-    
   }
 
   function loadPatients() {
@@ -257,7 +254,8 @@ const Messages = props => {
 
   function initPoolRequest() {
     const interval = setInterval(() => {
-      if (messages && messages.length > 0) {
+      console.log("initPoolRequest:refreshingMessages : ", refreshingMessages)
+      if (messages && messages.length > 0 && refreshingMessages) {
         performPoolRequest()
       }
     }, POOL_REQUEST_INTERVAL_IN_SECONDS)
@@ -268,33 +266,41 @@ const Messages = props => {
   function performPoolRequest() {
     // setMessages([]) // Clear messages when resetting
 
-    if (cancelToken.current) {
-      cancelToken.current.cancel("Last Operation canceled due to new request.")
-    }
+    console.log("enter PoolRequest:refreshingMessages : ", refreshingMessages)
+    //check if the messages should be refreshed , in case of creating new message it should not be refreshed
+    if (refreshingMessages) {
+      console.log("exec PoolRequest:refreshingMessages : ", refreshingMessages)
 
-    cancelToken.current = axios.CancelToken.source()
+      if (cancelToken.current) {
+        cancelToken.current.cancel(
+          "Last Operation canceled due to new request."
+        )
+      }
 
-    if (selectedPatient || filterText != "") {
-      filterMessages(
-        environment.projectId,
-        environment.medicalTeamId,
-        selectedPatient ? selectedPatient.userId : null,
-        filterText,
-        0,
-        userSession.isPatient,
-        handlePollRequest,
-        handleLoadMessagesError,
-        cancelToken.current.token
-      )
-    } else {
-      getMessages(
-        environment.projectId,
-        environment.medicalTeamId,
-        0,
-        handlePollRequest,
-        handleLoadMessagesError,
-        cancelToken.current.token
-      )
+      cancelToken.current = axios.CancelToken.source()
+
+      if (selectedPatient || filterText != "") {
+        filterMessages(
+          environment.projectId,
+          environment.medicalTeamId,
+          selectedPatient ? selectedPatient.userId : null,
+          filterText,
+          0,
+          userSession.isPatient,
+          handlePollRequest,
+          handleLoadMessagesError,
+          cancelToken.current.token
+        )
+      } else {
+        getMessages(
+          environment.projectId,
+          environment.medicalTeamId,
+          0,
+          handlePollRequest,
+          handleLoadMessagesError,
+          cancelToken.current.token
+        )
+      }
     }
   }
 
@@ -337,20 +343,25 @@ const Messages = props => {
       { originalMessage: message, replyMessages: [] },
       ...prevMessages,
     ])
+    setRefreshingMessages(true)
   }
 
   const delay = async ms => {
     return new Promise(resolve => setTimeout(resolve, ms))
   }
 
-  const handleVideoMessage = async message => {
+  function handleVideoMessage(message) {
     //await delay(10000)
+    console.log("callback1:refreshingMessages : ", refreshingMessages)
+    setRefreshingMessages(true)
     showSuccessToast(props.t("NewVideoMessageAdded"))
 
     setMessages(prevMessages => [
       { originalMessage: message, replyMessages: [] },
       ...prevMessages,
     ])
+
+    console.log("callback2:refreshingMessages : ", refreshingMessages)
   }
 
   function openTextReplyModal(originalMessage) {
@@ -608,18 +619,26 @@ const Messages = props => {
                 props={props}
                 isVideoEnabled={isVideoEnabled}
                 // isUserSuspended={userSession.state===userSubscriptionState.Suspended}
-                onInfoMessageButtonClick={() =>
+                onInfoMessageButtonClick={() => {
+                  setRefreshingMessages(false)
                   setIsNewInfoMessageModalVisible(true)
-                }
-                onTextMessageButtonClick={() =>
+                }}
+                onTextMessageButtonClick={() => {
+                  setRefreshingMessages(false)
                   setIsNewTextMessageModalVisible(true)
-                }
-                onAudioMessageButtonClick={() =>
+                }}
+                onAudioMessageButtonClick={() => {
+                  setRefreshingMessages(false)
                   setIsNewVoiceMessageModalVisible(true)
-                }
-                onVideoMessageButtonClick={() =>
+                }}
+                onVideoMessageButtonClick={() => {
+                  setRefreshingMessages(false)
                   setIsNewVideoMessageModalVisible(true)
-                }
+                  console.log(
+                    "button click:refreshingMessages : ",
+                    refreshingMessages
+                  )
+                }}
               />
             )}
         </Col>
@@ -879,7 +898,8 @@ const Messages = props => {
         />
       )}
 
-      {userSession && agreementLoadCompleted &&
+      {userSession &&
+        agreementLoadCompleted &&
         isEmergencyAlertModalVisible &&
         !isPrivacyModalVisible && (
           <EmergencyAlertModal
