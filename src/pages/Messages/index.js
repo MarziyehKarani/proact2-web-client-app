@@ -121,7 +121,7 @@ const Messages = props => {
 
   const cancelToken = useRef(null)
 
-  const POOL_REQUEST_INTERVAL_IN_SECONDS = 60000
+  const POOL_REQUEST_INTERVAL_IN_SECONDS = 120000
 
   useEffect(async () => {
     if (userSession && !initialLoadCompleted) {
