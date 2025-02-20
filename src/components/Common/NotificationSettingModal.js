@@ -112,7 +112,7 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
   function handleChangeButtonClick() {
     if (validate()) {
       const request = prepareRequestBody()
-      console.log(request)
+      //console.log(request)
       setNotificationSetting(request, apiSuccessHandler, apiErrorToast)
 
       //  reloadMainPage();
