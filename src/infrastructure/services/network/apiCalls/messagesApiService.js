@@ -1,5 +1,5 @@
 const axios = require('axios');
-import {addAttachmentToMessage , addVideoAttachmentToMessage} from "./attachmentApiService";
+import {addAttachmentToMessage , addVideoAttachmentToMessage, getVideoUploadRequest} from "./attachmentApiService";
 import attachmentType from "../../../../constants/attachmentType";
 import axiosInstance from "../axiosInstance";
 
@@ -89,7 +89,7 @@ async function createMessageWithVoiceAttachment(request, attachment, onApiOkResu
     }), onApiKoResultCallback);
 }
 
-async function createMessageWithVideoAttachment(request, attachment,width,height, onApiOkResultCallback, onApiKoResultCallback) {
+/* async function createMessageWithVideoAttachment(request, attachment,width,height, onApiOkResultCallback, onApiKoResultCallback) {
     createMessage(request, (message => {
         addVideoAttachmentToMessage(
             attachment,
@@ -100,6 +100,21 @@ async function createMessageWithVideoAttachment(request, attachment,width,height
             onApiOkResultCallback,
             onApiKoResultCallback);
 
+    }), onApiKoResultCallback);
+} */
+
+async function createMessageWithVideoAttachment(request, attachment, width, height, duration, thumbnails, onApiOkResultCallback, onApiKoResultCallback) {
+    createMessage(request, (message => {
+        getVideoUploadRequest(
+            message.messageId,
+            attachment,
+            width, 
+            height,
+            duration,
+            thumbnails,
+            onApiOkResultCallback,
+            onApiKoResultCallback);
+    
     }), onApiKoResultCallback);
 }
 
@@ -157,7 +172,7 @@ async function createReplyWithVoiceAttachment(request, attachment, onApiOkResult
     }), onApiKoResultCallback);
 }
 
-async function createReplyWithVideoAttachment(request, attachment,width,height, onApiOkResultCallback, onApiKoResultCallback) {
+/* async function createReplyWithVideoAttachment(request, attachment,width,height, duration, onApiOkResultCallback, onApiKoResultCallback) {
     createReply(request, (message => {
         addVideoAttachmentToMessage(
             attachment,
@@ -165,9 +180,25 @@ async function createReplyWithVideoAttachment(request, attachment,width,height, 
             attachmentType.VIDEO,
             width,
             height,
+            duration,
             onApiOkResultCallback,
             onApiKoResultCallback);
 
+    }), onApiKoResultCallback);
+} */
+
+async function createReplyWithVideoAttachment(request, attachment,width,height, duration, thumbnails, onApiOkResultCallback, onApiKoResultCallback) {
+    createReply(request, (message => {
+        getVideoUploadRequest(
+            message.messageId,
+            attachment,
+            width, 
+            height,
+            duration,
+            thumbnails,
+            onApiOkResultCallback,
+            onApiKoResultCallback);
+    
     }), onApiKoResultCallback);
 }
 

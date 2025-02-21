@@ -14,7 +14,7 @@ const OPTIONS = {
 const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
 
     const recordWebcam = useRecordWebcam(OPTIONS);
-    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+    const [dimensions, setDimensions] = useState({ width: 0, height: 0, duration:0 });
 
     useEffect(() => {
         if (isOpen && recordWebcam.status === "CLOSED") {
@@ -39,7 +39,7 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
         Object.assign(file, {
             preview: URL.createObjectURL(file)
         });
-        onFileGenerated(file,dimensions.width, dimensions.height);
+        onFileGenerated(file,dimensions.width, dimensions.height, dimensions.duration);
     };
 
     function startRecording() {
@@ -83,6 +83,7 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
         setDimensions({
           width: videoElement.videoWidth,
           height: videoElement.videoHeight,
+          duration: videoElement.duration,
         });
       };
 

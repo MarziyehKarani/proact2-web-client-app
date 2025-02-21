@@ -8,6 +8,7 @@ import messageMood from "../../../constants/messageMood";
 import messageScope from "../../../constants/messageScope";
 //import VideoRecorederComponent from "../../../components/Common/VideoRecorderComponent";
 import VideoPlayerComponent from "../../../components/Common/VideoRecorderComponent";
+import { generateVideoThumbnails, importFileandPreview } from "@rajesh896/video-thumbnails-generator"
 
 export const NewVideoMessageModal = ({ props, isOpen, originalMessageId, closeCallback, successCallback }) => {
 
@@ -32,28 +33,29 @@ export const NewVideoMessageModal = ({ props, isOpen, originalMessageId, closeCa
         return request;
     }
 
-    function sendMessage(attachment,width,height) {
+    function sendMessage(attachment,width,height,duration, thumbnail) {
         if (Validate(attachment)) {
             showLoadingToast();
             if(originalMessageId){
-                sendReplyMessage(attachment,width,height);
+                sendReplyMessage(attachment,width,height,duration, thumbnail);
             }
             else{
-                sendNewMessage(attachment,width,height);
+                sendNewMessage(attachment,width,height,duration, thumbnail);
             }
         }
     }
 
-    function sendNewMessage(attachment,width,height){
+    function sendNewMessage(attachment,width,height,duration, thumbnail){
         const request = prepareRequestBody();
+        //console.log(thumbnail);
         createMessageWithVideoAttachment(
-            request, attachment,width,height, apiSuccessHandler, apiErrorToast);
+            request, attachment,width,height,duration, thumbnail, apiSuccessHandler, apiErrorToast);
     }
 
-    function sendReplyMessage(attachment,width,height){
+    function sendReplyMessage(attachment,width,height,duration, thumbnail){
         const request = prepareReplyRequestBody();
         createReplyWithVideoAttachment(
-            request, attachment,width,height, apiSuccessHandler, apiErrorToast);
+            request, attachment,width,height, duration, thumbnail, apiSuccessHandler, apiErrorToast);
     }
 
     function apiSuccessHandler(resultData) {
@@ -72,8 +74,20 @@ export const NewVideoMessageModal = ({ props, isOpen, originalMessageId, closeCa
         closeCallback();
     }
 
-    function handleFileVideo(file,width,height) {
-        sendMessage(file,width,height)
+    async function handleFileVideo(file,width,height, duration) {
+        const thumbnail = await getVideoThumbnails(file);
+        //console.log(thumbnail);
+        sendMessage(file,width,height,duration, thumbnail)
+    }
+
+    async function getVideoThumbnails(file)
+    {
+        try {
+            const thumbnailArray = await generateVideoThumbnails(file, 1);            
+            return thumbnailArray[0];
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     return (
