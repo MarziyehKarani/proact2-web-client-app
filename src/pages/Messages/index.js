@@ -270,9 +270,8 @@ const Messages = props => {
     if (refreshingMessages) {
 
       if (cancelToken.current) {
-        cancelToken.current.cancel(
-          "Last Operation canceled due to new request."
-        )
+        cancelToken.current.cancel()
+        //          "Last Operation canceled due to new request."
       }
 
       cancelToken.current = axios.CancelToken.source()
@@ -550,7 +549,8 @@ const Messages = props => {
       userSession &&
       userSession.isPatient &&
       environment &&
-      environment.medicalTeamStatus != medicalTeamStatus.OPEN
+      environment.medicalTeamStatus != medicalTeamStatus.OPEN &&
+      environment.projectStatus != projectStatus.OPEN
     ) {
       return <Redirect to="/unauthorized" />
     }

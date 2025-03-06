@@ -3,76 +3,84 @@ import { ReactSession } from "react-client-session"
 import { apiErrorToast } from "../../helpers/toastHelper"
 import UserRoles from "./UserRoles"
 import getCurrentUserDetails from "../services/network/apiCalls/usersApiService"
-import { useState, useEffect } from "react"
-import {msalInstance} from "../../index";
+import { useState, useEffect, useRef } from "react"
+import { msalInstance , Logout} from "../../index"
+import userSubscriptionState from "../../constants/userSubscriptionState"
 
 const userProfileKey = "userProfile"
 const useUserSession = () => {
- // console.log("useUserSession: start")
+  // console.log("useUserSession: start")
   const [userSession, setUserSession] = useState(null)
-
- // aquireAccessToken(loadCurrentUserData);
 
   useEffect(() => {
     if (!userSession) {
-      const accounts = msalInstance.getAllAccounts();
-      loadCurrentUserData(accounts[0]);
+      const accounts = msalInstance.getAllAccounts()
+      loadCurrentUserData(accounts[0])
     }
-}, [userSession]);
+  }, [userSession])
 
-
+  //  // Update the previous user state on each change
+  //  useEffect(() => {
+  //   previousUserStateRef.current = userState
+  // }, [userState])
 
   function loadCurrentUserData(account) {
     const userProfileStr = ReactSession.get(userProfileKey)
     if (userProfileStr) {
       var user = getSessionUserProfile()
-      if (account!= null && user.accountId == account.localAccountId) {
-        /*  if (user.isPatient)
-        {
-          LoadUserAgreement(user.userId)
-          user.setAgreement=true;
-        }  */
-        setUserSession(user)
+      if (account != null && user.accountId == account.localAccountId) {
+
+        if (user.expiresOn > new Date().getTime()) {
+          setUserSession(user)
+          //  console.log("loadCurrentUserData.user.state: " + user.state)
+        } else {
+          //  console.log("loadCurrentUserData.expiresOn " + userState)
+          loadUserProfile()
+        }
       } else {
+        // setUserState(null)
+
+        ReactSession.remove("userAgreement")
         loadUserProfile()
       }
     } else {
+      //  setUserState(null)
       loadUserProfile()
     }
   }
 
   function loadUserProfile() {
+    ReactSession.remove(userProfileKey)
     getCurrentUserDetails(saveUserProfile, errorHandle)
   }
 
-  function LoadUserAgreement(userId) {
-    var agreement = ReactSession.get("userAgreement")
-    if (
-      typeof agreement === "undefined" ||
-      agreement == null ||
-      agreement.userId != userId
-    ) {
-      getUserAgreement()
-    }
-  }
-
   function saveUserProfile(userData) {
+    // console.log("Previous userState: " + previousUserStateRef.current)
+    // console.log("Current userData.state: " + userData.state)
+
+    if (
+      // previousUserStateRef.current != null &&
+      // previousUserStateRef.current !=userData.state
+      userData.state == userSubscriptionState.Deactivated &&
+      msalInstance.getAllAccounts().length > 0
+    ) {
+      Logout();
+    }
+
     var userDataWithRolers = defineRoles(userData)
 
-    /*  if (userDataWithRolers.isPatient)
-    {
-      getUserAgreement()
-      userDataWithRolers.setAgreement=true;
-    } */
+    userDataWithRolers.expiresOn = new Date().getTime() + 60000
 
     var userProfileStr = JSON.stringify(userDataWithRolers)
+
     ReactSession.set(userProfileKey, userProfileStr)
+
     setUserSession(userDataWithRolers)
+    // previousUserStateRef.current = userData.state
   }
 
-  function errorHandle() {
-    apiErrorToast()
-    ReactSession.set(loadingKey, false)
+  function errorHandle(error) {
+    apiErrorToast(error)
   }
 
   function getSessionUserProfile() {
@@ -93,19 +101,11 @@ const useUserSession = () => {
     return userData
   }
 
-  /*  function setUserAgreement(agreement) {
-    if (agreement) {
-      var userAgreementStr = JSON.stringify(agreement)
-      ReactSession.set("userAgreement", userAgreementStr)
-      return agreement
-    } else {
-      return null
-    }
-  }
+  // const handleLogout = () => {
+  //   msalInstance.logoutRedirect();
+  //     return;
+  // }
 
-  function getUserAgreement() {
-    getCurrentUserAgreement(setUserAgreement, errorHandle)
-  } */
 
   return userSession
 }

@@ -26,6 +26,11 @@ ReactDOM.render(app, document.getElementById("root"))
 //serviceWorker.register()
 LocalServiceWorkerRegister();
 
+const Logout = () => {
+  msalInstance.logoutRedirect();
+    return;
+}
+
 
 /* if ("serviceWorker" in navigator) {
   window.addEventListener('load',() => {
@@ -45,4 +50,4 @@ LocalServiceWorkerRegister();
      });
    } */
 
-     export {msalInstance} ;
+     export {msalInstance,Logout} ;
