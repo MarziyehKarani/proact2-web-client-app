@@ -549,8 +549,9 @@ const Messages = props => {
       userSession &&
       userSession.isPatient &&
       environment &&
-      environment.medicalTeamStatus != medicalTeamStatus.OPEN &&
-      environment.projectStatus != projectStatus.OPEN
+      (environment.medicalTeamStatus != medicalTeamStatus.OPEN ||
+        environment.projectStatus != projectStatus.OPEN)
+      
     ) {
       return <Redirect to="/unauthorized" />
     }
