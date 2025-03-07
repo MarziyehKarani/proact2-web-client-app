@@ -1,6 +1,6 @@
 
 
- const CACHE_NAME_toRemove='proact2-dev-cache';
+const CACHE_NAME_toRemove=['proact2-dev-cache','proact2-cache'];
 const PRE_CACHED_RESOURCES = ["offline.html","index.html"]; 
 
 const OFFLINE_VERSION = 1;
@@ -21,11 +21,32 @@ self.addEventListener('install', e => {
 
   self.addEventListener("activate", (event) => {
     console.log('activating service worker!!');
-    caches.delete(CACHE_NAME_toRemove);
+  /*   caches.delete(CACHE_NAME_toRemove);
 
     event.waitUntil(
     self.clients.claim()
+    ); */
+
+    event.waitUntil(
+      (async () => {
+        // Enable navigation preload if it's supported.
+      //   if ("navigationPreload" in self.registration) {
+      //     await self.registration.navigationPreload.enable();
+      //   }
+  
+        // Iterate over the array of cache names to delete
+        const deletePromises = CACHE_NAME_toRemove.map(async (cacheName) => {
+          console.log(`Service Worker: Removing old cache: ${cacheName}`);
+          return await caches.delete(cacheName); // Delete each cache
+        });
+  
+        // Wait for all the caches to be deleted
+        await Promise.all(deletePromises);
+      })()
     );
+    
+    // Tell the active service worker to take control of the page immediately.
+    self.clients.claim();
   });
 
 
