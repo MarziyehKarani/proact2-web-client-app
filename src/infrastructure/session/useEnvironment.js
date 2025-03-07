@@ -53,7 +53,7 @@ const useEnvironment = () => {
       var environment = getSessionEnvironment()
       setEnvironment(environment)
     } else {
-     // ReactSession.remove("environment")
+      ReactSession.remove("environment")
       console.log("loadEnvironment")
       loadProjects()
     }
