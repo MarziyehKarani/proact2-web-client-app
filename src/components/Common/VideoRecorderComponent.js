@@ -48,6 +48,7 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
 
     function stopRecording() {
         recordWebcam.stop();
+        recordWebcam.status="PREVIEW";
     }
 
     function retakeVideo() {
