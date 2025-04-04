@@ -196,6 +196,7 @@ const NotCompiledBooleanAnswer = ({ props, question, addCompiledQuestion }) => {
 }
 
 const NotCompiledRatingAnswer = ({ question, addCompiledQuestion }) => {
+  console.log("question", question);
   function handleValueChange(value) {
     var compiledQuestion = createCompiledQuestionByValue(question.id, value)
     addCompiledQuestion(compiledQuestion)
@@ -208,6 +209,8 @@ const NotCompiledRatingAnswer = ({ question, addCompiledQuestion }) => {
           max={question.properties.max}
           minLabel={question.properties.minLabel}
           maxLabel={question.properties.maxLabel}
+          step={question.properties.step}
+          isVertical={question.properties.isVertical}
           onValueChange={handleValueChange}
         />
       </Col>

@@ -1,0 +1,40 @@
+.logo {
+    max-width: 150px;   /* Set the maximum width for the logo */
+    height: auto;       /* Maintain the aspect ratio */
+    display: block;     /* Ensure it's a block element */
+   // margin-left: auto;  /* Center horizontally */
+   // margin-right: auto; /* Center horizontally */
+  }
+
+  /* Logo styling for small screens (mobile) */
+  @media (max-width: 768px) {
+    .logo {
+      max-width: 120px; /* Reduce size on smaller screens */
+    }
+  }
+  
+  /* Logo styling for extra small screens (very small phones) */
+  @media (max-width: 480px) {
+    .logo {
+      max-width: 100px; /* Further reduce size on extra small screens */
+    }
+  }
+
+  .footer-logo {
+    max-width: 400px;   /* Set the maximum width for the logo */
+    height: auto;       /* Maintain the aspect ratio */
+    display: block;     /* Ensure it's a block element */
+    }
+    /* Logo styling for small screens (mobile) */
+    @media (max-width: 768px) {
+        .footer-logo {
+          max-width: 320px; /* Reduce size on smaller screens */
+        }
+      }
+      
+      /* Logo styling for extra small screens (very small phones) */
+      @media (max-width: 480px) {
+        .footer-logo {
+          max-width: 250px; /* Further reduce size on extra small screens */
+        }
+      }

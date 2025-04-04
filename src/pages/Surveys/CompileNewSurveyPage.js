@@ -13,6 +13,8 @@ import {
 import { apiErrorToast, showErrorToast } from "../../helpers/toastHelper"
 import SurveyQuestionCard from "./Components/SurveyQuestionCard"
 import { SurveySuccesfulyCompiledModal } from "./Components/SurveySuccesfulyCompiledModal"
+import SurveyHeaderCard from "./Components/SurveyHeaderCard"
+import SurveyFooterCard from "./Components/SurveyFooterCard"
 
 const CompileNewSurveyPage = props => {
   const surveyId = props.match.params.id
@@ -195,6 +197,7 @@ const CompileNewSurveyPage = props => {
 
       {survey ? (
         <div>
+          <SurveyHeaderCard survey={survey} props={props} />
           <Row>
             <Col xs="12">
               {survey.questions.map((question, idx) => (
@@ -209,6 +212,7 @@ const CompileNewSurveyPage = props => {
               ))}
             </Col>
           </Row>
+          {(survey.footer || survey.footerImage ) && <SurveyFooterCard survey={survey} props={props} />}
           <Row className="mb-4">
             <Col className="text-end">
               <Button
@@ -220,6 +224,7 @@ const CompileNewSurveyPage = props => {
               </Button>
             </Col>
           </Row>
+      
         </div>
       ) : (
         <LoadingSpinner />
