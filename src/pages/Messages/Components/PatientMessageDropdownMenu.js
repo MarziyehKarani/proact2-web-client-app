@@ -10,7 +10,7 @@ const PatientMessageDropdownMenu = ({props, onMessageDeleteButtonClick}) => {
         <Dropdown
             isOpen={isOpen}
             toggle={() => setIsOpen(!isOpen)}
-            className="d-inline-block ms-2"
+            className="d-inline-block"
         >
             <DropdownToggle
                 className="btn header-item waves-effect"
