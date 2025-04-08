@@ -33,7 +33,7 @@ import { getProjectDetails } from "../../infrastructure/services/network/apiCall
 import { generateAnalysisPageUrl } from "../../helpers/externalUrlHelper"
 import SweetAlert from "react-bootstrap-sweetalert"
 import AuthorizedPage from "../../components/AuthorizedPage"
-import { Redirect , useHistory  } from "react-router-dom"
+import { Redirect   } from "react-router-dom"
 import { NewMessageToPatientModal } from "./Modals/NewMessageToPatientModal"
 import { EditBroadcastMessageModal } from "./Modals/EditBroadcastMessageModal"
 import PatientFilter from "../../components/Common/PatientListAutoCompelete"
@@ -117,11 +117,11 @@ const Messages = props => {
 
   const { userAgreement, LoadUserAgreement } = useUserAgreement()
 
-  const history = useHistory();
+  //const history = useHistory();
 
-  const handleRedirect = () => {
-    history.push("/CameraTest");  // Redirect to /CameraTest
-  };
+  // const handleRedirect = () => {
+  //   history.push("/CameraTest");  // Redirect to /CameraTest
+  // };
 
   //const userAgreement = useUserAgreement()
 
@@ -588,7 +588,7 @@ const Messages = props => {
       {checkIfMedicalTeamIsOpen()}
       {checkIfMessagingIsEnabled()}
 
-<Row>
+{/* <Row>
   <Col>
   
   <Button
@@ -599,7 +599,7 @@ const Messages = props => {
                   </Button>
         
   </Col>
-</Row>
+</Row> */}
 
       <Row>
         <Col className="d-flex justify-content-start">
