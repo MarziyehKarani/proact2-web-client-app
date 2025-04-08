@@ -19,6 +19,7 @@ import SurveyStatsPage from "../pages/Surveys/SurveyStatsPage"
 import ContactPage from "../pages/ContactPage"
 import PatientsPage from "../pages/Users/PatientsPage"
 import UnauthorizedPage from "../pages/UnauthorizedPage"
+import CameraTest from "../pages/CameraTest" // TODO: remove this line when the camera is ready
 
 const userRoutes = [
   //Messages
@@ -45,9 +46,10 @@ const userRoutes = [
   //Others
   { path: "/contact", component: ContactPage },
   { path: "/unauthorized", component: UnauthorizedPage },
-
+  { path: "/CameraTest", component: CameraTest}, // TODO: remove this line when the camera is ready
   // this route should be at the end of all other routes
   { path: "/", exact: true, component: () => <Redirect to="/messages" /> },
+
 ]
 
 export { userRoutes }
