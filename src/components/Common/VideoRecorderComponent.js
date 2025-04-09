@@ -42,10 +42,10 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
    // const webcamRef = useRef(null);
     
 
-  useEffect(() => {
+  useEffect(async () => {
         if (isOpen) {
             // recordWebcam.open();
-            start();
+           await start();
         }
 
         if (!isOpen) {
