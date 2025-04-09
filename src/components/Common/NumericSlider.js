@@ -59,8 +59,8 @@ const NumericSlider = ({
             value={value}
             min={min}
             max={max}
-            step={step}
-            // labels={labels}
+            // step={step}
+             labels={labels}
             orientation="horizontal"
             onChange={value => {
               handleValueChange(value)
@@ -97,7 +97,7 @@ const NumericSlider = ({
                   value={value}
                   min={min}
                   max={max}
-                  step={step}
+                  // step={step}
                   labels={labels}
                   orientation="vertical"
                   onChange={value => {

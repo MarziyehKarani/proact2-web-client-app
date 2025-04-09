@@ -13,19 +13,67 @@ const OPTIONS = {
 
 const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
 
-    const recordWebcam = useRecordWebcam(OPTIONS);
+   // const recordWebcam = useRecordWebcam(OPTIONS);
     const [dimensions, setDimensions] = useState({ width: 0, height: 0, duration:0 });
 
-    useEffect(() => {
-        if (isOpen && recordWebcam.status === "CLOSED") {
-            recordWebcam.open();
+        const {
+          activeRecordings,
+          cancelRecording,
+          clearAllRecordings,
+          clearError,
+          clearPreview,
+          closeCamera,
+          createRecording,
+          devicesById,
+          devicesByType,
+          download,
+          errorMessage,
+          muteRecording,
+          openCamera,
+          pauseRecording,
+          resumeRecording,
+          startRecording,
+          stopRecording,
+        } = useRecordWebcam();
+
+    const {curRecording,setCurRecording} = useState(null);
+
+   
+   // const webcamRef = useRef(null);
+    
+
+  useEffect(() => {
+        if (isOpen) {
+            // recordWebcam.open();
+            start();
         }
 
-        if (!isOpen && recordWebcam) {
-            recordWebcam.close();
+        if (!isOpen) {
+           // recordWebcam.close();
+           closeCamera(activeRecordings[0].id);
         }
-    }, [isOpen, recordWebcam]);
+    }, [isOpen]);
 
+
+    const quickDemo = async () => {
+        try {
+          const recording = await createRecording();
+          if (!recording) return;
+          await openCamera(recording.id);
+          await startRecording(recording.id);
+          await new Promise((resolve) => setTimeout(resolve, 3000));
+          await stopRecording(recording.id);
+          await closeCamera(recording.id);
+        } catch (error) {
+          console.log({ error });
+        }
+      };
+
+      const start = async () => {
+        const recording = await createRecording();
+        if (recording) await openCamera(recording.id);
+      };
+    
 
     const saveFile = async () => {
         console.log("saveFile");
@@ -42,41 +90,52 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
         onFileGenerated(file,dimensions.width, dimensions.height, dimensions.duration);
     };
 
-    function startRecording() {
-        recordWebcam.start();
+    function startVideoRecording() {
+       // recordWebcam.start();
+       const recording =  createRecording();
+      
+      // setCurRecording(activeRecordings[0]);
+       console.log("recording",activeRecordings[0]);
+      // recording.webcamRef.current.srcObject = webcamRef.current.srcObject;
+        openCamera(recording.id);
+
+       startRecording(recording.id);
     }
 
-    function stopRecording() {
-        recordWebcam.stop();
-        recordWebcam.status="PREVIEW";
+     function stopVideoRecording() {
+       // recordWebcam.stop();
+       console.log("stoprecording");
+       const recorded = stopRecording(activeRecordings[0].id);
+       console.log("recording",recorded);
+       // recordWebcam.status="PREVIEW";
     }
 
     function retakeVideo() {
-        recordWebcam.retake();
+       // recordWebcam.retake();
         onFileGenerated();
     }
 
     function startButtonVisible() {
-        return (recordWebcam.status !== "CLOSED" &&
-            recordWebcam.status !== "RECORDING" &&
-            recordWebcam.status !== "PREVIEW" &&
-            recordWebcam.status !== "INIT")
+        return (activeRecordings[0].status !== "CLOSED" &&
+            activeRecordings[0].status !== "RECORDING" &&
+            activeRecordings[0].status !== "PREVIEW" &&
+            activeRecordings[0].status !== "INIT")
     }
 
     function stopButtonIsVisible() {
-        return recordWebcam.status === "RECORDING";
+        return activeRecordings[0].status === "RECORDING";
     }
 
     function isInit() {
-        return recordWebcam.status === "INIT";
+        return activeRecordings[0].status === "INIT";
     }
 
     function isPreview() {
-        return recordWebcam.status === "PREVIEW";
+        return activeRecordings[0].status === "PREVIEW";
     }
 
     function replayVideo() {
-        recordWebcam.previewRef.current.play();
+        activeRecordings[0].previewRef.current.play();
     }
 
     const handleLoadedMetadata = (e) => {
@@ -89,16 +148,108 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
       };
 
     return (
-        <div>
-            <div>
-                <video
-                    ref={recordWebcam.webcamRef}
+<div>
+        <div className="space-x-2">
+        <Button onClick={quickDemo}>Record 3s video</Button>
+        <Button onClick={start}>Open camera</Button>
+        <Button onClick={() => clearAllRecordings()}>Clear all</Button>
+        <Button onClick={() => clearError()}>Clear error</Button>
+      </div>
+      <div className="my-2">
+        <p>{errorMessage ? `Error: ${errorMessage}` : ''}</p>
+      </div>
+        
+      <div className="grid grid-cols-custom gap-4 my-4">
+        {activeRecordings?.map((recording) => (
+          <div className="bg-white rounded-lg px-4 py-4" key={recording.id}>
+            <div className="text-black grid grid-cols-1">
+              <p>Live</p>
+              <small>Status: {recording.status}</small>
+              <small>Video: {recording.videoLabel}</small>
+              <small>Audio: {recording.audioLabel}</small>
+            </div>
+            <video ref={recording.webcamRef}  
+            style={{
+                        height: "auto",
+                        width: "100%",
+                        display: "block"
+                    }} loop autoPlay playsInline />
+            <div className="space-x-1 space-y-1 my-2">
+              <Button
+                inverted
+                disabled={
+                  recording.status === 'RECORDING' ||
+                  recording.status === 'PAUSED'
+                }
+                onClick={() => startRecording(recording.id)}
+              >
+                Record
+              </Button>
+              <Button
+                inverted
+                disabled={
+                  recording.status !== 'RECORDING' &&
+                  recording.status !== 'PAUSED'
+                }
+                toggled={recording.status === 'PAUSED'}
+                onClick={() =>
+                  recording.status === 'PAUSED'
+                    ? resumeRecording(recording.id)
+                    : pauseRecording(recording.id)
+                }
+              >
+                {recording.status === 'PAUSED' ? 'Resume' : 'Pause'}
+              </Button>
+              <Button
+                inverted
+                toggled={recording.isMuted}
+                onClick={() => muteRecording(recording.id)}
+              >
+                Mute
+              </Button>
+              <Button inverted onClick={() => stopRecording(recording.id)}>
+                Stop
+              </Button>
+              <Button inverted onClick={() => cancelRecording(recording.id)}>
+                Cancel
+              </Button>
+            </div>
+
+            <div
+              className={`${
+                recording.previewRef.current?.src.startsWith('blob:')
+                  ? 'visible'
+                  : 'hidden'
+              }`}
+            >
+              <p>Preview</p>
+              <video ref={recording.previewRef}   style={{
+                        height: "auto",
+                        width: "100%",
+                        display: "block"
+                    }} autoPlay loop playsInline />
+              <div className="space-x-2 my-2">
+                <Button inverted onClick={() => download(recording.id)}>
+                  Download
+                </Button>
+                <Button inverted onClick={() => clearPreview(recording.id)}>
+                  Clear preview
+                </Button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+            {/* <div>
+
+                 <video
+                    ref={activeRecordings[0].webcamRef}
                   //  onLoadedMetadata={handleLoadedMetadata}
                     style={{
                         height: "auto",
                         width: "100%",
-                        display: `${recordWebcam.status === "OPEN" ||
-                            recordWebcam.status === "RECORDING"
+                        display: `${activeRecordings[0].status === "OPEN" ||
+                            activeRecordings[0].status === "RECORDING"
                             ? "block"
                             : "none"
                             }`
@@ -108,74 +259,18 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
                     playsInline 
                 />
                 <video
-                    ref={recordWebcam.previewRef}
+                    ref={activeRecordings[0].previewRef}
                     onLoadedMetadata={handleLoadedMetadata}
                     style={{
                         height: "auto",
                         width: "100%",
-                        display: `${recordWebcam.status === "PREVIEW" ? "block" : "none"}`
+                        display: `${activeRecordings[0].status === "PREVIEW" ? "block" : "none"}`
                     }}
                     autoPlay
                     playsInline 
-                />
-            </div>
-            <div className='text-center'>
+                /> 
+            </div> */}
 
-                {isInit() &&
-                    <div className="m-5 p-6">
-                        <Spinner size="lg" color="success" />
-                    </div>
-                }
-
-                {stopButtonIsVisible() &&
-                    <>
-                        <Button
-                            className='rounded-circle mt-3'
-                            color="danger"
-                            onClick={stopRecording}
-                            style={{ height: "80px", width: "80px", border: "0" }}>
-                            <i className="fas fa-stop fa-2x"></i>
-                        </Button>
-                        <h3 className="text-muted text-center p-2"><Countdown
-                            durationInSeconds={OPTIONS.recordingLength}
-                            onTimerFinish={() => { }} />
-                        </h3>
-                    </>
-                }
-
-                {startButtonVisible() &&
-                    <>
-                        <Button
-                            className='rounded-circle text-center mt-3'
-                            color='danger'
-                            onClick={startRecording}
-                            style={{ height: "80px", width: "80px", border: "0" }}>
-                            <i className="fas fa-video fa-2x"></i>
-                        </Button>
-                        <h3 className="text-muted text-center p-2">{props.t("TapToStartRecording")}</h3>
-                    </>
-                }
-
-                {isPreview() &&
-                    <div className="m-3">
-                        <Button
-                            color="info"
-                            onClick={retakeVideo}
-                            className="btn-rounded px-5 me-4" >{props.t("RetakeVideo")}</Button>
-                        <Button
-                            color="primary"
-                            onClick={replayVideo}
-                            className="btn-rounded px-5 me-4" >{props.t("ReplayVideo")}</Button>
-                        <Button
-                            color="success"
-                            onClick={saveFile}
-                            className="btn-rounded px-5" >{props.t("Save")}</Button>
-
-
-                    </div>
-                }
-
-            </div>
         </div>
     );
 }
