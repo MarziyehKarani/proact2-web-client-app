@@ -9,6 +9,7 @@ const videoOptions = {
   disableLogs: true,
   frameRate: 60,
   recordingLength: 30,
+  fileName: 'patientVideo.mp4', fileType: 'mp4'
 }
 
 const options= { fileName: 'patientVideo.mp4', fileType: 'mp4'}
@@ -42,7 +43,7 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
     startRecording,
     stopRecording,
   } = useRecordWebcam( {options: options,
-    mediaRecorderOptions: { mimeType: 'video/mp4' },
+    mediaRecorderOptions: { mimeType: 'video/webm' },
     mediaTrackConstraints: { video: true, audio: true ,frameRate: 60 }})
 
 
