@@ -8,8 +8,7 @@ const videoOptions = {
   mimeType: "video/mp4",
   disableLogs: true,
   frameRate: 60,
-  recordingLength: 30,
-  fileName: 'patientVideo.mp4', fileType: 'mp4'
+  recordingLength: 30
 }
 
 const options= { fileName: 'patientVideo.mp4', fileType: 'mp4'}
@@ -43,7 +42,7 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
     startRecording,
     stopRecording,
   } = useRecordWebcam( {options: options,
-    mediaRecorderOptions: { mimeType: 'video/webm' },
+    mediaRecorderOptions: { mimeType: 'video/mp4' },
     mediaTrackConstraints: { video: true, audio: true ,frameRate: 60 }})
 
 
@@ -163,10 +162,11 @@ console.log("devicesById", devicesById)
 
   return (
     <div>
-      {/* <div className="my-2">
+       <Button onClick={start}>Open camera</Button>
+      <div className="my-2">
         <p>{errorMessage ? `Error: ${errorMessage}` : ""}</p>
-      </div> */}
-    <Button onClick={start}>Open camera</Button>
+      </div>
+   
       <div>
         {activeRecordings?.map(recording => (
           <div key={recording.id}>
