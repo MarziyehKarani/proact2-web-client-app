@@ -52,7 +52,7 @@ console.log("devicesById", devicesById)
   useEffect(async () => {
     if (isOpen) {
       // recordWebcam.open();
-      await start()
+     // await start()
     }
 
     if (!isOpen) {
