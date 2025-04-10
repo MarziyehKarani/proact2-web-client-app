@@ -52,7 +52,7 @@ console.log("devicesById", devicesById)
   useEffect(async () => {
     if (isOpen) {
       // recordWebcam.open();
-       start()
+      await start()
     }
 
     if (!isOpen) {
@@ -68,7 +68,7 @@ console.log("devicesById", devicesById)
   const start = async () => {
     const recording = await createRecording()
     setCurRecording(recording);
-    if (recording)  openCamera(recording.id)
+    if (recording) await openCamera(recording.id)
   }
 
   const saveFile = async () => {
