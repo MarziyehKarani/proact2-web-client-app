@@ -165,7 +165,7 @@ console.log("devicesById", devicesById)
       {/* <div className="my-2">
         <p>{errorMessage ? `Error: ${errorMessage}` : ""}</p>
       </div> */}
-
+    <Button onClick={start}>Open camera</Button>
       <div>
         {activeRecordings?.map(recording => (
           <div key={recording.id}>
