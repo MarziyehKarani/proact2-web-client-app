@@ -75,16 +75,26 @@ export const NewVideoMessageModal = ({ props, isOpen, originalMessageId, closeCa
     }
 
     async function handleFileVideo(file,width,height, duration) {
+
         const thumbnail = await getVideoThumbnails(file);
-        //console.log(thumbnail);
-        sendMessage(file,width,height,duration, thumbnail)
+       
+        if(thumbnail != null && thumbnail!="undefined"){
+            sendMessage(file,width,height,duration, thumbnail)
+        }
+       
     }
 
     async function getVideoThumbnails(file)
     {
-        try {
-            const thumbnailArray = await generateVideoThumbnails(file, 1);            
+       try {
+            const thumbnailArray = await generateVideoThumbnails(file, 1);  
+
+            if(thumbnailArray.length === 0) {
+                console.error("No thumbnail generated");
+                return null;
+            }         
             return thumbnailArray[0];
+
         } catch (err) {
             console.error(err);
         }
