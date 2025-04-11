@@ -164,21 +164,15 @@ console.log("devicesById", devicesById)
   }
 
   return (
-    <div>
-       <Button onClick={start}>Open camera</Button>
-      <div className="my-2">
+     <div>
+        {/* <Button onClick={start}>Open camera</Button> */}
+        <div className="my-2">
         <p>{errorMessage ? `Error: ${errorMessage}` : ""}</p>
-      </div>
+       </div> 
    
-      <div>
+       <div>
         {activeRecordings?.map(recording => (
           <div key={recording.id}>
-            {/* <div className="text-black grid grid-cols-1">
-              <p>Live</p>
-              <small>Status: {recording.status}</small>
-              <small>Video: {recording.videoLabel}</small>
-              <small>Audio: {recording.audioLabel}</small>
-            </div> */}
             <video
               ref={recording.webcamRef}
               style={{
@@ -195,46 +189,6 @@ console.log("devicesById", devicesById)
               autoPlay
               playsInline
             />
-            {/* <div className="space-x-1 space-y-1 my-2">
-              <Button
-                inverted
-                disabled={
-                  recording.status === 'RECORDING' ||
-                  recording.status === 'PAUSED'
-                }
-                onClick={() => startRecording(recording.id)}
-              >
-                Record
-              </Button>
-              <Button
-                inverted
-                disabled={
-                  recording.status !== 'RECORDING' &&
-                  recording.status !== 'PAUSED'
-                }
-                toggled={recording.status === 'PAUSED'}
-                onClick={() =>
-                  recording.status === 'PAUSED'
-                    ? resumeRecording(recording.id)
-                    : pauseRecording(recording.id)
-                }
-              >
-                {recording.status === 'PAUSED' ? 'Resume' : 'Pause'}
-              </Button>
-              <Button
-                inverted
-                toggled={recording.isMuted}
-                onClick={() => muteRecording(recording.id)}
-              >
-                Mute
-              </Button>
-              <Button inverted onClick={() => stopRecording(recording.id)}>
-                Stop
-              </Button>
-              <Button inverted onClick={() => cancelRecording(recording.id)}>
-                Cancel
-              </Button>
-            </div> */}
 
             <div
               className={`${
@@ -255,14 +209,6 @@ console.log("devicesById", devicesById)
                 autoPlay
                 playsInline
               />
-              {/* <div className="space-x-2 my-2">
-                <Button inverted onClick={() => download(recording.id)}>
-                  Download
-                </Button>
-                <Button inverted onClick={() => clearPreview(recording.id)}>
-                  Clear preview
-                </Button>
-              </div> */}
             </div>
 
             <div className="text-center">
@@ -336,36 +282,6 @@ console.log("devicesById", devicesById)
           </div>
         ))}
       </div>
-      {/* <div>
-
-                 <video
-                    ref={activeRecordings[0].webcamRef}
-                  //  onLoadedMetadata={handleLoadedMetadata}
-                    style={{
-                        height: "auto",
-                        width: "100%",
-                        display: `${activeRecordings[0].status === "OPEN" ||
-                            activeRecordings[0].status === "RECORDING"
-                            ? "block"
-                            : "none"
-                            }`
-                    }}
-                    muted
-                    autoPlay
-                    playsInline 
-                />
-                <video
-                    ref={activeRecordings[0].previewRef}
-                    onLoadedMetadata={handleLoadedMetadata}
-                    style={{
-                        height: "auto",
-                        width: "100%",
-                        display: `${activeRecordings[0].status === "PREVIEW" ? "block" : "none"}`
-                    }}
-                    autoPlay
-                    playsInline 
-                /> 
-            </div> */}
     </div>
   )
 }
