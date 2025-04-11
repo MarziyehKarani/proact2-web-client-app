@@ -41,9 +41,10 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
     resumeRecording,
     startRecording,
     stopRecording,
-  } = useRecordWebcam( {options: options,
-    mediaRecorderOptions: { mimeType: 'video/mp4' },
-    mediaTrackConstraints: { video: true, audio: true ,frameRate: 60 }})
+  } = useRecordWebcam( )   
+  // {options: options,
+  //   mediaRecorderOptions: { mimeType: 'video/mp4' },
+  //   mediaTrackConstraints: { video: true, audio: true ,frameRate: 60 }}
 
 
 console.log("devicesById", devicesById)
@@ -67,7 +68,7 @@ console.log("devicesById", devicesById)
 
   const start = async () => {
     const recording = await createRecording()
-    setCurRecording(recording);
+    //setCurRecording(recording);
     if (recording) await openCamera(recording.id)
   }
 
