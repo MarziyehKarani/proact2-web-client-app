@@ -11,7 +11,7 @@ const videoOptions = {
   recordingLength: 30
 }
 
-const options= { fileName: 'patientVideo.mp4', fileType: 'mp4'}
+const options= { fileName: 'patientVideo.mp4', fileType: 'mp4' , mimeType: "video/mp4"}
 
 
 const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
@@ -41,10 +41,12 @@ const VideoPlayerComponent = ({ props, isOpen, onFileGenerated }) => {
     resumeRecording,
     startRecording,
     stopRecording,
-  } = useRecordWebcam( )   
-  // {options: options,
+  } = useRecordWebcam({options: options,
+     mediaRecorderOptions: { mimeType: 'video/mp4' }} )   
+   //{options: options,
   //   mediaRecorderOptions: { mimeType: 'video/mp4' },
-  //   mediaTrackConstraints: { video: true, audio: true ,frameRate: 60 }}
+  //   mediaTrackConstraints: { video: true, audio: true ,frameRate: 60 }
+  //}
 
 
 console.log("devicesById", devicesById)
@@ -53,7 +55,7 @@ console.log("devicesById", devicesById)
   useEffect(async () => {
     if (isOpen) {
       // recordWebcam.open();
-     // await start()
+      await start()
     }
 
     if (!isOpen) {
@@ -68,7 +70,7 @@ console.log("devicesById", devicesById)
 
   const start = async () => {
     const recording = await createRecording()
-    //setCurRecording(recording);
+    setCurRecording(recording);
     if (recording) await openCamera(recording.id)
   }
 
