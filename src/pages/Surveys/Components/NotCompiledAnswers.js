@@ -60,9 +60,15 @@ const NotCompiledOpenAnswer = ({ question, addCompiledQuestion }) => {
   )
 }
 
-const NotCompiledDateAnswer = ({ question, addCompiledQuestion }) => {
+const NotCompiledDateAnswer = ({ question, addCompiledQuestion,
+  surveyLayout }) => {
 
   const [startDate, setStartDate] = useState(null);
+
+  var placeholderText="dd/MM/yyyy";
+  if (surveyLayout == CustomSurveyType.EORTCQLQ_C30 || surveyLayout == CustomSurveyType.EORTC_QLQ_BR23) {
+    placeholderText="g, m, a"
+  }
 
   function handleValueChange(value) {
     setStartDate(value)
@@ -76,7 +82,7 @@ const NotCompiledDateAnswer = ({ question, addCompiledQuestion }) => {
     onChange={handleValueChange} //only when value has changed
     dateFormat="dd/MM/yyyy"
     icon="fas fa-calendar"
-    placeholderText="dd/MM/yyyy"
+    placeholderText={placeholderText}
     peekNextMonth
     showMonthDropdown
     showYearDropdown

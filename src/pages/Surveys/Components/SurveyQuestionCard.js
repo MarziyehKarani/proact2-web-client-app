@@ -106,6 +106,7 @@ const SurveyQuestionCard = ({
                 <NotCompiledDateAnswer
                   question={question}
                   addCompiledQuestion={addCompiledQuestion}
+                  surveyLayout={surveyLayout}
                 />
               )}
           </>
