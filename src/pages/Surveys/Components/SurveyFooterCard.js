@@ -17,7 +17,7 @@ const SurveyFooterCard = ({ props, survey }) => {
         />
         )}
         
-        {survey.footer && ( <h5>{survey.footer}</h5> )}
+        {survey.footer && ( <span className="text-muted">{survey.footer}</span> )}
       </CardBody>
     </Card>
   )

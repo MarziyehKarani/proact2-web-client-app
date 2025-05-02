@@ -11,6 +11,10 @@ import {
 import TextareaWithMaxlength from "../../../components/Common/TextareaWithMaxlength"
 import MoodSelector from "../../Messages/Components/MoodSelector"
 import NumericSlider from "../../../components/Common/NumericSlider"
+import CustomSurveyType from "../../../constants/CustomSurveyType"
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 function createCompiledQuestionByIds(questionId, ids) {
   var answers = []
@@ -56,12 +60,44 @@ const NotCompiledOpenAnswer = ({ question, addCompiledQuestion }) => {
   )
 }
 
+const NotCompiledDateAnswer = ({ question, addCompiledQuestion }) => {
+
+  const [startDate, setStartDate] = useState(null);
+
+  function handleValueChange(value) {
+    setStartDate(value)
+    var compiledQuestion = createCompiledQuestionByValue(question.id, value)
+    addCompiledQuestion(compiledQuestion)
+  }
+  return (
+    <DatePicker
+    showIcon
+    selected={startDate}
+    onChange={handleValueChange} //only when value has changed
+    dateFormat="dd/MM/yyyy"
+    icon="fas fa-calendar"
+    placeholderText="dd/MM/yyyy"
+    peekNextMonth
+    showMonthDropdown
+    showYearDropdown
+    dropdownMode="select"
+/>
+  )
+}
+
 //-------------------------------------------------------------------------------------------------
 const NotCompiledSingleAnswer = ({
   question,
   addCompiledQuestion,
   enableNextQuestion,
+  surveyLayout
 }) => {
+
+  var radioClass="";
+  if (surveyLayout == CustomSurveyType.EORTCQLQ_C30 || surveyLayout == CustomSurveyType.EORTC_QLQ_BR23) {
+    radioClass="mb-0 w-50 d-flex justify-content-between align-items-center"
+  }
+
 
   function handleValueChange(answerId) {
     var answersId = []
@@ -89,14 +125,15 @@ const NotCompiledSingleAnswer = ({
     <FormGroup tag="fieldset">
       {question.answersContainer.selectableAnswers.map((answer, idx) => (
         <FormGroup key={idx} check className="my-2">
-          <Label check>
+          <Label check className={radioClass}>
+          {answer.label}
             <Input
               type="radio"
               name={question.id}
               value={answer.answerId}
               onChange={e => handleValueChange(e.target.value)}
             />{" "}
-            {answer.label}
+           
           </Label>
         </FormGroup>
       ))}
@@ -314,5 +351,6 @@ export {
   NotCompiledBooleanAnswer,
   NotCompiledRatingAnswer,
   NotCompiledMoodAnswer,
-  NotCompiledNumericAnswer
+  NotCompiledNumericAnswer,
+  NotCompiledDateAnswer
 }

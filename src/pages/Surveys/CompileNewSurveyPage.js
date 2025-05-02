@@ -208,6 +208,7 @@ const CompileNewSurveyPage = props => {
                   addCompiledQuestion={handleAddCompiledQuestion}
                   enableNextQuestion={handleEnableNextQuestion}
                   questionVisible={question.isVisible}
+                  surveyLayout={survey.customSurveyLayout}
                 />
               ))}
             </Col>

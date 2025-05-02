@@ -5,6 +5,7 @@ import moodVeryBadBtnImg from "../../../assets/images/messages/btn_moodVeryBad.p
 import moodBadBtnImg from "../../../assets/images/messages/btn_moodBad.png"
 import moodGoodBtnImg from "../../../assets/images/messages/btn_moodGood.png"
 import moodVeryGoodBtnImg from "../../../assets/images/messages/btn_moodVeryGood.png"
+import { toLocalDate, toGlobalFormatDate } from '../../../common/formattedDatetime';
 
 const isNotAnswer = compiledAnswers => {
   let notAnsware = compiledAnswers[0].notAnsware
@@ -117,6 +118,17 @@ const CompiledNumericAnswer = ({ compiledAnswers }) => {
   )
 }
 
+const CompiledDateAnswer = ({ compiledAnswers }) => {
+  if (isNotAnswer(compiledAnswers)) return <h6>{compiledAnswers[0].value}</h6>
+  var value = initializeValue(compiledAnswers, "")
+
+  return (
+    <h5>
+      <small className="text-muted">{toGlobalFormatDate(value)}</small>
+    </h5>
+  )
+}
+
 export {
   CompiledOpenAnswer,
   CompiledMultipleAnswer,
@@ -124,5 +136,6 @@ export {
   CompiledBooleanAnswer,
   CompiledRatingAnswer,
   CompiledMoodAnswer,
-  CompiledNumericAnswer
+  CompiledNumericAnswer,
+  CompiledDateAnswer
 }

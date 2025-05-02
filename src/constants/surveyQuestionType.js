@@ -5,7 +5,8 @@ const surveyQuestionType = {
     BOOLEAN: 3,
     RATING: 4,
     MOOD: 5,
-    NUMERIC: 6
+    NUMERIC: 6,
+    DATE: 7,
 }
 
 export default surveyQuestionType;

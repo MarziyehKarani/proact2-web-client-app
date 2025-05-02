@@ -9,7 +9,8 @@ import {
   CompiledBooleanAnswer,
   CompiledRatingAnswer,
   CompiledMoodAnswer,
-  CompiledNumericAnswer
+  CompiledNumericAnswer,
+  CompiledDateAnswer
 } from "./CompiledAnswers"
 
 const checkNotCompiledAnswer = ({ props,compiledAnswers}) => {
@@ -77,6 +78,9 @@ const SurveyCompiledAnswerCard = ({ props, question }) => {
 
             {question.type == surveyQuestionType.NUMERIC && (
               <CompiledNumericAnswer compiledAnswers={answers} />
+            )}
+              {question.type == surveyQuestionType.DATE && (
+              <CompiledDateAnswer compiledAnswers={answers} />
             )}
           </>
         }

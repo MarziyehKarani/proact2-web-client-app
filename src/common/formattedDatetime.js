@@ -37,5 +37,9 @@ const toLocalIsoDate = (datetime) => {
         .toLocaleDateString("en-CA", dateOptions);
 }
 
+const toGlobalFormatDate = (datetime,format) => {
+    return  new Date(datetime).toLocaleDateString("en-GB");
+}
 
-export { toLocaleIsoString, toLocalTime, toLocalIsoDate, toLocalDate, toLocalDatetime }
+
+export { toLocaleIsoString, toLocalTime, toLocalIsoDate, toLocalDate, toLocalDatetime, toGlobalFormatDate }

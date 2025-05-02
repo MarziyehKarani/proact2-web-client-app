@@ -9,7 +9,8 @@ import {
   NotCompiledBooleanAnswer,
   NotCompiledRatingAnswer,
   NotCompiledMoodAnswer,
-  NotCompiledNumericAnswer
+  NotCompiledNumericAnswer,
+  NotCompiledDateAnswer,
 } from "./NotCompiledAnswers"
 
 const SurveyQuestionCard = ({
@@ -18,7 +19,9 @@ const SurveyQuestionCard = ({
   addCompiledQuestion,
   enableNextQuestion,
   questionVisible,
+  surveyLayout
 }) => {
+
   return (
     <Card
       style={
@@ -56,6 +59,7 @@ const SurveyQuestionCard = ({
                   enableNextQuestion={enableNextQuestion}
                   question={question}
                   addCompiledQuestion={addCompiledQuestion}
+                  surveyLayout={surveyLayout}
                 />
               )}
 
@@ -93,6 +97,13 @@ const SurveyQuestionCard = ({
               questionVisible && (
                 <NotCompiledNumericAnswer
                   props={props}
+                  question={question}
+                  addCompiledQuestion={addCompiledQuestion}
+                />
+              )}
+               {question.type == surveyQuestionType.DATE &&
+              questionVisible && (
+                <NotCompiledDateAnswer
                   question={question}
                   addCompiledQuestion={addCompiledQuestion}
                 />

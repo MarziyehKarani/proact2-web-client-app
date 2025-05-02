@@ -19,6 +19,8 @@ const SurveyQuestionTypeBadge = ({ props, questionType }) => {
                 return props.t("MoodAnswer")
             case surveyQuestionType.NUMERIC:
                 return props.t("NumericAnswer")
+            case surveyQuestionType.DATE:
+                return props.t("Date")
             default:
               return ""
         }
