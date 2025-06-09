@@ -764,7 +764,17 @@
  "NotificationSettingsUpdated" : "L'impostazione di notifica è stata aggiornata",
  "InstituteConfigErrorMessage":"C'è un problema di configurazione con questo studio",
  "NewMessageAddedd":"Il tuo messaggio è stato inviato con successo",
- "NewVideoMessageAdded":"Il tuo messaggio video è stato caricato e inviato con successo"
+ "NewVideoMessageAdded":"Il tuo messaggio video è stato caricato e inviato con successo",
+  "SortBy": "Ordina per",
+  "Title_Asc": "Titolo A–Z",
+  "Title_Desc": "Titolo Z–A",
+  "SentDate_Asc": "Data di invio: più vecchi prima",
+  "SentDate_Desc": "Data di invio: più recenti prima",
+  "ExpireDate-Asc": "Data di scadenza: prima scadenza",
+  "ExpireDate-Desc": "Data di scadenza: ultima scadenza",
+  "CompleteDate_Desc": "Data di completamento: più recenti prima",
+  "CompleteDate_Asc": "Data di completamento: più vecchie prima",
+ "Patients":"pazienti"
 }
 
 

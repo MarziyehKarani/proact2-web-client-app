@@ -546,5 +546,15 @@
  "NotificationSettingsUpdated" : "Meldingsinstelling is bijgewerkt",
  "InstituteConfigErrorMessage":"Er is een configuratieprobleem met deze studie",
  "NewMessageAddedd":"Je bericht is succesvol verzonden",
- "NewVideoMessageAdded":"Je videobericht is succesvol geüpload en verzonden"
+ "NewVideoMessageAdded":"Je videobericht is succesvol geüpload en verzonden",
+ "SortBy": "Sorteren op",
+  "Title_Asc": "Titel A–Z",
+  "Title_Desc": "Titel Z–A",
+  "SentDate_Asc": "Verzenddatum: oudste eerst",
+  "SentDate_Desc": "Verzenddatum: nieuwste eerst",
+  "ExpireDate-Asc": "Vervaldatum: vroegste eerst",
+  "ExpireDate-Desc": "Vervaldatum: laatste eerst",
+  "CompleteDate_Desc": "Voltooiingsdatum: nieuwste eerst",
+  "CompleteDate_Asc": "Voltooiingsdatum: oudste eerst",
+  "Patients":"patiënten"
 }

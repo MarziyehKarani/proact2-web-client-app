@@ -135,14 +135,14 @@ const DateCell = (cell) => {
 
 const FromDateToDateCell = ({ props, from, to }) => {
 
-    var maxDate = new Date("9999-12-31T23:59:59").toLocaleDateString();
+    var maxDate = new Date("9999-12-31T23:59:59");
     var fromDate = new Date(from).toLocaleDateString();
     var toDate = new Date(to).toLocaleDateString();
 
     return (<>
-        <small><strong>{props.t("From")}</strong> {fromDate < maxDate ? fromDate : "∞"}</small>
+        <small><strong>{props.t("From")}</strong> {new Date(from) < maxDate ? fromDate : "∞"}</small>
         <br />
-        <small><strong>{props.t("To")}</strong> {toDate < maxDate ? toDate : "∞"}</small>
+        <small><strong>{props.t("To")}</strong> {new Date(to) < maxDate ? toDate : "∞"}</small>
     </>);
 };
 

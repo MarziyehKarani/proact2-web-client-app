@@ -1,8 +1,8 @@
 const axios = require('axios');
 import axiosInstance from "../axiosInstance";
 
-async function getMineCompiledSurveys(onApiOkResultCallback, onApiKoResultCallback) {
-    await axiosInstance.get(`SurveyAssegnations/completed/me`)
+async function getMineCompiledSurveys(pagingCount,onApiOkResultCallback, onApiKoResultCallback) {
+    await axiosInstance.get(`SurveyAssegnations/completed/me/${pagingCount}`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -11,8 +11,8 @@ async function getMineCompiledSurveys(onApiOkResultCallback, onApiKoResultCallba
         });
 }
 
-async function getMineNotCompiledSurveys(onApiOkResultCallback, onApiKoResultCallback) {
-    await axiosInstance.get(`SurveyAssegnations/notcompleted/me`)
+async function getMineNotCompiledSurveys(pagingCount,onApiOkResultCallback, onApiKoResultCallback) {
+    await axiosInstance.get(`SurveyAssegnations/notcompleted/me/${pagingCount}`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })
@@ -112,8 +112,8 @@ async function getPatientStats(surveyId, userId, onApiOkResultCallback, onApiKoR
         });
 }
 
-async function getProjectAssignedSurveys(projectId, onApiOkResultCallback, onApiKoResultCallback) {
-    await axiosInstance.get(`Survey/${projectId}/all/assigned`)
+async function getProjectAssignedSurveys(projectId,pagingCount, onApiOkResultCallback, onApiKoResultCallback) {
+    await axiosInstance.get(`Survey/${projectId}/all/assigned/${pagingCount}`)
         .then(response => {
             onApiOkResultCallback(response.data);
         })

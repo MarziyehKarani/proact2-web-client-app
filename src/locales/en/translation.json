@@ -546,5 +546,15 @@
  "NotificationSettingsUpdated" : "Notification setting has been updated",
  "InstituteConfigErrorMessage":"There is a configuration issue with this study",
  "NewMessageAddedd":"Your message has been sent successfully",
- "NewVideoMessageAdded":"Your video message has been uploaded and sent successfully"
+ "NewVideoMessageAdded":"Your video message has been uploaded and sent successfully",
+ "Title_Asc":"Title A-Z",
+ "Title_Desc":"Title Z-A",
+ "SentDate_Desc":"Sent Date: new first",
+ "SentDate_Asc":"Sent Date: old first",
+ "ExpireDate-Asc":"Expiration date: earliest",
+ "ExpireDate-Desc":"Expiration date: latest",
+ "SortBy":"Sort by",
+ "CompleteDate_Desc":"Complete date: new first",
+ "CompleteDate_Asc":"Complete date: old first",
+ "Patients":"Patients"
 } 

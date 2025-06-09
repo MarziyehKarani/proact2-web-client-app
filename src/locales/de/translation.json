@@ -542,5 +542,15 @@
  "NotificationSettingsUpdated" : "Die Benachrichtigungseinstellung wurde aktualisiert",
  "InstituteConfigErrorMessage":"Bei dieser Studie liegt ein Konfigurationsproblem vor",
  "NewMessageAddedd":"Ihre Nachricht wurde erfolgreich gesendet",
- "NewVideoMessageAdded":"Ihre Video-Nachricht wurde erfolgreich hochgeladen und gesendet"
+ "NewVideoMessageAdded":"Ihre Video-Nachricht wurde erfolgreich hochgeladen und gesendet",
+ "Title_Asc":"Titel A-Z",
+ "Title_Desc":"Titel Z-A",
+ "SentDate_Desc":"Sendedatum: Älteste zuerst",
+ "SentDate_Asc":"Sendedatum: Neueste zuerst",
+ "ExpireDate-Asc":"Ablaufdatum: Früheste zuerst",
+ "ExpireDate-Desc":"Ablaufdatum: Späteste zuerst",
+ "SortBy":"Sortieren nach",
+ "CompleteDate_Desc": "Abschlussdatum: Neueste zuerst",
+ "CompleteDate_Asc": "Abschlussdatum: Älteste zuerst",
+ "Patients":"Patienten"
  } 

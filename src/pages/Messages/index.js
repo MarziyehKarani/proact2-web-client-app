@@ -117,14 +117,6 @@ const Messages = props => {
 
   const { userAgreement, LoadUserAgreement } = useUserAgreement()
 
-  //const history = useHistory();
-
-  // const handleRedirect = () => {
-  //   history.push("/CameraTest");  // Redirect to /CameraTest
-  // };
-
-  //const userAgreement = useUserAgreement()
-
   const cancelToken = useRef(null)
 
   const POOL_REQUEST_INTERVAL_IN_SECONDS = 120000

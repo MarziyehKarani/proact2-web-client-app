@@ -542,5 +542,15 @@
  "NotificationSettingsUpdated" : "Le paramètre de notification a été mis à jour",
  "InstituteConfigErrorMessage":"Il y a un problème de configuration avec cette étude",
  "NewMessageAddedd":"Votre message a été envoyé avec succès",
- "NewVideoMessageAdded":"Votre message vidéo a été téléchargé et envoyé avec succès"
+ "NewVideoMessageAdded":"Votre message vidéo a été téléchargé et envoyé avec succès",
+ "SortBy": "Trier par",
+  "Title_Asc": "Titre A–Z",
+  "Title_Desc": "Titre Z–A",
+  "SentDate_Asc": "Date d’envoi : plus ancien d’abord",
+  "SentDate_Desc": "Date d’envoi : plus récent d’abord",
+  "ExpireDate-Asc": "Date d’expiration : plus proche",
+  "ExpireDate-Desc": "Date d’expiration : plus lointaine",
+  "CompleteDate_Desc": "Date d’complétion : plus récent d’abord",
+  "CompleteDate_Asc": "Date d’complétion : plus ancien d’abord",
+ "Patients":"patients"
 }

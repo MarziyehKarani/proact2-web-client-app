@@ -31,7 +31,11 @@ const Breadcrumb = props => {
                 <BackButton linkTo={props.backButtonLinkTo} title={ t("Back") } />}
               </>
             }
-            {" "} {props.breadcrumbItem}
+             <span className="d-none d-sm-inline"> </span>
+             <br className="d-inline d-sm-none" /> 
+               <span className="d-inline-block mt-3 mt-sm-0">
+                {props.breadcrumbItem}
+              </span>
           </h4>
 
           <div className="page-title-right">

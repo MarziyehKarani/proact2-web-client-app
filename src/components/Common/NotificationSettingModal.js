@@ -72,9 +72,6 @@ const NotificationSettingModal = ({ props, isOpen, closeCallback }) => {
   }
 
   function validate() {
-    console.log(fromTime)
-    console.log(endTime)
-    console.log(notificationEnabled)
     var isValid = true
     setIsErrorVisible(false)
 
