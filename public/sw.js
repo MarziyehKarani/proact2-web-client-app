@@ -80,9 +80,10 @@ self.addEventListener('install', e => {
             // the 4xx or 5xx range, the catch() will NOT be called.
             console.log("Fetch failed; returning offline page instead.", error);
   
-            const cache = await caches.open(CACHE_NAME);
-            const cachedResponse = await cache.match(OFFLINE_URL);
-            return cachedResponse;
+             throw new Error(`Error: ${error.message}`);
+            // const cache = await caches.open(CACHE_NAME);
+            // const cachedResponse = await cache.match(OFFLINE_URL);
+            // return cachedResponse;
           }
         })()
       );
