@@ -66,6 +66,12 @@ self.addEventListener('install', e => {
   
             // Always try the network first.
             const networkResponse = await fetch(event.request);
+
+            // Handle HTTP failures manually
+            if (!networkResponse || !networkResponse.ok ) {
+              throw new Error(`Bad HTTP status. Status: ${networkResponse.status}`);
+            }
+
             return networkResponse;
           } catch (error) {
             // catch is only triggered if an exception is thrown, which is
