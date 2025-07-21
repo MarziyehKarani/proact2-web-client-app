@@ -466,7 +466,7 @@
  "SurveysNotCompiledError": "Der Patient hat den Fragebogen nicht ausgefüllt.",
  "SurveysResults": "Ergebnisse",
  "SurveysStatistics": "Statistiken",
- "FillinAllFields": "Bitte alle Felder ausfüllen",
+ "FillinAllFields": "Füllen Sie alle Pflichtfelder aus",
  "ShowProtocol": "Protokoll ansehen",
  "OpenAnswer": "Offene Antwort",
  "SingleAnswer": "Einzelauswahl",
@@ -552,5 +552,6 @@
  "SortBy":"Sortieren nach",
  "CompleteDate_Desc": "Abschlussdatum: Neueste zuerst",
  "CompleteDate_Asc": "Abschlussdatum: Älteste zuerst",
- "Patients":"Patienten"
+ "Patients":"Patienten",
+ "MandatoryQuestionsAlertMessage":"Felder mit * sind Pflichtfelder und müssen ausgefüllt werden."
  } 

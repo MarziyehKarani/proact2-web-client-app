@@ -4,9 +4,6 @@ import { Card, CardBody } from "reactstrap"
 
 const SurveyHeaderCard = ({ props, survey }) => {
 
-    
-    console.log("SurveyHeaderCard", survey);
-
       return (
         <Card className="mb-4">
           <CardBody>
@@ -25,6 +22,13 @@ const SurveyHeaderCard = ({ props, survey }) => {
       {survey.versionInEnglish && <h5>{survey.versionInEnglish}</h5>}
 
       {survey.description && <span className="text-muted">{survey.description}</span> }
+
+      <br />
+       <br />
+      <div className="mt-3">
+        <strong>{props.t("MandatoryQuestionsAlertMessage")}</strong>
+        {/* <span className="text-muted">{survey.startTime}</span> */}
+      </div>
 
           </CardBody>
           </Card>   

@@ -470,7 +470,7 @@
     "SurveysNotCompiledError": "De patiënt heeft de vragenlijst niet ingevuld.",
     "SurveysResults": "Resultaten",
     "SurveysStatistics": "Statistieken",
-    "FillinAllFields": "Vul alle velden in",
+    "FillinAllFields": "Vul alle verplichte velden in",
     "ShowProtocol": "Protocol bekijken",
     "OpenAnswer": "Open vraag",
     "SingleAnswer": "Enkele keuze",
@@ -556,5 +556,6 @@
   "ExpireDate-Desc": "Vervaldatum: laatste eerst",
   "CompleteDate_Desc": "Voltooiingsdatum: nieuwste eerst",
   "CompleteDate_Asc": "Voltooiingsdatum: oudste eerst",
-  "Patients":"patiënten"
+  "Patients":"patiënten",
+  "MandatoryQuestionsAlertMessage":"Velden met * zijn verplicht en moeten worden ingevuld."
 }

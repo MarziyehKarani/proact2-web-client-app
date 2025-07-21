@@ -4,7 +4,15 @@ import useUserSession from "../../infrastructure/session/useUserSession"
 import useEnvironment from "../../infrastructure/session/useEnvironment"
 import Breadcrumbs from "../../components/Common/Breadcrumb"
 import { withTranslation } from "react-i18next"
-import { Container, Row, Card, CardBody, Col, Button , Spinner} from "reactstrap"
+import {
+  Container,
+  Row,
+  Card,
+  CardBody,
+  Col,
+  Button,
+  Spinner,
+} from "reactstrap"
 import TableContainer from "../../components/Common/TableContainer"
 import {
   TextCell,
@@ -35,7 +43,7 @@ const NotCompiledSurveysMine = props => {
   const [nextPageButtonVisible, setNextPageButtonVisible] = useState(false)
   const [isbusy, setIsbusy] = useState(false)
 
-  const pageSize = 5;
+  const pageSize = 5
 
   useEffect(() => {
     if (environment) {
@@ -50,7 +58,7 @@ const NotCompiledSurveysMine = props => {
     }
   }, [projectProperties])
 
-    useEffect(() => {
+  useEffect(() => {
     if (pagingCount > 0) {
       loadSurveys()
     }
@@ -123,9 +131,11 @@ const NotCompiledSurveysMine = props => {
 
       notCompletedSurveys.push(survey)
     })
- 
+
     setSurveys(prevSurveys =>
-      pagingCount === 0 ? notCompletedSurveys : [...prevSurveys, ...notCompletedSurveys]
+      pagingCount === 0
+        ? notCompletedSurveys
+        : [...prevSurveys, ...notCompletedSurveys]
     )
 
     setNextPageButtonVisible(data.length < pageSize ? false : true)
@@ -261,16 +271,24 @@ const NotCompiledSurveysMine = props => {
       </Row>
       <Row>
         <Col xs="12">
-          {Array.isArray(surveys) && surveys.length > 0 ? (
-            filteredSurveys.map((survey, idx) => (
-                  <NotCompiledSurveysMineCard
-                    key={idx}
-                    survey={survey}
-                    props={props}
-                  />
-                ))
-          ) : (
+          {surveys === undefined ? (
             <LoadingSpinner />
+          ) : Array.isArray(surveys) && surveys.length > 0 ? (
+            filteredSurveys.map((survey, idx) => (
+              <NotCompiledSurveysMineCard
+                key={idx}
+                survey={survey}
+                props={props}
+              />
+            ))
+          ) : (
+            <Card>
+                      <CardBody>
+                        <div className="text-center">
+                          {props.t("EmptyNotComiledSurveysList")}
+                        </div>
+                      </CardBody>
+                    </Card>
           )}
         </Col>
       </Row>

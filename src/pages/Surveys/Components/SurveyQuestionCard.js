@@ -50,6 +50,7 @@ const SurveyQuestionCard = ({
                 <NotCompiledOpenAnswer
                   question={question}
                   addCompiledQuestion={addCompiledQuestion}
+                  props={props}
                 />
               )}
 
@@ -60,6 +61,7 @@ const SurveyQuestionCard = ({
                   question={question}
                   addCompiledQuestion={addCompiledQuestion}
                   surveyLayout={surveyLayout}
+                   props={props}
                 />
               )}
 
@@ -68,6 +70,7 @@ const SurveyQuestionCard = ({
                 <NotCompiledMultipleAnswer
                   question={question}
                   addCompiledQuestion={addCompiledQuestion}
+                   props={props}
                 />
               )}
 
@@ -83,6 +86,7 @@ const SurveyQuestionCard = ({
               <NotCompiledRatingAnswer
                 question={question}
                 addCompiledQuestion={addCompiledQuestion}
+                 props={props}
               />
             )}
 
@@ -90,6 +94,7 @@ const SurveyQuestionCard = ({
               <NotCompiledMoodAnswer
                 question={question}
                 addCompiledQuestion={addCompiledQuestion}
+                 props={props}
               />
             )}
 
@@ -107,6 +112,7 @@ const SurveyQuestionCard = ({
                   question={question}
                   addCompiledQuestion={addCompiledQuestion}
                   surveyLayout={surveyLayout}
+                   props={props}
                 />
               )}
           </>

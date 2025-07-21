@@ -465,7 +465,7 @@
   "SurveysNotCompiledError": "El paciente no completo el cuestionario.",
   "SurveysResults": "Resultados",
   "SurveysStatistics": "Estadísticas",
-  "FillinAllFields": "completar todos los campos",
+  "FillinAllFields": "Rellena todos los campos obligatorios",
   "ShowProtocol": "Ver protocolo",
   "OpenAnswer": "Respuesta abierta",
   "SingleAnswer": "Opción única",
@@ -551,5 +551,6 @@
   "ExpireDate-Desc": "Fecha de expiración: la más lejana",
   "CompleteDate_Desc": "Fecha de finalización: más reciente primero",
   "CompleteDate_Asc": "Fecha de finalización: más antigua primero",
-  "Patients":"pacientes"
+  "Patients":"pacientes",
+  "MandatoryQuestionsAlertMessage":"Los campos con * son obligatorios y deben ser completados."
 }

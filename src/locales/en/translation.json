@@ -471,7 +471,7 @@
  "SurveysNotCompiledError": "The patient did not fill in the questionnaire.",
  "SurveysResults": "Results",
  "SurveysStatistics": "Statistics",
- "FillinAllFields": "Fill in all fields",
+ "FillinAllFields": "Fill in all required fields",
  "ShowProtocol": "View protocol",
  "OpenAnswer": "Open answer",
  "SingleAnswer": "Single choice",
@@ -556,5 +556,6 @@
  "SortBy":"Sort by",
  "CompleteDate_Desc":"Complete date: new first",
  "CompleteDate_Asc":"Complete date: old first",
- "Patients":"Patients"
+ "Patients":"Patients",
+ "MandatoryQuestionsAlertMessage":"Fields with * are mandatory and must be filled out."
 } 
