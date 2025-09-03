@@ -86,7 +86,8 @@ const SurveyQuestionCard = ({
               <NotCompiledRatingAnswer
                 question={question}
                 addCompiledQuestion={addCompiledQuestion}
-                 props={props}
+                surveyLayout={surveyLayout}
+                props={props}
               />
             )}
 

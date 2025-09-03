@@ -9,7 +9,12 @@ const SurveyQuestionHead = ({ questionDetail }) => {
         {questionDetail.isRequired && <span style={{ color: "red" }}>*</span>}
       </h4>
       <h5>
-        <small className="text-muted">{questionDetail.question}</small>
+        {/* <small className="text-muted">{questionDetail.question}</small> */}
+<small className="text-muted">
+        <pre style={{ whiteSpace: 'pre-wrap' }}>
+  {questionDetail.question}
+</pre>
+</small>
       </h5>
       <hr />
     </div>

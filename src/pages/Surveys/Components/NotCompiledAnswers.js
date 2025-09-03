@@ -102,9 +102,9 @@ const NotCompiledSingleAnswer = ({
   surveyLayout
 }) => {
 
-  var radioClass="";
-  if (surveyLayout == CustomSurveyType.EORTCQLQ_C30 || surveyLayout == CustomSurveyType.EORTC_QLQ_BR23) {
-    radioClass="mb-0 w-50 d-flex justify-content-between align-items-center"
+  let radioClass="";
+  if (surveyLayout == CustomSurveyType.EORTCQLQ_C30 || surveyLayout == CustomSurveyType.EORTC_QLQ_BR23 || surveyLayout == CustomSurveyType.EQ_5D) {
+    radioClass="d-flex justify-content-between align-items-center"
   }
 
 
@@ -242,15 +242,22 @@ const NotCompiledBooleanAnswer = ({ props, question, addCompiledQuestion }) => {
   )
 }
 
-const NotCompiledRatingAnswer = ({ question, addCompiledQuestion }) => {
+const NotCompiledRatingAnswer = ({ question, addCompiledQuestion,
+  surveyLayout }) => {
   console.log("question", question);
   function handleValueChange(value) {
     var compiledQuestion = createCompiledQuestionByValue(question.id, value, question.isRequired)
     addCompiledQuestion(compiledQuestion)
   }
+
+  var valueTitle="Value";
+  if (surveyLayout == CustomSurveyType.EQ_5D) {
+    valueTitle="La SUA SALUTE OGGI"
+  }
+
   return (
     <Row>
-      <Col xs="8">
+      <Col>
         <NumericSlider
           min={question.properties.min}
           max={question.properties.max}
@@ -259,6 +266,7 @@ const NotCompiledRatingAnswer = ({ question, addCompiledQuestion }) => {
           step={question.properties.step}
           isVertical={question.properties.isVertical}
           onValueChange={handleValueChange}
+          valueTitle={valueTitle}
         />
       </Col>
     </Row>

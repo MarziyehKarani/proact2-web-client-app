@@ -3,7 +3,6 @@ import Slider from "react-rangeslider"
 import "react-rangeslider/lib/index.css"
 import { useState, useEffect, useRef } from "react"
 
-
 const NumericSlider = ({
   min,
   max,
@@ -12,6 +11,7 @@ const NumericSlider = ({
   step,
   isVertical,
   onValueChange,
+  valueTitle,
 }) => {
   var labels = []
   const [value, setValue] = useState()
@@ -55,19 +55,19 @@ const NumericSlider = ({
             <strong>{maxLabel}</strong>
           </div>
           <div>
-          <Slider
-            value={value}
-            min={min}
-            max={max}
-            // step={step}
-             labels={labels}
-            orientation="horizontal"
-            onChange={value => {
-              handleValueChange(value)
-            }}          
-          />
+            <Slider
+              value={value}
+              min={min}
+              max={max}
+              // step={step}
+              labels={labels}
+              orientation="horizontal"
+              onChange={value => {
+                handleValueChange(value)
+              }}
+            />
           </div>
-        {/*   <div
+          {/*   <div
             style={{
               position: "absolute",
               left: `${getLabelPosition()}px`,
@@ -79,40 +79,61 @@ const NumericSlider = ({
             {value}
           </div> */}
 
-<div className="mt-5 text-center">
-            <strong> Value: {value} </strong>
+          <div className="mt-5 text-center">
+            <strong>
+              {" "}
+              {valueTitle}: <span className="m-2">{value}</span>{" "}
+            </strong>
           </div>
         </>
       )}
 
       {isVertical && (
-        <div className="d-flex justify-content-between">
-          <div className="d-flex flex-column justify-content-between align-items-center col-md-8 col-sm-4 col-xs-4">
+        <div className="d-flex">
+          <div className="d-flex align-items-center">
+            <span>{valueTitle}:</span>
+            <span
+              className="m-2"
+              style={{
+                border: "1px solid black",
+                width: "30px",
+                height: "30px",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "6px",
+              }}
+            >
+              {value}
+            </span>
+          </div>
+
+          <div
+            className="d-flex flex-column justify-content-between align-items-center ms-auto"
+            style={{ marginLeft: "auto" }} // This pushes the slider div to the right
+          >
             <div className="maxLabel-vertical">
               <strong>{maxLabel}</strong>
             </div>
             {/* <div className="d-flex align-items-center"> */}
-              <div style={{ height: sliderHeight }}>
-                <Slider
-                  value={value}
-                  min={min}
-                  max={max}
-                  // step={step}
-                  labels={labels}
-                  orientation="vertical"
-                  onChange={value => {
-                    handleValueChange(value)
-                  }}
-                  className="rangeslider-vertical"
-                ></Slider>
-              </div>
+            <div style={{ height: sliderHeight }}>
+              <Slider
+                value={value}
+                min={min}
+                max={max}
+                // step={step}
+                labels={labels}
+                orientation="vertical"
+                onChange={value => {
+                  handleValueChange(value)
+                }}
+                className="rangeslider-vertical"
+              ></Slider>
+            </div>
             {/* </div> */}
             <div className="minLabel-vertical">
               <strong>{minLabel}</strong>
             </div>
-          </div>
-          <div className="col-xs-2 align-self-center">
-            <strong> Value: {value} </strong>
           </div>
         </div>
       )}
