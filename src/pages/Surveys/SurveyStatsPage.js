@@ -41,7 +41,6 @@ const SurveyStatsPage = props => {
   }
 
   function handleLoadStatisticsSuccess(data) {
-    console.log(data)
     setStatistics(data)
   }
 

@@ -26,6 +26,7 @@ import { getAnalystConsoleBaseUrl, getControlPanelBaseUrl } from "../../../helpe
 import projectStatus from "../../../constants/projectStatus"
 import medicalTeamStatus from "../../../constants/medicalTeamStatus"
 import NotificationSettingModal from "../../Common/NotificationSettingModal"
+import { set } from "lodash"
 
 const ProfileMenu = props => {
 
@@ -37,6 +38,7 @@ const ProfileMenu = props => {
   const [profileImage, setProfileImage] = useState(avatar);
   const [isChangeStudyModalOpen, setIsChangeStudyModalOpen] = useState(false);
   const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false);
+  const [userName, setUserName] = useState("");
 
   const handleLogout = () => {
     instance.logoutPopup({ postLogoutRedirectUri: "/signout", mainWindowRedirectUri: "/" })
@@ -88,6 +90,7 @@ const ProfileMenu = props => {
   useEffect(() => {
     if (userSession) {
       setProfileImage(userSession.avatarUrl);
+      setUserName(userSession.name);
     }
   }, [userSession]);
 
@@ -108,7 +111,8 @@ const ProfileMenu = props => {
             src={profileImage}
             alt="Header Avatar"
           />
-          <span className="d-none d-xl-inline-block ms-1 fw-medium font-size-15">{accounts != null && accounts.length > 0 ? accounts[0].name : ""}</span>{" "}
+          <span className="d-none d-xl-inline-block ms-1 fw-medium font-size-15">{userName}</span>{" "} 
+          {/* // accounts != null && accounts.length > 0 ? accounts[0].name : "" */}
           <i className="uil-angle-down d-none d-xl-inline-block font-size-15"></i>
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-end">

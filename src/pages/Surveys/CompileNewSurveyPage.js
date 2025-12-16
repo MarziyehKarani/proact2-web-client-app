@@ -69,11 +69,11 @@ const CompileNewSurveyPage = props => {
       question => question.isVisible !== false && question.isRequired === true
     )
 
-    console.log("surveyRequiredQuestions", surveyRequiredQuestions)
+    // console.log("surveyRequiredQuestions", surveyRequiredQuestions)
 
-    console.log("compiledQuestions", compiledQuestions)
+    // console.log("compiledQuestions", compiledQuestions)
 
-    console.log("compiledRequiredQuestions", compiledRequiredQuestions)
+    // console.log("compiledRequiredQuestions", compiledRequiredQuestions)
 
    const hasRequiredQuestions = surveyRequiredQuestions.length > 0
 
@@ -85,7 +85,7 @@ const CompileNewSurveyPage = props => {
             compiledQ => compiledQ.questionId === requiredQ.id
           )
         ))
-    console.log("allRequiredAnswered", allRequiredAnswered)
+   // console.log("allRequiredAnswered", allRequiredAnswered)
     return allRequiredAnswered
     // surveyRequiredQuestions.length <= compiledQuestions.length
   }
